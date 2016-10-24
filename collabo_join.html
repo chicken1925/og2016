@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<html xml:lang="ja" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<title>og2016_collabo</title>
+		<script type="text/javascript" src="jquery/jquery-3.1.1.min.js">
+		</script>
+		<script type="text/javascript" src="apifunc.js"></script>
+		<script type="text/javascript" src="prog_collabo_join.js"></script>
+		
+		<script>
+		</script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="styles_collabo_join.css">
+		<STYLE TYPE="text/css">
+		
+		</STYLE>
+		<script type="text/javascript">
+		var displaySet=1;
+		if(displaySet==1){ if(displaySet==1){ document.write('<meta name="viewport" content="width=320, user-scalable=no">');if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;window.addEventListener('resize',function(){ if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;})}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}
+		</script>
+	</head>
+	<body>
+	<div id="all_contents" class="page_container" style="width:320px;">
+		<div id="join_text1" class="j_texts page_container">参加する研究のIDを入力</div>
+		<form id="join_f">
+		<input type="text" name="quest_id_f" class="quest_id_tc" id="quest_id_ti" size="40" />
+		<input type="text" name="dummy" style="display:none;"><!--Enterキーでの送信を無効にするダミー-->
+		<input type="button" id="join_bt" value="submit!" onclick="search_quest()" />
+		</form>
+
+	</div>
+
+
+	</div>
+	</body>
+</html>
+

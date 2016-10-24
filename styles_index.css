@@ -1,0 +1,318 @@
+html,body{
+    overflow: hidden
+    height: 100%
+}
+
+input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    line-height: 1;
+}
+
+ul {
+    margin:0;
+    padding:0;
+    border: 0;
+    outline: 0;
+    line-height: 1;
+}
+
+li {
+    float:left;
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    list-style:none;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+
+.top_m{
+	position: absolute;
+	display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+	-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+	align-items: center; /* 縦方向中央揃え */
+}
+#min_m{
+	width: 130px;
+	height: 20px;
+	left: 20px;
+
+}
+#level_m{
+	width: 130px;
+	height: 20px;
+	left: 160px;
+	background: #222;
+}
+
+
+
+
+/*下のボタン*/
+#u_buttons .button1 {
+    display: block;
+    background: url("images/button1_.png") no-repeat 0 ;
+    width: 64px;
+    height: 64px;
+}
+#u_buttons .button2 {
+    display: block;
+    background: url("images/button1_.png") no-repeat 0 ;
+    width: 64px;
+    height: 64px;
+}
+#u_buttons .button3 {
+    display: block;
+    background: url("images/button1_.png") no-repeat 0 ;
+    width: 64px;
+    height: 64px;
+}
+#u_buttons .button4 {
+    display: block;
+    background: url("images/button1_.png") no-repeat 0 ;
+    width: 64px;
+    height: 64px;
+}
+#u_buttons .button5 {
+    display: block;
+    background: url("images/button1_.png") no-repeat 0 ;
+    width: 64px;
+    height: 64px;
+}
+
+
+
+
+
+
+
+
+
+.float_text{
+    position: absolute;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    width:270px;
+    left:10px;
+}
+#f_text1{
+    top:80px;
+    font-size:16px;
+}
+#f_text2{
+    top:140px;
+    width:220px;
+    left:35px;
+    background: #eee;
+    font-size:30px;
+    color: red;
+}
+#f_text3{
+    top:200px;
+    color: orange;
+}
+
+#floating {
+	position: absolute;
+	top:0;
+	left: 0;
+	height: 100%;
+}
+#float_body {
+	width: 290px;
+	height: 150px;
+	margin-top: -75px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	background: Honeydew;
+	z-index: 1;
+}
+#float_body .btn1{
+	position: absolute;
+	top:45px;
+	left:70px;
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: #111;
+    width: 60px;
+    height: 25px;
+    padding: 5px 0 0 0;
+    text-decoration:none;
+    text-align: center;
+    font-weight: normal;
+}
+#float_back {
+	width: 100%;
+	height: 100%;
+	background: #000;
+}
+#float_text {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 260px;
+    height: 40px;
+    margin: 0;
+    padding: 5px;
+    border: 0;
+	background: orange;
+	text-align: center;
+}
+#info_batu{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	margin-top: -87px; /*float_bodyのmargin-topから-12*/
+	left: 292px;
+	-moz-background-size:100% auto;
+	background-size:100% auto;
+	background-image:url("images/batu.png");
+    z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+#notice{
+	text-align:center;
+	font-size:20px;
+	height:30px;
+	background-color:lemonchiffon;
+	position:relative;
+}
+#notice .trans_img{
+	height:24px;
+	width:24px;
+	position: absolute;
+	top:3;
+	
+	-moz-background-size:100% auto;
+	background-size:100% auto;
+}
+#trans_img1{
+	left:3;
+	background-image:url("images/trans_none.png");
+}
+#trans_img2{
+	right:3;
+	background-image:url("images/trans_none.png");
+}
+
+
+
+
+.scrollbox{
+	width: 320px;
+	height: 240px;
+	overflow-y: scroll;
+	overflow-x:hidden;
+	display:block;
+}
+.scrollbox::-webkit-scrollbar {
+	width:3px;
+	background:#eee;
+}
+.scrollbox::-webkit-scrollbar-button {
+	width:3px;
+	height:3px;
+	background:#666;
+}
+.scrollbox::-webkit-scrollbar-thumb {
+	background:#999;
+}
+.scrollbox::-webkit-scrollbar-corner {
+	background:#ddd;
+}
+#box{
+	width: 320px;
+	/*height: 380px;*/
+	overflow:auto; /* scrollからautoに変更 */
+	-webkit-overflow-scrolling:touch;
+	position:relative;
+}
+
+
+
+
+
+#loginbox {
+	position: absolute;
+	top:0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background:#aaa;
+}
+#loginbox_ {
+	position: absolute;
+	top:80;
+	left: 40;
+	height: 300px;
+	width: 240px;
+	background:#FFF;
+}
+#logintitle{
+	position: absolute;
+	text-align:center;
+	top:40;
+	left: 70;
+	font-size:26px;
+	width: 100px;
+	color:#4169e1;
+}
+.loginbody {
+	position: absolute;
+	left: 70;
+	height: 20px;
+	width: 100px;
+	font-size:10px;
+	color:#aaa;
+}
+#l1{top:105;}
+#l2{top:155;}
+.logintext{
+	position: absolute;
+	border:0;
+	font-size:14px;
+	color:#333;
+	border:solid 1px #ccc;
+	margin:0 0 0px;
+	width:100px;
+	left:70px;
+}
+#id_t{top:120;}
+#pass_t{top:170}
+#login_button{
+	position: absolute;
+	text-align:center;
+	top:220;
+	left: 85;
+	font-size:18px;
+	width: 70px;
+	height: 20px;
+	color:#222;
+}
+
+
+
+
+

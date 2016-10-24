@@ -1,0 +1,23 @@
+vps
+ssh root@153.126.164.52
+password00
+
+
+
+クラウド
+bng98393@oogs3624
+ssh root@59.106.217.192
+admin@ogs01243624
+mysql:root@password
+
+
+CREATE DATABASE og2016 DEFAULT CHARACTER SET utf8;
+
+
+
+http://www.opentone.co.jp/news/release/article04/article0401.html
+http://qiita.com/maximum80/items/146a680c50ef51866b38
+http://www.barracuda.co.jp/column/detail/466
+
+
+uidは文字列！！！！

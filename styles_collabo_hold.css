@@ -1,0 +1,178 @@
+BODY { 
+	overflow-x : hidden ;
+}
+a, a:hover, a:visited, a:link, a:active {
+color: #000;
+}
+
+#all_contents{
+	width: 100%;
+	position: relative;
+	background: #fff;
+}
+
+.quest_list{
+	width: 300px;
+	height: 65px;
+	position: absolute;
+	left:10px;
+	background: #eee;
+}
+#quest0{
+	top:10px;
+}
+
+
+
+#in_float_quest{
+	top:10px;
+	width: 270px;
+}
+#float_choice{
+	width: 90px;
+	height: 35px;
+	position: absolute;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+	align-items: center; /* 縦方向中央揃え */
+	-webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+	justify-content: center; /* 横方向中央揃え */
+	background: orange;
+	left:100px;
+	top:275px;
+}
+
+
+
+.mem_ratio input{
+	display: none;
+}
+.mem_ratio label{
+	display: block;
+	float: left;
+	cursor: pointer;
+	width: 80px;
+	height: 90px;
+	margin: 0;
+	padding: 0px;
+	border-right: 1px solid #abb2b7;
+	background: #bdc3c7;
+	color: #555e64;
+	font-size: 14px;
+	text-align: center;
+	line-height: 1;
+	transition: .2s;
+	position: absolute;
+}
+.mem_ratio label:first-of-type{
+	border-radius: 3px 3 3 3px;
+}
+.mem_ratio label:last-of-type{
+	border-right: 0px;
+	border-radius: 3 3px 3px 3;
+}
+.mem_ratio input[type="radio"]:checked + label {
+	background-color: #a1b91d;
+	color: #fff;
+}
+.mem_ratio #sel_label0{ top:80px; left:15px;}
+.mem_ratio #sel_label1{ top:80px; left:105px;}
+.mem_ratio #sel_label2{ top:80px; left:195px;}
+.mem_ratio #sel_label3{ top:175px; left:15px;}
+.mem_ratio #sel_label4{ top:175px; left:105px;}
+.mem_ratio #sel_label5{ top:175px; left:195px;}
+
+.float_text{
+    position: absolute;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    width:270px;
+    left:10px;
+}
+#f_text1{
+    top:80px;
+    font-size:22px;
+}
+#f_text2{
+    top:140px;
+    width:220px;
+    left:35px;
+    background: #eee;
+    font-size:30px;
+    color: red;
+}
+#f_text3{
+    top:200px;
+    color: orange;
+}
+#tweet_button{
+    top:250px;
+}
+
+#floating {
+	position: absolute;
+	top:0;
+	left: 0;
+	height: 100%;
+}
+#float_body {
+	width: 290px;
+	height: 320px;
+	margin-top: -160px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	z-index: 1000;
+	background: #fff;
+	
+}
+#float_body .btn1{
+	position: absolute;
+	top:45px;
+	left:70px;
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: #111;
+    width: 60px;
+    height: 25px;
+    padding: 5px 0 0 0;
+    text-decoration:none;
+    text-align: center;
+    font-weight: normal;
+}
+#float_back {
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: #000;
+}
+#float_text {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 260px;
+    height: 40px;
+    margin: 0;
+    padding: 5px;
+    border: 0;
+	background: orange;
+	text-align: center;
+}
+#info_batu{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	margin-top: -172px; /*float_bodyのmargin-topから-12*/
+	left: 292px;
+	-moz-background-size:100% auto;
+	background-size:100% auto;
+	background-image:url("images/batu.png");
+	z-index:1000;
+}

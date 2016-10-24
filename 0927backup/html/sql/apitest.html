@@ -1,0 +1,149 @@
+<!DOCTYPE>
+<html xml:lang="ja" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<title>apitest</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+		</script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+/*	
+	function  apifunc(type_,url_){
+		document.forms.id_form1.id_textBox_url.value
+		$(function() {
+			$.ajax({
+				url: url_,
+				type:type_,
+				dataType: 'jsonp',
+				timeout:1000,
+				success: function(data) {
+					console.log(data);
+					console.log(data['message'])
+				},
+				error: function(data) {
+					alert("ng");
+					console.log(data);
+				}
+			});
+		});
+	}
+*/
+	//apifunc('GET','http://153.126.164.52:3030/api/users');
+	
+	
+	
+function  apifunc2(){
+	var url_='http://153.126.164.52:3030/api/'+document.forms.id_form1.id_textBox_num2.value+'/'+document.forms.id_form1.id_textBox_num.value;
+		$(function() {
+			$.ajax({
+				url: url_,
+				type:'GET',
+				dataType: 'jsonp',
+				timeout:1000,
+				success: function(data) {
+					console.log(data);
+					target = document.getElementById("output");
+					target.innerText ="id="+data.id;
+					target.innerText +=", uid="+data.uid;
+					if(document.forms.id_form1.id_textBox_num2.value=="users"){
+						target.innerText +=", name="+data.name;
+						target.innerText +=", password="+data.password;
+						target.innerText +=", campus="+data.campus;
+						target.innerText +=", department="+data.department;
+					}else if(document.forms.id_form1.id_textBox_num2.value=="money"){
+						target.innerText +=", all_m="+data.all_m;
+						target.innerText +=", per_m="+data.per_m;
+					}else if(document.forms.id_form1.id_textBox_num2.value=="students"){
+						target.innerText +=", bachelor="+data.bachelor;
+						target.innerText +=", master="+data.master;
+						target.innerText +=", doctor="+data.doctor;
+					}
+					console.log(data['id']);
+				},
+				error: function(data) {
+					console.log("ng");
+					console.log(data);
+				}
+			});
+		});
+	}
+	
+function  apifunc3(){
+	var url_='http://153.126.164.52:3030/api/users/';
+		$(function() {
+			$.ajax({
+				url: url_,
+				type:'GET',
+				dataType: 'jsonp',
+				timeout:1000,
+				success: function(data) {
+					var str="";
+					
+					for(var i in data){
+						str+="id="+data[i].id+" , uid="+data[i].uid+" , name="+data[i].name+" , password="+data[i].password+" , campus="+data[i].campus+" , department="+data[i].department+"\n";
+					}
+					
+					
+					console.log(data);
+					target = document.getElementById("output");
+					target.innerText =str;
+					//target.innerText +=", uid="+data.uid;
+					//target.innerText +=", name="+data.name;
+					
+				},
+				error: function(data) {
+					console.log("ng");
+					console.log(data);
+				}
+			});
+		});
+	}
+
+
+function  apifunc4(){
+	var url_='http://153.126.164.52:3030/api/money/'+document.forms.id_form1.id_textBox_num.value;
+		$(function() {
+		
+		var JSONdata = {
+			all_m: document.forms.id_form1.id_textBox_num3.value
+		};
+			$.ajax({
+				url: url_,
+				type:'post',
+				dataType: 'json',
+				timeout:1000,
+				data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
+					all_m: document.forms.id_form1.id_textBox_num3.value
+				},
+				success: function(data) {
+					var str="";
+					console.log(data);
+					console.log("hoge");
+					
+				},
+				error: function(data) {
+					console.log("ng");
+					console.log(data);
+				}
+			});
+		});
+	}
+
+
+		</script>
+	</head>
+	<body>
+	<form name="form1" id="id_form1" action="">
+		<input name="textBox_url" id="id_textBox_num" type="text" value="0002" /><br>
+		<input name="textBox_url2" id="id_textBox_num2" type="text" value="users" /><br>
+		<input name="textBox_url" id="id_textBox_num3" type="text" value="2000" /><br>
+		<input type="button" value="Exec" onclick="apifunc2();" />
+		<input type="button" value="Exec_all" onclick="apifunc3();" />
+		<input type="button" value="POST!!" onclick="apifunc4();" />
+	</form>
+	<div id="output"></div>
+	</body>
+</html>
+

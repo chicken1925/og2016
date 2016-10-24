@@ -1,0 +1,91 @@
+<!DOCTYPE>
+<html xml:lang="ja" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<title>og2016</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+		</script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="prog_index.js"></script>
+		<script type="text/javascript" src="apifunc.js"></script>
+		<script>
+		</script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="styles_index.css">
+		<STYLE TYPE="text/css">
+		</STYLE>
+		<script type="text/javascript">
+		var displaySet=1;
+		if(displaySet==1){ if(displaySet==1){ document.write('<meta name="viewport" content="width=320, user-scalable=no, shrink-to-fit=no">');if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;window.addEventListener('resize',function(){ if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;})}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}
+		</script>
+	</head>
+	<body>
+	<div id="all_contents" class="page_container" style="width:320px">
+		<div id="lab" class="page_container" style="height:22px; background-color:orange">
+			<center>○○研究室[××キャンパス]</center>
+		</div>
+		<div id="money" class="page_container" style="height:56px; background-color:#555">
+			<center><span id="all_m" style="font-size: 30px; color:#FFF">¥100</span></center>
+			<center><span id="min_m" style="color:#FFF">¥500/秒</span></center>
+		</div>
+		<div id="notice" class="page_container">
+			<div id="pagetitle">マイページ</div>
+		<a href="#" class="t1" onclick="transition(1); return false;">
+			<div id="trans_img1" class="trans_img page_container"></div>
+		</a>
+		<a href="#" class="t2" onclick="transition(2); return false;">
+			<div id="trans_img2" class="trans_img page_container"></div>
+		</a>
+		</div>
+		
+		<div id="box">
+		<iframe class="scrollbox" id="ifr" name="ifr" src="home.html" width="320" height="240" frameborder=0 border=0 ></iframe>
+		</div>
+		
+		<div id="controlPanel" class="page_container">
+			<form id="gi_form3">
+			<div id="u_frames" class="page_container" style="height:64px;">
+				<ul id="Frames">
+				<li>
+				<a href="#" class="frame1 fr" onclick="showInfo(0); return false;"><center><span class="s_title sp">学士</span></center><center><span id="bachelor_n" class="s_value sp">0人</span></center></a>
+				</li>
+				<li>
+				<a href="#" class="frame2 fr" onclick="showInfo(1); return false;"><center><span class="s_title sp">修士</span></center><center><span id="master_n" class="s_value sp">0人</span></center></a>
+				</li>
+				<li>
+				<a href="#" class="frame3 fr" onclick="showInfo(2); return false;"><center><span class="s_title sp">博士</span></center><center><span id="doctor_n" class="s_value sp">0人</span></center></a>
+				</li>
+				</ul>
+			</div>
+			
+			<div id="arrows">
+				<a href="#" class="arrow1 ar" onclick="nextStage(0); return false;"></a>
+				<a href="#" class="arrow2 ar" onclick="nextStage(1); return false;"></a>
+				
+			</div>
+			
+			<div id="pg_check">
+			<input type="checkbox" name="c1" id="checkbox" value="1" />
+				<label for="checkbox">Skip</label>
+			</div>
+			
+			<div id="pg_value">
+				<label><select name="p1"><option value="10" selected>10人</option><option value="100">100人</option><option value="1000">1000人</option></select></label>
+			</div>
+			
+			<div id="pg_late">
+				<div style="font-size:12px; color:orange;">進学率</div>
+				<div id="late" style="font-size:18px; font-weight:bold;">10%</div>
+			</div>
+			
+			
+			</form>
+		</div>
+		
+		
+	</div>
+	</body>
+</html>
+

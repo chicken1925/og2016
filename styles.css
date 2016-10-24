@@ -1,0 +1,25 @@
+body{
+    font-family: Helvetica, Arial, "?q???M?m?p?S ProN W3", "?????T?? ?V?S R", Droid Sans, "???C???I", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fff;
+    color: #000;
+    vertical-align: baseline;
+    width: 320px;
+    margin: 0 auto;
+}
+
+.page_container {
+    overflow: visible;
+    overflow-x: visible;
+    width: 320px;
+    overflow-x: hidden;
+    /*background-color: #ff0;*/
+}
+
+
+#all_contents{
+position: relative;
+}
+
+

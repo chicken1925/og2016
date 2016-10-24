@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html xml:lang="ja" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<title>og2016</title>
+		<script type="text/javascript" src="jquery/jquery-3.1.1.min.js">
+		</script>
+		<script type="text/javascript" src="test_data.js"></script>
+		<script type="text/javascript" src="prog_index.js"></script>
+		<script type="text/javascript" src="apifunc.js"></script>
+		<script>
+		</script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="styles_index.css">
+		<STYLE TYPE="text/css">
+		</STYLE>
+		<script type="text/javascript">
+		var displaySet=1;
+		if(displaySet==1){ if(displaySet==1){ document.write('<meta name="viewport" content="width=320, user-scalable=no, shrink-to-fit=no">');if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;window.addEventListener('resize',function(){ if(navigator.userAgent.indexOf('Android')>0)document.getElementsByTagName('html')[0].style.zoom=document.documentElement.clientWidth/320;})}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}}else{ document.write('<meta name="viewport" content="width=device-width, user-scalable=no">');}
+		</script>
+	</head>
+	<body>
+	<div id="all_contents" class="page_container" style="width:320px">
+		<div id="lab" class="page_container" style="height:22px; background-color:orange">
+			<center>○○研究室[××キャンパス]</center>
+		</div>
+		<div id="money" class="page_container" style="height:56px; background-color:#555">
+			<center><span id="all_m" style="font-size: 30px; color:#FFF">¥100</span></center>
+			<div id="min_m" class="top_m page_container" style="color:#FFF">論文数: 0編</div>
+			<a href="#" onclick="levelup(); return false;">
+			<div id="level_m" class="top_m page_container" style="color:#FFF">研究室レベル: Lv.1</div>
+			</a>
+		</div>
+		<div id="notice" class="page_container">
+			<div id="pagetitle">マイページ</div>
+		</div>
+
+		<div id="box">
+		<iframe class="scrollbox" id="ifr" name="ifr" src="home.html" width="320" frameborder=0 border=0 ></iframe>
+		</div>
+
+		<div id="u_buttons" class="page_container" style="height:64px;">
+			<ul class="jsOnBtn">
+				<li>
+				<a href="#" class="button1" onclick="u_button(1); return false;"></a>
+				</li>
+				<li>
+				<a href="#" class="button2" onclick="u_button(2); return false;"></a>
+				</li>
+				<li>
+				<a href="#" class="button3" onclick="u_button(3); return false;"></a>
+				</li>
+				<li>
+				<a href="#" class="button4" onclick="u_button(4); return false;"></a>
+				</li>
+				<li>
+				<a href="#" class="button5" onclick="u_button(5); return false;"></a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	</body>
+</html>
+

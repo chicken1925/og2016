@@ -1,0 +1,21 @@
+CREATE TABLE student_M (
+	PRIMARY KEY( id ),
+	id				 INT NOT NULL AUTO_INCREMENT  ,
+    name             TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    grade            TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    personality      TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    speciality       TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill1           TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill2           TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill3           TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill4           TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill5           TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci ,
+    skill_level1     INT NOT NULL DEFAULT '0',
+    skill_level2     INT NOT NULL DEFAULT '0',
+    skill_level3     INT NOT NULL DEFAULT '0',
+    skill_level4     INT NOT NULL DEFAULT '0',
+    skill_level5     INT NOT NULL DEFAULT '0',
+	insertDate		 DATETIME  NOT NULL,
+	updateDate		 DATETIME,
+	deleteFlag		 INT NOT NULL DEFAULT '0'
+) 

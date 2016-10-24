@@ -1,0 +1,161 @@
+{
+    "gen":[{
+        "stu_type":0,
+        "name": "male",
+        "skill":0,
+        "status":[10,10,10],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":1,
+        "name": "female",
+        "skill":0,
+        "status":[10,10,10],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":2,
+        "name": "片寄1",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":3,
+        "name": "片寄2",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":4,
+        "name": "片寄3",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":5,
+        "name": "片寄4",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":6,
+        "name": "片寄5",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":7,
+        "name": "片寄6",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":8,
+        "name": "片寄7",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":9,
+        "name": "片寄8",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":10,
+        "name": "片寄9",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":11,
+        "name": "片寄10",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":12,
+        "name": "片寄11",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":13,
+        "name": "片寄12",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":14,
+        "name": "片寄13",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":15,
+        "name": "片寄14",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":16,
+        "name": "片寄15",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":17,
+        "name": "片寄16",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":18,
+        "name": "片寄17",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":19,
+        "name": "片寄18",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":20,
+        "name": "片寄19",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    },
+    {
+        "stu_type":21,
+        "name": "片寄20",
+        "skill":0,
+        "status":[20,20,20],
+        "pic":"hoge"
+    }
+]
+
+}
+
+
+
