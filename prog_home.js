@@ -1,4 +1,4 @@
-<!--
+//<!--
 //定義部分
 var canvas;
 var context;
