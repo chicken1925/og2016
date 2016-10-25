@@ -33,16 +33,133 @@ text-decoration:none;
 	border-width: 1px;
 }
 #in_quest{
-	width: 299px;
+	width: 296px;
     height: 65px;
     position: absolute;
     background: #ddd;
 	border-style: solid;
 	border-width: 1px;
 }
+.quest_s{
+    position: absolute;
+}
+#q_1{
+    top:0px;
+    left: 0px;
+    width: 21px;
+    height: 21px;
+    background: #bbb;
+}
+#q_2{
+    top:0px;
+    left: 25px;
+    width: 267px;
+    height: 21px;
+}
+#q_3{
+    top:21px;
+    left: 25px;
+    width: 270px;
+    height: 21px;
+    margin-top: 2px;
+}
+#q_4{
+    top:42px;
+    left: 25px;
+    width: 100px;
+    height: 21px;
+}
+#q_5{
+    top:42px;
+    left: 142px;
+    width: 150px;
+    height: 21px;
+    text-align: right;
+    font-size: 12px;
+}
+#q_box{
+    top:80px;
+    left: 10px;
+    width: 270px;
+    height: 140px;
+    border: solid 1px;
+}
+#q_box_t{
+    top:0px;
+    left: 0px;
+    width: 270px;
+    height: 15px;
+    color: #fff;
+    background: #333;
+    font-size: 10px;
+}
+#q_box_m{
+    top:15px;
+    left: 0px;
+    width: 270px;
+    height: 125px;
+    background: #eee;
+    overflow: auto;
+}
+.q_inbox{
+    top:0px;
+    left: 0px;
+    width: 267px;
+    height: 50px;
+    background: #ccc;
+}
+#q_i1{
+    top:0px;
+    left: 5px;
+    width: 100px;
+    height: 21px;
+}
+#q_i2{
+    top:0px;
+    left: 110px;
+    width: 155px;
+    height: 21px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_i3{
+    top:25px;
+    left: 5px;
+    width: 260px;
+    height: 21px;
+}
 
 
 
+
+
+
+
+.scrollbox{
+    width: 320px;
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    display:block;
+}
+.scrollbox::-webkit-scrollbar {
+    width:3px;
+    background:#eee;
+}
+.scrollbox::-webkit-scrollbar-button {
+    width:3px;
+    height:3px;
+    background:#666;
+}
+.scrollbox::-webkit-scrollbar-thumb {
+    background:#999;
+}
+.scrollbox::-webkit-scrollbar-corner {
+    background:#ddd;
+}
 
 
 
@@ -54,6 +171,7 @@ text-decoration:none;
 	top:10px;
 	width: 270px;
 }
+
 #float_choice_n{
 	background: #ddd;
 }
@@ -69,7 +187,7 @@ text-decoration:none;
 	justify-content: center; /* 横方向中央揃え */
 	background: orange;
 	left:100px;
-	top:275px;
+	top:230px;
 }
 
 .float_text{
@@ -106,8 +224,8 @@ text-decoration:none;
 }
 #float_body {
 	width: 290px;
-	height: 320px;
-	margin-top: -160px;
+	height: 270px;
+	margin-top: -135px;
 	position: absolute;
 	top: 50%;
 	left: 15px;
@@ -155,11 +273,13 @@ text-decoration:none;
 	width: 25px;
 	height: 25px;
 	top: 50%;
-	margin-top: -172px; /*float_bodyのmargin-topから-12*/
+	margin-top: -147px; /*float_bodyのmargin-topから-12*/
 	left: 292px;
 	-moz-background-size:100% auto;
 	background-size:100% auto;
 	background-image:url("images/batu.png");
 	z-index:1000;
 }
+
+
 

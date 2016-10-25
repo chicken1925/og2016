@@ -38,13 +38,26 @@ function show_quest_list(){
         for(var i in quest_list_val){
             str+="<a href='#' onclick='quest_detail(\""+i+"\"); return false;'>";
             str+='<div id="in_quest" class="quest_list in_float page_container" style="top:'+(65*c)+'px">';
-            str+='<div id="quest_num" class="quest_s">ID: '+i+' '+ Math.round((new Date().getTime()-quest_list_val[i].time)/1000) +'秒経過</div>';
-            str+='<div id="quest_star" class="quest_s">Number: '+quest_list_val[i].quest_num+'</div>';
-            str+='<div id="quest_title" class="quest_s">参加者-> ';
+            str+='<div id="q_1" class="quest_s">'+quest_list_val[i].quest_num+'</div>';
+            str+='<div id="q_2" class="quest_s">野草のとり方の研究 (必要人数n人)</div>';
+            str+='<div id="q_3" class="quest_s">ID: '+i+'</div>';
+            str+='<div id="q_4" class="quest_s">参加人数: '+quest_list_val[i].userIDs.length+'人</div>';
+            var st="";
+            if(quest_list_val[i].state==0){st="メンバー待ち (残り 00:00)";}
+            else if(quest_list_val[i].state==1){st="打ち合わせ中 (残り 00:00)";}
+            else if(quest_list_val[i].state==3){st="実行中 (残り 00:00)";}
+            else if(quest_list_val[i].state==2||quest_list_val[i].state==4){st="結果確認待ち";}
+            str+='<div id="q_5" class="quest_s">'+st+'</div>';
+
+            /*
+            str+='<div id="q_1" class="quest_s">ID: '+i+' '+ Math.round((new Date().getTime()-quest_list_val[i].time)/1000) +'秒経過</div>';
+            str+='<div id="q_2" class="quest_s">Number: '+quest_list_val[i].quest_num+'</div>';
+            str+='<div id="q_3" class="quest_s">参加者-> ';
             for(var j=0;j<quest_list_val[i].userIDs.length;j++){
                 str+= quest_list_val[i].userIDs[j]+'-'+quest_list_val[i].user_stuIDs[j]+' ';
             }
             str+='</div>';
+            */
             str+='</div>';
             str+='</a>';
             c++;
@@ -66,26 +79,33 @@ function quest_detail(qid){
     var str="";
 
     str+='<div id="in_float_quest" class="quest_list in_float page_container">';
-    str+='<div id="quest_num" class="quest_s">ID: '+qid+'</div>';
-    str+='<div id="quest_star" class="quest_s">Number: '+quest_list_val[qid].quest_num+'</div>';
-    str+='<div id="quest_title" class="quest_s">参加者-> ';
-    for(var j=0;j<quest_list_val[qid].userIDs.length;j++){
-        str+= quest_list_val[qid].userIDs[j]+'-'+quest_list_val[qid].user_stuIDs[j]+' ';
+    str+='<div id="q_1" class="quest_s">'+quest_list_val[qid].quest_num+'</div>';
+    str+='<div id="q_2" class="quest_s" style="width:245px;">野草のとり方の研究 (必要人数n人)</div>';
+    str+='<div id="q_3" class="quest_s">ID: '+qid+'</div>';
+    str+='<div id="q_4" class="quest_s" style="width:245px;">参加人数: '+quest_list_val[qid].userIDs.length+'人</div>';
+    str+='<div id="q_5" class="quest_s" style="width:120px;">所要時間n分</div>';
+    str+='</div>';
+
+    str+='<div id="q_box" class="quest_s">';
+    str+='<div id="q_box_t" class="quest_s">&nbsp;参加メンバー</div>';
+    str+='<div id="q_box_m" class="quest_s scrollbox">';
+
+    for(var i=0;i<quest_list_val[qid].userIDs.length;i++){
+        if(i%2==0){str+='<div id="q_b'+i+'" class="q_inbox quest_s" style="top:'+i*50+'px;">';}
+        else if(i%2==1){str+='<div id="q_b'+i+'" class="q_inbox quest_s" style="top:'+i*50+'px; background:#bbb;">';}
+        str+='<div id="q_i1" class="quest_s">'+quest_list_val[qid].userIDs[i]+'研&nbsp;'+quest_list_val[qid].user_stuIDs[i]+'君</div>';
+        str+='<div id="q_i2" class="quest_s">得意分野:&nbsp;△△△△△</div>';
+        str+='<div id="q_i3" class="quest_s">ランク:&nbsp;論-F&nbsp;&nbsp;開-D&nbsp;&nbsp;コ-E</div>';
+        str+='</div>';
     }
+    str+='<div id="q_b2" class="q_inbox quest_s" style="top:100px;">';
+    str+='<div id="q_i1" class="quest_s">??研&nbsp;??君</div>';
+    str+='<div id="q_i2" class="quest_s">得意分野:&nbsp;△△△△△</div>';
+    str+='<div id="q_i3" class="quest_s">ランク:&nbsp;論-F&nbsp;&nbsp;開-D&nbsp;&nbsp;コ-E</div>';
+    str+='</div>';
     str+='</div>';
     str+='</div>';
 
-    //参加者とかカッコよく出すならここ
-
-    //クエスト終了条件
-    /*
-    if(quest_list_val[qid].quest_num==0){if(quest_list_val[qid].userIDs.length>=2){questcheck=true;}}
-    else if(quest_list_val[qid].quest_num==1){if(quest_list_val[qid].userIDs.length>=3){questcheck=true;}}
-    else if(quest_list_val[qid].quest_num==2){if(quest_list_val[qid].userIDs.length>=3){questcheck=true;}}
-    else if(quest_list_val[qid].quest_num==3){if(quest_list_val[qid].userIDs.length>=3){questcheck=true;}}
-    else if(quest_list_val[qid].quest_num==4){if(quest_list_val[qid].userIDs.length>=4){questcheck=true;}}
-    else if(quest_list_val[qid].quest_num==5){if(quest_list_val[qid].userIDs.length>=6){questcheck=true;}}
-    */
 
     if(quest_list_val[qid].state==0){ //募集中
         str+='<div id="float_choice_n" class="float_choice page_container">';

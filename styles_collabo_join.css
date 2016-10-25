@@ -65,6 +65,13 @@ color: #000;
 	left:10px;
 	background: #eee;
 }
+.quest_list_{
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    left:10px;
+    background: #ddd;
+}
 #in_float_quest{
 	top:10px;
 	width: 270px;
@@ -81,48 +88,49 @@ color: #000;
 	justify-content: center; /* 横方向中央揃え */
 	background: orange;
 	left:100px;
-	top:275px;
+	top:230px;
 }
 
 
 
 .mem_ratio input{
-	display: none;
+    display: none;
 }
 .mem_ratio label{
-	display: block;
-	float: left;
-	cursor: pointer;
-	width: 80px;
-	height: 90px;
-	margin: 0;
-	padding: 0px;
-	border-right: 1px solid #abb2b7;
-	background: #bdc3c7;
-	color: #555e64;
-	font-size: 14px;
-	text-align: center;
-	line-height: 1;
-	transition: .2s;
-	position: absolute;
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 40px;
+    height: 50px;
+    margin: 0;
+    padding: 0px;
+    border-right: 1px solid #abb2b7;
+    background: #bdc3c7;
+    color: #555e64;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1;
+    transition: .2s;
+    position: absolute;
+    font-size: 10px;
 }
 .mem_ratio label:first-of-type{
-	border-radius: 3px 3 3 3px;
+    border-radius: 3px 3 3 3px;
 }
 .mem_ratio label:last-of-type{
-	border-right: 0px;
-	border-radius: 3 3px 3px 3;
+    border-right: 0px;
+    border-radius: 3 3px 3px 3;
 }
 .mem_ratio input[type="radio"]:checked + label {
-	background-color: #a1b91d;
-	color: #fff;
+    background-color: #a1b91d;
+    color: #fff;
 }
-.mem_ratio #sel_label0{ top:80px; left:15px;}
-.mem_ratio #sel_label1{ top:80px; left:105px;}
-.mem_ratio #sel_label2{ top:80px; left:195px;}
-.mem_ratio #sel_label3{ top:175px; left:15px;}
-.mem_ratio #sel_label4{ top:175px; left:105px;}
-.mem_ratio #sel_label5{ top:175px; left:195px;}
+.mem_ratio #sel_label0{ top:60px; left:12px;}
+.mem_ratio #sel_label1{ top:60px; left:57px;}
+.mem_ratio #sel_label2{ top:60px; left:102px;}
+.mem_ratio #sel_label3{ top:60px; left:147px;}
+.mem_ratio #sel_label4{ top:60px; left:192px;}
+.mem_ratio #sel_label5{ top:60px; left:237px;}
 
 .float_text{
     position: absolute;
@@ -134,14 +142,14 @@ color: #000;
     left:10px;
 }
 #f_text1{
-    top:120px;
+    top:80px;
     width:220px;
     left:35px;
     font-size:24px;
     color: red;
 }
 #f_text2{
-    top:120px;
+    top:80px;
     width:220px;
     left:35px;
     font-size:12px;
@@ -158,8 +166,8 @@ color: #000;
 }
 #float_body {
 	width: 290px;
-	height: 320px;
-	margin-top: -160px;
+	height: 270px;
+	margin-top: -135px;
 	position: absolute;
 	top: 50%;
 	left: 15px;
@@ -207,7 +215,7 @@ color: #000;
 	width: 25px;
 	height: 25px;
 	top: 50%;
-	margin-top: -172px; /*float_bodyのmargin-topから-12*/
+	margin-top: -147px; /*float_bodyのmargin-topから-12*/
 	left: 292px;
 	-moz-background-size:100% auto;
 	background-size:100% auto;
@@ -218,6 +226,241 @@ color: #000;
 
 
 
+
+.quest_s{
+    position: absolute;
+}
+#q_1{
+    top:0px;
+    left: 0px;
+    width: 21px;
+    height: 21px;
+    background: #bbb;
+}
+#q_2{
+    top:0px;
+    left: 25px;
+    width: 270px;
+    height: 21px;
+}
+#q_3{
+    top:21px;
+    left: 25px;
+    width: 270px;
+    height: 21px;
+    margin-top: 2px;
+}
+#q_4{
+    top:42px;
+    left: 25px;
+    width: 100px;
+    height: 21px;
+}
+#q_5{
+    top:42px;
+    left: 145px;
+    width: 150px;
+    height: 21px;
+    text-align: right;
+    font-size: 12px;
+}
+#q_box{
+    top:80px;
+    left: 10px;
+    width: 270px;
+    height: 140px;
+    border: solid 1px;
+}
+#q_box_t{
+    top:0px;
+    left: 0px;
+    width: 270px;
+    height: 15px;
+    color: #fff;
+    background: #333;
+    font-size: 10px;
+}
+#q_box_m{
+    top:15px;
+    left: 0px;
+    width: 270px;
+    height: 125px;
+    background: #eee;
+    overflow: auto;
+}
+.q_inbox{
+    top:0px;
+    left: 0px;
+    width: 267px;
+    height: 50px;
+    background: #ccc;
+}
+#q_i1{
+    top:0px;
+    left: 5px;
+    width: 100px;
+    height: 21px;
+}
+#q_i2{
+    top:0px;
+    left: 110px;
+    width: 155px;
+    height: 21px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_i3{
+    top:25px;
+    left: 5px;
+    width: 260px;
+    height: 21px;
+}
+
+
+
+.scrollbox{
+    width: 320px;
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    display:block;
+}
+.scrollbox::-webkit-scrollbar {
+    width:3px;
+    background:#eee;
+}
+.scrollbox::-webkit-scrollbar-button {
+    width:3px;
+    height:3px;
+    background:#666;
+}
+.scrollbox::-webkit-scrollbar-thumb {
+    background:#999;
+}
+.scrollbox::-webkit-scrollbar-corner {
+    background:#ddd;
+}
+
+
+
+#q_1_{
+    top:0px;
+    left: 0px;
+    width: 21px;
+    height: 21px;
+    background: #bbb;
+}
+#q_2_{
+    top:0px;
+    left: 25px;
+    width: 270px;
+    height: 21px;
+}
+#q_3_{
+    top:21px;
+    left: 150px;
+    width: 145px;
+    height: 18px;
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+    -webkit-justify-content: flex-end; /* 横方向中央揃え（Safari用） */
+    justify-content: flex-end; /* 横方向中央揃え */
+}
+#q_mbox{
+    top:120px;
+    left: 10px;
+    width: 270px;
+    height: 90px;
+    border: solid 1px;
+    background: #ccc;
+}
+#q_m1{
+    top:15px;
+    left: 10px;
+    width:60px;
+    height:60px;
+    background-size: cover;
+}
+#q_m2{
+    top:8px;
+    left: 80px;
+    width: 80px;
+    height: 30px;
+    font-size: 22px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_m3{
+    top:13px;
+    left: 170px;
+    width: 80px;
+    height: 20px;
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_m4{
+    top:35px;
+    left: 80px;
+    width: 150px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m5{
+    top:50px;
+    left: 80px;
+    width: 150px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m6{
+    top:65px;
+    left: 80px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m7{
+    top:65px;
+    left: 140px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m8{
+    top:65px;
+    left: 200px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
 
 
 

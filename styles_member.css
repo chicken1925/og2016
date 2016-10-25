@@ -56,39 +56,66 @@ width: 100%;
 	text-align:center;
 }
 #member_n2{
-	top:16px;
-	left:120px;
-    font-size: 12px;
+	top:35px;
+	left:62px;
+    font-size: 10px;
 }
 #member_n31{
-	top:38px;
-	left:62px;
+	top:56px;
+	left:7px;
     width: 40px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
 }
 #member_n32{
-    top:38px;
-    left:102px;
+    top:56px;
+    left:52px;
     width: 40px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
 }
 #member_n33{
     top:56px;
-    left:62px;
+    left:97px;
     width: 40px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
 }
 #member_n4{
-    top:60px;
-    left:6px;
-    width: 48px;
+    top:36px;
+    left:86px;
+    width: 70px;
+    font-size: 10px;
+}
+#member_n5{
+    top:12px;
+    left:120px;
+    width: 20px;
+    height: 20px;
     font-size: 12px;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
 }
 #member_border{
 	height: 1px;
 	width: 86px;
-	top:34px;
+	top:52px;
 	left:58px;
 	border-top:#000 solid 2px;
 }
@@ -134,15 +161,15 @@ width: 100%;
     top:10px;
     left:110px;
     width:90px;
-    height:35px;
+    height:40px;
     background: #ccc;
     font-size: 26px;
 }
 #f_3{
     position: absolute;
-    top:50px;
-    left:110px;
-    width:140px;
+    top:100px;
+    left:10px;
+    width:132px;
     height:20px;
     background: #ccc;
     font-size: 10px;
@@ -153,9 +180,9 @@ width: 100%;
 }
 #f_4{
     position: absolute;
-    top:70px;
-    left:110px;
-    width:140px;
+    top:120px;
+    left:10px;
+    width:132px;
     height:20px;
     background: #ccc;
     font-size: 10px;
@@ -166,15 +193,15 @@ width: 100%;
 }
 #f_5{
     position: absolute;
-    top:25px;
-    left:210px;
-    width:60px;
-    height:20px;
+    top:55px;
+    left:110px;
+    width:70px;
+    height:25px;
     background: #ccc;
 }
 #f_61{
     position: absolute;
-    top:100px;
+    top:145px;
     left:10px;
     width:132px;
     height:35px;
@@ -182,7 +209,7 @@ width: 100%;
 }
 #f_62{
     position: absolute;
-    top:140px;
+    top:185px;
     left:10px;
     width:132px;
     height:35px;
@@ -190,7 +217,7 @@ width: 100%;
 }
 #f_63{
     position: absolute;
-    top:180px;
+    top:225px;
     left:10px;
     width:132px;
     height:35px;
@@ -252,7 +279,7 @@ width: 100%;
     top:100px;
     left:148px;
     width:132px;
-    height:115px;
+    height:160px;
     background: #ccc;
 }
 .skills{
@@ -265,6 +292,7 @@ width: 100%;
 #f_72{top:19px;background: #bbb;}
 #f_73{top:51px;background: #999;}
 #f_74{top:83px;background: #bbb;}
+#f_75{top:115px;height:45px;background: #bbb;font-size: 10px}
 .skills_1{
     position: absolute;
     top:0px;
@@ -299,18 +327,33 @@ width: 100%;
 
 #f_8{
     position: absolute;
-    top:222px;
-    left:36px;
-    width:91px;
-    height:40px;
-    background: #ccc;
+    top:70px;
+    left:210px;
+    width:70px;
+    height:25px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#f_81{
+    position: absolute;
+    top:55px;
+    left:210px;
+    width:70px;
+    height:15px;
+    font-size: 10px;
+    background: #bbb;
 }
 #f_9{
     position: absolute;
-    top:222px;
-    left:163px;
-    width:91px;
-    height:40px;
+    top:25px;
+    left:210px;
+    width:70px;
+    height:25px;
     background: #ccc;
 }
 
@@ -386,8 +429,8 @@ width: 100%;
 }
 #float_body2 {
     width: 280px;
-    height: 100px;
-    margin-top: -50px;
+    height: 120px;
+    margin-top: -60px;
     position: absolute;
     top: 50%;
     left: 20px;
@@ -416,8 +459,241 @@ width: 100%;
     background: orange;
     text-align: center;
 }
+#info_batu2{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    margin-top: -72px; /*float_bodyのmargin-topから-12*/
+    left: 287px;
+    -moz-background-size:100% auto;
+    background-size:100% auto;
+    background-image:url("images/batu.png");
+    z-index: 4;
+}
+
+
+.use_is{
+    position: absolute;
+}
+#use_i1{
+    top:15px;
+    left:10px;
+    width:100px;
+    height:21px;
+    text-align: right;
+}
+#use_i2{
+    top:15px;
+    left:180px;
+    width:100px;
+    height:21px;
+}
+#use_i3{
+    top:50px;
+    left:30px;
+    width:220px;
+    height:21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#use_i4{
+    top:80px;
+    left:60px;
+    width:60px;
+    height:30px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#use_i5{
+    top:80px;
+    left:160px;
+    width:60px;
+    height:30px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#use_i6{
+    top:50px;
+    left:21px;
+    width:240px;
+    height:20px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#use_i7{
+    top:15px;
+    left:10px;
+    width:50px;
+    height:21px;
+}
+#use_i8{
+    top:45px;
+    left:10px;
+    width:260px;
+    height:21px;
+    font-size: 10px;
+}
+#use_i9{
+    top:60px;
+    left:30px;
+    width:220px;
+    height:21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+
+#item_value1{
+    position: absolute;
+    top:10px;
+    left:115px;
+    width:60px;
+    text-align:center;
+}
+.use_item_s select{
+    position: relative;
+    width: 60px;
+    height:30px;
+    padding: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #999;
+    background: #eee;
+    background: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+    background: linear-gradient(to bottom, #fff 0%,#efebe1 100%);
+}
+.use_item_s label {
+    position: relative;
+}
+.use_item_s label:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -2px 0 0 0;
+    border: 5px solid transparent;
+    border-top: 7px solid #ffa500;
+}
+#item_value2{
+    position: absolute;
+    top:10px;
+    left:60px;
+    width:200px;
+    text-align:center;
+}
+.use_item_s2 select{
+    position: relative;
+    width: 200px;
+    height:30px;
+    padding: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #999;
+    background: #eee;
+    background: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+    background: linear-gradient(to bottom, #fff 0%,#efebe1 100%);
+}
+.use_item_s2 label {
+    position: relative;
+}
+.use_item_s2 label:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -2px 0 0 0;
+    border: 5px solid transparent;
+    border-top: 7px solid #ffa500;
+}
 
 
 
-
+#coun1{
+    position: absolute;
+    top:10px;
+    left:30px;
+    width:220px;
+    height:21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#coun2{
+    top:80px;
+    left:40px;
+    width:90px;
+    height:30px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    font-size: 11px;
+}
+#coun3{
+    top:80px;
+    left:150px;
+    width:90px;
+    height:30px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    font-size: 11px;
+}
+#coun4{
+    position: absolute;
+    top:10px;
+    left:0px;
+    width:280px;
+    height:21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#coun5{
+    top:80px;
+    left:110px;
+    width:60px;
+    height:30px;
+    background: #bbb;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    font-size: 11px;
+}
 

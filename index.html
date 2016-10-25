@@ -29,8 +29,8 @@
 		<div id="money" class="page_container" style="height:56px; background-color:#555">
 			<center><span id="all_m" style="font-size: 30px; color:#FFF">¥100</span></center>
 			<div id="min_m" class="top_m page_container" style="color:#FFF">論文数: 0編</div>
-			<a href="#" onclick="levelup(); return false;">
-			<div id="level_m" class="top_m page_container" style="color:#FFF">研究室レベル: Lv.1</div>
+			<a href="#" onclick="if(float_open_flag==0){lab_info();} return false;">
+			<div id="level_m" class="top_m page_container" style="color:#FFF">研究室Lv: Lv.1</div>
 			</a>
 		</div>
 		<div id="notice" class="page_container">
@@ -38,7 +38,7 @@
 		</div>
 
 		<div id="box">
-		<iframe class="scrollbox" id="ifr" name="ifr" src="home.html" width="320" frameborder=0 border=0 ></iframe>
+		<iframe class="scrollbox" id="ifr" name="ifr" src="collabo.html" width="320" frameborder=0 border=0 ></iframe>
 		</div>
 
 		<div id="u_buttons" class="page_container" style="height:64px;">

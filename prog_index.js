@@ -1,4 +1,4 @@
-//<!--
+<!--
 
 var time=0;
 
@@ -9,7 +9,7 @@ var sumValue=0;
 var dispValue=0
 
 //変えるように！！！！
-var disp_ifr=0;
+var disp_ifr=2;
 
 
 // スクロール禁止
@@ -33,6 +33,12 @@ function sizing_box() {
 //一番早い処理(多分)
 $(document).ready( function(){
 	sizing_box();
+	document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
+	var sp=0;
+	for(var i=0;i<test_students.students.length;i++){
+		sp+=test_students.students[i].journal_pub;
+	}
+	document.getElementById("min_m").textContent="論文数:"+sp +"編";
 	//loginform();
 });
 window.addEventListener('resize', function() {
@@ -41,7 +47,10 @@ window.addEventListener('resize', function() {
 
 //初期処理
 window.addEventListener("load", function(){
-
+    sumPaper=0;
+    sumValue=0;
+    dispValue=0;
+    dispValue=sumValue;
 
 }, false);
 
@@ -127,8 +136,8 @@ function loginCheck(id_,pass_){
 
 //下のボタン押した時
 function u_button(btnno){
-    btnno;
-    dispValue= sumValue;
+	btnno;
+	dispValue= sumValue;
     deltaDispValue=dispValue;
 	if(btnno==1){
 		document.ifr.location.href = "home.html";
@@ -150,8 +159,10 @@ window.onload = function(){
 		if(evt.keyCode==81){ //'q',時を5分進める
 			for(var i=0;i<test_students.students.length;i++){
 				test_students.students[i].course_t+=300;
+				test_students.students[i].journal_t+=300;
 			}
 			next_grade();
+			MakeJournal();
 		}
 		if(evt.keyCode==65){ //'a'
 			console.log(test_students.students);
@@ -226,14 +237,13 @@ function next_grade(){
 		//test_students.students[i].grade++;
 		if(test_students.students[i].grade>=7){
 			test_students.students.splice(i,1);
-			console.log("!");
+			//console.log("!");
 			i--;
 		}
 		//console.log(i);
 		i++;
 	}
 }
-
 
 //ペーパーの管理関数
 function MakeJournal(){
@@ -262,7 +272,6 @@ function MakeJournal(){
     }
 }
 
-
 //生徒追加
 var stu_history=[-1,-1,-1,-1,-1];
 var add_flag=false;
@@ -285,13 +294,23 @@ function add_stu(){
     }, 800);
 }
 
-
-function levelup(){
+var float_open_flag=0;
+function lab_info(){
 	$("#box").append("<div id='floating' class='page_container'></div>");
     $("#floating").hide().append("<div id='float_body'></div><div id='float_back'></div>");
 
     var str="";
-	str+='研究費を¥10000消費して研究室レベルを1あげます';
+	str+='<div id="l_1" class="page_container">現在の'+test_user.name+'研究室</div>';
+	str+='<div id="l_2" class="page_container">無名研究室</div>';
+	str+='<div id="l_3" class="page_container">(¥100/秒)</div>';
+	str+='<div id="l_4" class="page_container">';
+	str+='<div id="l_5" class="page_container">研究費を¥10000消費して</div>';
+	str+='<div id="l_6" class="page_container">研究室Lvを1あげますか？</div>';
+	str+='<a href="#" onclick="levelup(); return false;">';
+	str+='<div id="l_7" class="page_container">はい</div>';
+	str+='</a>';
+	str+='<div id="l_8" class="page_container">いいえ</div>';
+	str+='</div>';
 
     $("#float_body").append(str);
     $("#floating").append("<a href='#' id='info_batu'></a>");
@@ -301,7 +320,7 @@ function levelup(){
     });
     $("#floating").delay(50).fadeIn(200);
     float_open_flag = 1;
-    $("#float_body .btn1,#float_back,#info_batu").click(float_close);
+    $("#l_8,#float_back,#info_batu").click(float_close);
 }
 var float_close = function(){
     $("#floating").fadeOut(200,function(){
@@ -309,8 +328,12 @@ var float_close = function(){
         float_open_flag = 0;
     });
 };
-
-
+function levelup(){
+	test_user.money-=10000;
+	test_user.level++;
+	$('#level_m').text('研究室Lv: Lv.'+test_user.level);
+	document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
+}
 
 
 
@@ -340,6 +363,7 @@ function box_size(){
 	//console.log("hoge");
 	return $("#box").height();
 }
+
 function GetHomeData(){
     var homeData=[sumValue,sumPaper];
     return homeData;
@@ -362,7 +386,15 @@ function SetPaper(_studentID,_paperID){
     sumPaper++;
 	
 }
-
+function career_m(s_num,c){
+	//console.log(s_num+','+c);
+	if(c==0){ //進学
+		test_students.students[s_num].grade++;
+		test_students.students[s_num].course_t=0;
+	}else if(c==1){ //卒業
+		test_students.students.splice(s_num,1);
+	}
+}
 
 
 

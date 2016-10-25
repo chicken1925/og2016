@@ -105,6 +105,7 @@ function quest_search_api(uid,quest_id){
 			dataType: 'jsonp',
 			timeout:800,
 			success: function(data) {
+				console.log(data);
 				if(data.message!="noquest"){
 					var hantei=false;
 					for(var i=0;i<data.userIDs.length;i++){
@@ -113,7 +114,7 @@ function quest_search_api(uid,quest_id){
 						}
 					}
 					if(hantei==false){
-						if(quest_search_val.state!=0){
+						if(data.state!=0){
 							quest_search_val={ message : "over"};
 						}else{
 							quest_search_val=data;

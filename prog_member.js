@@ -6,6 +6,7 @@ var user_data;
 
 //初期処理
 window.addEventListener("load", function(){
+    user_data = window.parent.back_user_data();
 	student_data = window.parent.back_stu_data();
 	var hh= window.parent.box_size();
 	$("#member_list").css("height", hh+"px");
@@ -47,15 +48,16 @@ function show_students(){
     //生徒リスト表示
     for(var i=0;i<student_data.students.length;i++){
         var str="";
+
+        str+='<a href="#" onclick="stu_detail('+i+'); return false;">';
         if(i%2==0){
             str+='<div id="member_'+i+'" class="members_box page_container" style="top:'+(6+Math.floor(i/2)*81)+';">';
         }else{
             str+='<div id="member_'+i+'" class="members_box page_container" style="top:'+(6+Math.floor(i/2)*81)+'; left:163;">';
         }
 
-        str+='<a href="#" onclick="stu_detail('+i+'); return false;">';
         str+='<div id="member_img'+i+'" class="member_img page_container" style="background-image:url('+student_data.students[i].pic+');"></div>';
-        str+='<div id="member_n1" class="hoge member_n page_container">'+student_data.students[i].name+'</div>';
+        str+='<div id="member_n1" class="member_n page_container">'+student_data.students[i].name+'</div>';
         var gra="";
         if(student_data.students[i].grade==0){gra="学3"}
         else if(student_data.students[i].grade==1){gra="学4"}
@@ -64,7 +66,7 @@ function show_students(){
         else if(student_data.students[i].grade==4){gra="博1"}
         else if(student_data.students[i].grade==5){gra="博2"}
         else if(student_data.students[i].grade==6){gra="博3"}
-        str+='<div id="member_n2" class="member_n page_container">/'+gra+'</div>';
+        str+='<div id="member_n2" class="member_n page_container">'+gra+'</div>';
         var remain;
         if(student_data.students[i].grade==0||student_data.students[i].grade==1){remain=600-student_data.students[i].course_t;}
         else if(student_data.students[i].grade==2||student_data.students[i].grade==3){remain=900-student_data.students[i].course_t;}
@@ -72,7 +74,7 @@ function show_students(){
         if(remain==-1){
             str+='<div id="member_n4" class="member_n page_container"style="font-size:8px;">相談待ち</div>';
         }else{
-            str+='<div id="member_n4" class="member_n page_container">'+toHms(remain)+'</div>';
+            str+='<div id="member_n4" class="member_n page_container">next: '+toHms(remain)+'</div>';
         }
         str+='<div id="member_border" class="member_n page_container"></div>';
         var mr,mk,mc;
@@ -97,8 +99,9 @@ function show_students(){
         str+='<div id="member_n31" class="member_n page_container">論: '+mr+'</div>';
         str+='<div id="member_n32" class="member_n page_container">開: '+mk+'</div>';
         str+='<div id="member_n33" class="member_n page_container">コ: '+mc+'</div>';
-        str+='</a>'
-        str+='</div>'
+        str+='<div id="member_n5" class="member_n page_container">'+student_data.students[i].collabo+'</div>';
+        str+='</div>';
+        str+='</a>';
         $("#member_list").append(str);
     }
 
@@ -122,17 +125,13 @@ function add_stu_parent(val){
 }
 
 
-
-
-function stu_detail(num){
-    $("#all_contents").append("<div id='floating' class='page_container'></div>");
-    $("#floating").hide().append("<div id='float_body'></div><div id='float_back'></div>");
-
+var effect_detail_num=0;
+function stu_detail_(num){
     var str="";
-	str+='<div id="f_1" class="page_container" style="background-image:url('+student_data.students[num].pic+');"></div>';
+    str+='<div id="f_1" class="page_container" style="background-image:url('+student_data.students[num].pic+');"></div>';
     str+='<div id="f_2" class="page_container">'+student_data.students[num].name+'</div>';
-    str+='<div id="f_3" class="page_container">性格 num'+student_data.students[num].personality+'</div>';
-    str+='<div id="f_4" class="page_container">得意分野 num'+student_data.students[num].speciality+'</div>';
+    str+='<div id="f_3" class="page_container">&nbsp;性格 num'+student_data.students[num].personality+'</div>';
+    str+='<div id="f_4" class="page_container">&nbsp;得意分野 num'+student_data.students[num].speciality+'</div>';
     var gra="";
     if(student_data.students[num].grade==0){gra="学士3年"}
     else if(student_data.students[num].grade==1){gra="学士4年"}
@@ -141,7 +140,7 @@ function stu_detail(num){
     else if(student_data.students[num].grade==4){gra="博士1年"}
     else if(student_data.students[num].grade==5){gra="博士2年"}
     else if(student_data.students[num].grade==6){gra="博士3年"}
-    str+='<div id="f_5" class="page_container">/'+gra+'</div>';
+    str+='<div id="f_5" class="page_container">'+gra+'</div>';
     var mr,mk,mc;
     for(var j=0;j<student_data.students[num].status.length;j++){
         if(student_data.students[num].status[j]<25){
@@ -164,7 +163,7 @@ function stu_detail(num){
     str+='<div id="f_611" class="param1 page_container">&nbsp;論理力</div>';
     str+='<div id="f_612" class="param2 page_container">'+mr+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[0]+')</div></div>';
     str+='<div id="f_613" class="param3 page_container">&nbsp;作成する論文の質</div>';
-    str+='<a href="#" onclick="use_item(0); return false;">';
+    str+='<a href="#" onclick="use_item('+num+',0); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
     str+='</a>';
     str+='</div>';
@@ -172,7 +171,7 @@ function stu_detail(num){
     str+='<div id="f_621" class="param1 page_container">&nbsp;開発力</div>';
     str+='<div id="f_622" class="param2 page_container">'+mk+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[1]+')</div></div>';
     str+='<div id="f_623" class="param3 page_container">&nbsp;論文を作成する速度</div>';
-    str+='<a href="#" onclick="use_item(1); return false;">';
+    str+='<a href="#" onclick="use_item('+num+',1); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
     str+='</a>';
     str+='</div>';
@@ -180,47 +179,92 @@ function stu_detail(num){
     str+='<div id="f_631" class="param1 page_container">&nbsp;コミュ力</div>';
     str+='<div id="f_632" class="param2 page_container">'+mc+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[2]+')</div></div>';
     str+='<div id="f_633" class="param3 page_container">&nbsp;共同研究に関係</div>';
-    str+='<a href="#" onclick="use_item(2); return false;">';
+    str+='<a href="#" onclick="use_item('+num+',2); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
     str+='</a>';
     str+='</div>';
+
     str+='<div id="f_7" class="page_container">';
     str+='<div id="f_71" class="param1 page_container">&nbsp;所持スキル</div>';
+
+    str+='<a href="#" onclick="effect_detail('+num+',0); return false;">';
     str+='<div id="f_72" class="skills page_container">';
-    str+='<div id="f_721" class="skills_1 page_container">スキル1:&nbsp;num'+student_data.students[num].skill[0]+'</div>';
-    str+='<div id="f_722" class="skills_2 page_container">効果:&nbsp;</div>';
+    str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル1:</div>';
+    str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+student_data.students[num].skill[0]+'</div>';
     str+='</div>';
-    str+='<div id="f_73" class="skills page_container">';
+    str+='</a>';
+
     var skill_v=false;
     if(student_data.students[num].skill[1]==0){
-        str+='<a href="#" onclick="use_item(3); return false;">';
+        str+='<div id="f_73" class="skills page_container">';
+        str+='<a href="#" onclick="use_item('+num+',3); return false;">';
         str+='<div id="use_item" class="use_button2 page_container">スキル追加</div>';
         str+='</a>';
+        str+='</div>';
         skill_v=true;
     }else{
-        str+='<div id="f_721" class="skills_1 page_container">スキル2:&nbsp;num'+student_data.students[num].skill[1]+'</div>';
-        str+='<div id="f_722" class="skills_2 page_container">効果:&nbsp;</div>';
+        str+='<a href="#" onclick="effect_detail('+num+',1); return false;">';
+        str+='<div id="f_73" class="skills page_container">';
+        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル2:</div>';
+        str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+student_data.students[num].skill[1]+'</div>';
+        str+='</div>';
+        str+='</a>';
     }
-    str+='</div>';
-    str+='<div id="f_74" class="skills page_container">';
+
     if(student_data.students[num].skill[2]==0){
         if(skill_v==false){
-            str+='<a href="#" onclick="use_item(3); return false;">';
+            str+='<div id="f_74" class="skills page_container">';
+            str+='<a href="#" onclick="use_item('+num+',3); return false;">';
             str+='<div id="use_item" class="use_button2 page_container">スキル追加</div>';
             str+='</a>';
+            str+='</div>';
         }
     }else{
-        str+='<div id="f_721" class="skills_1 page_container">スキル3:&nbsp;num'+student_data.students[num].skill[2]+'</div>';
-        str+='<div id="f_722" class="skills_2 page_container">効果:&nbsp;</div>';
+        str+='<a href="#" onclick="effect_detail('+num+',2); return false;">';
+        str+='<div id="f_74" class="skills page_container">';
+        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル3:</div>';
+        str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+student_data.students[num].skill[2]+'</div>';
+        str+='</div>';
+        str+='</a>';
     }
-    str+='</div>';
+    //最初は0
+    str+='<div id="f_75" class="skills page_container">効果: '+effect_detail_num+' '+student_data.students[num].skill[effect_detail_num]+'</div>';
     str+='</div>';
 
-    str+='<div id="f_8" class="page_container"></div>';
-    str+='<div id="f_9" class="page_container"></div>';
+
+
+    var remain;
+    if(student_data.students[num].grade==0||student_data.students[num].grade==1){remain=600-student_data.students[num].course_t;}
+    else if(student_data.students[num].grade==2||student_data.students[num].grade==3){remain=900-student_data.students[num].course_t;}
+    else if(student_data.students[num].grade==4||student_data.students[num].grade==5||student_data.students[num].grade==6){remain=1200-student_data.students[num].course_t;}
+    if(remain==-1){
+        str+='<a href="#" onclick="counseling('+num+'); return false;">';
+        str+='<div id="f_8" class="page_container" style="background:yellow;">相談待ち</div>';
+        str+='</a>';
+    }else{
+        str+='<div id="f_8" class="page_container">'+toHms(remain)+'</div>';
+    }
+    str+='<div id="f_81" class="page_container">次のレベルまで</div>';
+    str+='<div id="f_9" class="page_container">/num '+student_data.students[num].collabo+'</div>';
 
 
     $("#float_body").append(str);
+}
+
+function effect_detail(s_num,num){
+    effect_detail_num=num;
+    $('#f_75').text('効果: '+num+' '+student_data.students[s_num].skill[num]);
+}
+
+
+var now_num=0;
+function stu_detail(num){
+    now_num=num;
+    $("#all_contents").append("<div id='floating' class='page_container'></div>");
+    $("#floating").hide().append("<div id='float_body'></div><div id='float_back'></div>");
+
+    stu_detail_(num);
+
     $("#floating").append("<a href='#' id='info_batu'></a>");
 
     $("#float_back").css({
@@ -238,13 +282,76 @@ var float_close = function(){
 };
 
 
+var input_num=1;
+var input_num_s=0;
 //アイテム使用float
-function use_item(num){
+function use_item(s_num,num){
     $("#all_contents").append("<div id='floating2' class='page_container'></div>");
     $("#floating2").hide().append("<div id='float_body2'></div><div id='float_back2'></div>");
 
     var str="";
-    str+='<div class="float_text in_float page_container">'+num+'を使いますか？</div>';
+
+    //3種パラメータ
+    if(num==0||num==1||num==2){
+        if(user_data.item_param[num]==0){
+            str+='<div id="use_i3" class="use_is in_float page_container">アイテムを持っていません！</div>';
+        }else{
+            str+='<form id="gi_form">';
+            str+='<div id="use_i1" class="use_is in_float page_container">アイテム'+num+'を</div>';
+            str+='<div id="item_value1" class="use_item_s page_container"><label><select name="p1" onchange="inputfunc('+s_num+','+num+')">';
+            str+='<option value="1" selected>1コ</option>';
+            if(user_data.item_param[num]<6){
+                for(var i=2;i<=user_data.item_param[num];i++){
+                    str+='<option value="'+i+'">'+i+'コ</option>';
+                }
+            }
+            else if(user_data.item_param[num]>=6&&user_data.item_param[num]<=10){
+                for(var i=2;i<=5;i++){
+                    str+='<option value="'+i+'">'+i+'コ</option>';
+                }
+                str+='<option value="'+user_data.item_param[num]+'">'+user_data.item_param[num]+'コ</option>';
+            }else if(user_data.item_param[num]>=11){
+                for(var i=2;i<=5;i++){
+                    str+='<option value="'+i+'">'+i+'コ</option>';
+                }
+                str+='<option value="10">10コ</option>';
+                str+='<option value="'+user_data.item_param[num]+'">'+user_data.item_param[num]+'コ</option>';
+            }
+            str+='</select></label></div>';
+
+            str+='<div id="use_i2" class="use_is in_float page_container">使います</div>';
+            if(num==0){str+='<div id="use_i6" class="use_is in_float page_container">論理力:&nbsp;&nbsp;'+student_data.students[s_num].status[0]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[0]+input_num)+'</div></div>';}
+            if(num==1){str+='<div id="use_i6" class="use_is in_float page_container">開発力:&nbsp;&nbsp;'+student_data.students[s_num].status[1]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[1]+input_num)+'</div></div>';}
+            if(num==2){str+='<div id="use_i6" class="use_is in_float page_container">コミュ力:&nbsp;&nbsp;'+student_data.students[s_num].status[2]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[2]+input_num)+'</div></div>';}
+            str+='<a href="#" onclick="use_item_run1('+s_num+','+num+'); return false;">';
+            str+='<div id="use_i4" class="use_is in_float page_container">はい</div>';
+            str+='</a>';
+            str+='<div id="use_i5" class="use_is in_float page_container">いいえ</div>';
+            str+='</form>';
+        }
+
+    //スキル追加
+    }else if(num==3){
+        input_num_s=user_data.item_skill[0];
+        str+='<form id="gi_form2">';
+        str+='<div id="use_i7" class="use_is in_float page_container">スキル:</div>';
+        str+='<div id="item_value2" class="use_item_s2 page_container"><label><select name="p2" onchange="inputfunc2()">';
+        for(var i=0;i<user_data.item_skill.length;i++){
+            str+='<option value="'+user_data.item_skill[i]+'">スキルスキルスキル'+user_data.item_skill[i]+'</option>';
+        }
+        str+='</select></label></div>';
+        str+='<div id="use_i8" class="use_is in_float page_container">効果:&nbsp;<span id="how_skill_e">effect-effect-effect'+input_num_s+'</div></div>';
+        str+='<div id="use_i9" class="use_is in_float page_container">を継承します</div>';
+
+        str+='<a href="#" onclick="use_item_run2('+s_num+'); return false;">';
+        str+='<div id="use_i4" class="use_is in_float page_container">はい</div>';
+        str+='</a>';
+        str+='<div id="use_i5" class="use_is in_float page_container">いいえ</div>';
+        str+='</form>';
+    }
+
+
+
 
 
     $("#float_body2").append(str);
@@ -254,19 +361,115 @@ function use_item(num){
     });
     $("#floating2").delay(0).fadeIn(0);
     float_open_flag = 1;
-    $("#float_back2").click(float_close2);
+    $("#float_back2, #use_i5").click(float_close2);
 
 }
 var float_close2 = function(){
     $("#floating2").remove();
 };
+function inputfunc(s_num,num){
+    var frm=document.forms["gi_form"];
+    var idx=frm.elements["p1"].selectedIndex;
+    input_num=Number(frm.elements["p1"].options[idx].value);
+    $('#how_item_val').text(student_data.students[s_num].status[num]+input_num);
+}
+function use_item_run1(s_num,num){
+    student_data.students[s_num].status[num]+=input_num;
+    user_data.item_param[num]-=input_num;
+    input_num=1;
+    float_close2();
+}
+function inputfunc2(){
+    var frm=document.forms["gi_form2"];
+    var idx=frm.elements["p2"].selectedIndex;
+    input_num_s=Number(frm.elements["p2"].options[idx].value);
+    $('#how_skill_e').text("effect-effect-effect"+input_num_s);
+}
+function use_item_run2(s_num){
+    var use_c=false;
+    for(var i=0;student_data.students[s_num].skill.length;i++){
+        if(student_data.students[s_num].skill[i]==0){
+            student_data.students[s_num].skill[i]=input_num_s;
+            use_c=true;
+            break;
+        }
+    }
+    if(use_c==true){
+        for(var i=0;i<user_data.item_skill.length;i++){
+            if(input_num_s==user_data.item_skill[i]){
+                user_data.item_skill.splice(i, 1);
+                break;
+            }
+        }
+    }
+    input_num_s=0;
+    float_close2();
+}
+
+//進路相談
+function counseling(s_num){
+    $("#all_contents").append("<div id='floating2' class='page_container'></div>");
+    $("#floating2").hide().append("<div id='float_body2'></div><div id='float_back2'></div>");
+
+    var str="";
+
+    str+='<div id="coun1" class="in_float page_container">'+student_data.students[s_num].name+' さんが進路相談に来ました</div>';
+    str+='<a href="#" onclick="career('+s_num+',0); return false;">';
+    str+='<div id="coun2" class="use_is in_float page_container">進学しなさい！</div>';
+    str+='</a>';
+    str+='<a href="#" onclick="career('+s_num+',1); return false;">';
+    str+='<div id="coun3" class="use_is in_float page_container">卒業しなさい！</div>';
+    str+='</a>';
+
+
+    $("#float_body2").append(str);
+
+    $("#floating2").append("<a href='#' id='info_batu2'></a>");
+
+    $("#float_back2").css({
+        "opacity":"0.7"
+    });
+    $("#floating2").delay(0).fadeIn(0);
+    float_open_flag = 1;
+    $("#float_back2, #info_batu2").click(float_close2);
+
+}
+var float_close2 = function(){
+    $("#floating2").remove();
+};
+function career(s_num,c){
+    var ca_name=student_data.students[s_num].name;
+    window.parent.career_m(s_num,c);
+    $("#float_body2").empty();
+
+    var str="";
+    if(c==0){ //進学
+        if(student_data.students[s_num].grade==2){
+            str+='<div id="coun4" class="in_float page_container">'+ca_name+' さんが修士過程に進学しました！</div>';
+        }else if(student_data.students[s_num].grade==4){
+            str+='<div id="coun4" class="in_float page_container">'+ca_name+' さんが博士過程に進学しました！</div>';
+        }
+        str+='<div id="coun5" class="use_is in_float page_container">確認</div>';
+    }else if(c==1){ //卒業
+        str+='<div id="coun4" class="in_float page_container">'+ca_name+' さんは卒業していきました…</div>';
+        float_close();
+    }
+
+    $("#float_body2").append(str);
+    $("#coun5").click(float_close2);
+
+}
+
+
 
 
 function oya(){
-    //$("#member_list").empty();
-    //show_students();
+    $("#member_list").empty();
+    show_students();
+    $("#float_body").empty();
+    stu_detail_(now_num);
 
-    $('#member_n1 > .hoge').text('a');
+    //$('#member_1 #member_n1').text('a');
 }
 
 

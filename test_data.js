@@ -7,8 +7,8 @@ var test_user={
     "department":"alpha",
     "money":111111,
     "level":1,
-    "item_param":[5,5,5],
-    "item_skill":[0,1]
+    "item_param":[5,7,120],
+    "item_skill":[2,4,6,6,8,10]
 
 }
 
@@ -22,14 +22,13 @@ var test_students={
             "personality":1, //性格
             "speciality":1, //得意分野
             "skill":[1,0,0], //スキル
-            //変更しました
             "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
-            "status":[15,15,20], //ステータス[知力,行動力,コミュ力]
+            "status":[15,15,20], //ステータス[論理力,行動力,コミュ力]
             "pic":"images/member_a.png",
             "course_t":0, //進路相談用(時間)
-            "collabo":false, //コラボ
+            "collabo":0, //コラボ
             "stu_type":0, //生徒タイプ
         },
         {
@@ -40,12 +39,12 @@ var test_students={
             "speciality":2,
             "skill":[1,0,0],
             "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":0, //論文出した数
+            "journal_pub":2,
             "journal_t":0,//ジャーナル生成時間
             "status":[25,10,15],
             "pic":"images/member_b.png",
             "course_t":0, //進路相談用(時間)
-            "collabo":false, //コラボ
+            "collabo":0, //コラボ
             "stu_type":0 //生徒タイプ
         },
         {
@@ -55,13 +54,13 @@ var test_students={
             "personality":3,
             "speciality":3,
             "skill":[2,0,0],
-            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
-            "journal_pub":0, //論文出した数
+            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
+            "journal_pub":1,
             "journal_t":0,//ジャーナル生成時間
             "status":[10,15,25],
             "pic":"images/member_c.png",
             "course_t":0, //進路相談用(時間)
-            "collabo":false, //コラボ
+            "collabo":0, //コラボ
             "stu_type":0 //生徒タイプ
         },
         {
@@ -71,13 +70,13 @@ var test_students={
             "personality":4,
             "speciality":4,
             "skill":[3,2,0],
-            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
-            "journal_pub":0, //論文出した数
+            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
+            "journal_pub":4,
             "journal_t":0,//ジャーナル生成時間
             "status":[30,40,50],
             "pic":"images/member_d.png",
             "course_t":0, //進路相談用(時間)
-            "collabo":false, //コラボ
+            "collabo":0, //コラボ
             "stu_type":0 //生徒タイプ
         },
         {
@@ -88,12 +87,12 @@ var test_students={
             "speciality":2,
             "skill":[4,3,1],
             "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":0, //論文出した数
+            "journal_pub":8,
             "journal_t":0,//ジャーナル生成時間
             "status":[60,70,30],
             "pic":"images/member_f.png",
             "course_t":0, //進路相談用(時間)
-            "collabo":false, //コラボ
+            "collabo":0, //コラボ
             "stu_type":0 //生徒タイプ
         },
     ]
