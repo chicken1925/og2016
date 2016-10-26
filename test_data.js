@@ -22,7 +22,7 @@ var test_students={
             "personality":1, //性格
             "speciality":1, //得意分野
             "skill":[1,0,0], //スキル
-            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[15,15,20], //ステータス[論理力,行動力,コミュ力]
@@ -38,8 +38,8 @@ var test_students={
             "personality":2,
             "speciality":2,
             "skill":[1,0,0],
-            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":2,
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
+            "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[25,10,15],
             "pic":"images/member_b.png",
@@ -54,8 +54,8 @@ var test_students={
             "personality":3,
             "speciality":3,
             "skill":[2,0,0],
-            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":1,
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
+            "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[10,15,25],
             "pic":"images/member_c.png",
@@ -70,8 +70,8 @@ var test_students={
             "personality":4,
             "speciality":4,
             "skill":[3,2,0],
-            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":4,
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
+            "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[30,40,50],
             "pic":"images/member_d.png",
@@ -86,8 +86,8 @@ var test_students={
             "personality":1,
             "speciality":2,
             "skill":[4,3,1],
-            "journal_pos":[0,0,0,0,0,0,0,0], //所持している論文の種類
-            "journal_pub":8,
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
+            "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[60,70,30],
             "pic":"images/member_f.png",

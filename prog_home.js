@@ -157,12 +157,9 @@ function Student(_id,_imgIndex,_x,_y){
     this.id=_id;
     this.x = _x-5;
     this.y = _y-5;
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
     this.r = 30;
     this.t =  Math.floor(Math.random() * 300);
-    this.paperDefaultSpd= 60;
-    this.paperSpd = this.paperDefaultSpd;
+    this.percentage=0;
     this.status=0;
     this.img =new Image();
     if(_imgIndex<2){
@@ -189,6 +186,7 @@ function Student(_id,_imgIndex,_x,_y){
 		
 		//context.drawImage(this.img, this.x,this.y);
 		objectLayer.push(new Sprite(this.img, this.x,this.y));
+       /*
         if(this.status==1){
             this.x=this.x+this.vx;
             this.y=this.y+this.vy;
@@ -216,13 +214,40 @@ function Student(_id,_imgIndex,_x,_y){
         if(this.y>canvas.height-this.r||this.y<0){
             this.vy=this.vy*-1;
         }
+        */
 
+    }
+    this.DrawBar=function(){
 
+        context.fillStyle = "rgb(255, 0, 0)";
+        context.fillRect(this.x,this.y+this.img.height,this.img.width,5);
+        context.fillStyle = "rgb(0, 255, 0)";
+        context.fillRect(this.x,this.y+this.img.height,this.img.width*this.percentage,5);
     }
     this.PaperGenelate=function(){
         
         var student = student_data.students[this.id];
-        
+                var genTime=15;
+        if(student.status[1]<15){
+            genTime=45;
+        }else if(student.status[1]<30){
+            genTime=40;
+        }else if(student.status[1]<45){
+            genTime=35;
+        }else if(student.status[1]<60){
+            genTime=30;
+        }else if(student.status[1]<75){
+            genTime=25;
+        }else if(student.status[1]<100){
+            genTime=20;
+        }else{
+            genTime=15;
+        }
+        this.percentage = student.journal_t/genTime;
+        if(this.percentage>1){
+
+            this.percentage=1;
+        }
         for(var i in student.journal_pos){
             var journal_pos=student.journal_pos[i];
             if(journal_pos!=0){
@@ -481,7 +506,10 @@ var loadevent = function() {
 	
     };
     for(var i in student_data.students){
-        rects[i] =new Student(i,student_data.students[i].grade,Math.random()*(canvas.width-64)+32,Math.random()*(canvas.height-64)+32);
+
+
+        var offset = GetRectOffset(Number(i));
+        rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
         
         
     }
@@ -509,55 +537,7 @@ setInterval(function(){
 
 
 
-//アニメーション
-setInterval(function(){
-    //context初期化
-    context.fillStyle='rgb(240,240,240)';
-    context.fillRect(0,0,canvas.width,canvas.height);
-    /*
-    if(btn_scene==1){context.fillStyle = 'rgb(255,0,0)';}
-    else if(btn_scene==2){context.fillStyle = 'rgb(0,255,0)';}
-    else if(btn_scene==3){context.fillStyle = 'rgb(0,0,255)';}
-    else if(btn_scene==4){context.fillStyle = 'rgb(255,255,0)';}
-    else if(btn_scene==5){context.fillStyle = 'rgb(255,0,255)';}
-    */
-	bgLayer=[];
-	effectLayer=[];
-	objectLayer=[];
-	
-	
-	
-    if(btn_scene==1){
-        for(var i in rects){
-            context.fillStyle = 'rgb(255,0,0)';
-            rects[i].Animation();
-            //context.fillRect(rects[i].x,rects[i].y,rects[i].r,rects[i].r);
-	
-        }
-        for(var i in notifications){
-            notifications[i].Animation();    
-            
-        }
-        news.Animation();
-		for(var i in bgLayer){
-			bgLayer[i].Draw();
-		}
-		for(var i in objectLayer){
-			objectLayer[i].Draw();
-		}
-		for(var i in effectLayer){
-			effectLayer[i].Draw();	
-		}
 
-        for(var i in notifications){
-
-            notifications[i].Draw();
-        }
-        news.Draw();
-    }
-	
-	
-},33);
 
 
 //スチューデントデータの更新
@@ -567,8 +547,8 @@ setInterval(
         if(studentCount!=student_data.students.length){
             rects=[];
             for(var i in student_data.students){
-                rects[i] =new Student(i,student_data.students[i].grade,Math.random()*(canvas.width-64)+32,Math.random()*(canvas.height-64)+32);
-                
+                var offset = GetRectOffset(Number(i));
+                rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
             }
             studentCount=student_data.students.length*1;
         }
@@ -604,6 +584,55 @@ setInterval(
     }    
 ,33)
 
+//アニメーション
+setInterval(function(){
+    //context初期化
+    context.fillStyle='rgb(240,240,240)';
+    context.fillRect(0,0,canvas.width,canvas.height);
+    /*
+    if(btn_scene==1){context.fillStyle = 'rgb(255,0,0)';}
+    else if(btn_scene==2){context.fillStyle = 'rgb(0,255,0)';}
+    else if(btn_scene==3){context.fillStyle = 'rgb(0,0,255)';}
+    else if(btn_scene==4){context.fillStyle = 'rgb(255,255,0)';}
+    else if(btn_scene==5){context.fillStyle = 'rgb(255,0,255)';}
+    */
+	bgLayer=[];
+	effectLayer=[];
+	objectLayer=[];
+	
+	
+	
+    if(btn_scene==1){
+        for(var i in rects){
+            context.fillStyle = 'rgb(255,0,0)';
+            rects[i].Animation();
+            //context.fillRect(rects[i].x,rects[i].y,rects[i].r,rects[i].r);
+        }
+        for(var i in notifications){
+            notifications[i].Animation();    
+        }
+        news.Animation();
+		for(var i in bgLayer){
+			bgLayer[i].Draw();
+		}
+		for(var i in objectLayer){
+			objectLayer[i].Draw();
+		}
+        for(var i in rects){
+            rects[i].DrawBar();
+            //context.fillRect(rects[i].x,rects[i].y,rects[i].r,rects[i].r); 
+        }
+		for(var i in effectLayer){
+			effectLayer[i].Draw();	
+		}
+        for(var i in notifications){
+            notifications[i].Draw();
+        }
+        news.Draw();
+    }
+	
+	
+},33);
 var fillTextLine = function(context, text, x, y) {
     var textList = text.split('\n');
     var lineHeight = context.measureText("あ").width;
@@ -611,5 +640,44 @@ var fillTextLine = function(context, text, x, y) {
         context.fillText(text, x, y+lineHeight*i);
     });
 };
+
+function GetRectOffset(_number){
+    var offset=[0,0];
+    
+    switch(_number){
+        case 0:
+            offset[0]=canvas.width*0.25;
+            offset[1]=canvas.height*0.2*1;
+            break;
+        case 1:
+            offset[0]=canvas.width*0.25*3;
+            offset[1]=canvas.height*0.2*1;
+            break;
+        case 2:
+            offset[0]=canvas.width*0.25;
+            offset[1]=canvas.height*0.2*2;
+            break;
+        case 3:
+            offset[0]=canvas.width*0.25*3;
+            offset[1]=canvas.height*0.2*2;
+            break;
+        case 4:
+            offset[0]=canvas.width*0.25;
+            offset[1]=canvas.height*0.2*3;
+
+            break;
+        case 5:
+            offset[0]=canvas.width*0.25*3;
+            offset[1]=canvas.height*0.2*3;
+            break;
+        default:
+            offset[0]=canvas.width*0.25;
+            offset[1]=canvas.height*0.2*1;
+            break;
+    }
+
+
+    return offset;
+}
 
 //-->

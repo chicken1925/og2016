@@ -1,4 +1,4 @@
-<!--
+//<!--
 
 var time=0;
 
@@ -9,7 +9,7 @@ var sumValue=0;
 var dispValue=0
 
 //変えるように！！！！
-var disp_ifr=2;
+var disp_ifr=0;
 
 
 // スクロール禁止
@@ -33,12 +33,6 @@ function sizing_box() {
 //一番早い処理(多分)
 $(document).ready( function(){
 	sizing_box();
-	document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
-	var sp=0;
-	for(var i=0;i<test_students.students.length;i++){
-		sp+=test_students.students[i].journal_pub;
-	}
-	document.getElementById("min_m").textContent="論文数:"+sp +"編";
 	//loginform();
 });
 window.addEventListener('resize', function() {
@@ -47,10 +41,7 @@ window.addEventListener('resize', function() {
 
 //初期処理
 window.addEventListener("load", function(){
-    sumPaper=0;
-    sumValue=0;
-    dispValue=0;
-    dispValue=sumValue;
+	sumValue=test_user.money;
 
 }, false);
 
@@ -60,13 +51,7 @@ window.addEventListener("load", function(){
 setInterval(function (){
 	document.getElementById("min_m").textContent="論文数:"+sumPaper +"編";
         
-    if(dispValue!=deltaDispValue){
-        dispValue+=deltaDispValue/360;
-        if(dispValue>deltaDispValue){
-            dispValue=deltaDispValue;
-        }
-    }
-    document.getElementById("all_m").textContent="¥"+parseInt(dispValue,0);
+    document.getElementById("all_m").textContent="¥"+parseInt(sumValue,0);
 	time++;
 },33)
 
@@ -136,8 +121,8 @@ function loginCheck(id_,pass_){
 
 //下のボタン押した時
 function u_button(btnno){
-	btnno;
-	dispValue= sumValue;
+    btnno;
+    dispValue= sumValue;
     deltaDispValue=dispValue;
 	if(btnno==1){
 		document.ifr.location.href = "home.html";
@@ -237,7 +222,7 @@ function next_grade(){
 		//test_students.students[i].grade++;
 		if(test_students.students[i].grade>=7){
 			test_students.students.splice(i,1);
-			//console.log("!");
+			console.log("!");
 			i--;
 		}
 		//console.log(i);
@@ -245,14 +230,29 @@ function next_grade(){
 	}
 }
 
+
 //ペーパーの管理関数
 function MakeJournal(){
     for(var i in test_students.students){
         
         var student = test_students.students[i];   
-        var journal_spd=(100-student.status[2]);
-        
-        if(journal_spd<student.journal_t){
+        var genTime=15;
+		if(student.status[1]<15){
+            genTime=45;
+        }else if(student.status[1]<30){
+            genTime=40;
+        }else if(student.status[1]<45){
+            genTime=35;
+        }else if(student.status[1]<60){
+            genTime=30;
+        }else if(student.status[1]<75){
+            genTime=25;
+        }else if(student.status[1]<100){
+            genTime=20;
+        }else{
+            genTime=15;
+        }
+        if(genTime<student.journal_t){
             for(var j in student.journal_pos){
                 var journal = student.journal_pos[j];
                 
@@ -271,6 +271,7 @@ function MakeJournal(){
         test_students.students[i]=student;
     }
 }
+
 
 //生徒追加
 var stu_history=[-1,-1,-1,-1,-1];
@@ -293,6 +294,7 @@ function add_stu(){
 		}
     }, 800);
 }
+
 
 var float_open_flag=0;
 function lab_info(){
@@ -330,10 +332,12 @@ var float_close = function(){
 };
 function levelup(){
 	test_user.money-=10000;
+	sumValue=test_user.money;
 	test_user.level++;
 	$('#level_m').text('研究室Lv: Lv.'+test_user.level);
 	document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
 }
+
 
 
 
@@ -363,7 +367,6 @@ function box_size(){
 	//console.log("hoge");
 	return $("#box").height();
 }
-
 function GetHomeData(){
     var homeData=[sumValue,sumPaper];
     return homeData;
@@ -373,7 +376,7 @@ function GetHomeData(){
 
 function SetValue(_addValue){
     sumValue+=_addValue;
-
+	test_user.money+=_addValue;
 	
 }
 function SetDispValue(_addValue){
@@ -386,6 +389,7 @@ function SetPaper(_studentID,_paperID){
     sumPaper++;
 	
 }
+
 function career_m(s_num,c){
 	//console.log(s_num+','+c);
 	if(c==0){ //進学
@@ -395,7 +399,6 @@ function career_m(s_num,c){
 		test_students.students.splice(s_num,1);
 	}
 }
-
 
 
 //-->
