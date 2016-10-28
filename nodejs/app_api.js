@@ -80,7 +80,7 @@ function getUniqueStr(myStrong){
 
 //json読み込み
 var fs = require('fs');
-var gen_student = JSON.parse(fs.readFileSync('student_data.json', 'utf8'));
+var gen_student = JSON.parse(fs.readFileSync('st_data.json', 'utf8'));
 
 
 

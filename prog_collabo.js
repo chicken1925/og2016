@@ -1,17 +1,17 @@
 <!--
 
-var student_data;
+var st_data;
 var user_data;
 
 //初期処理
 window.addEventListener("load", function(){
-    student_data = window.parent.back_stu_data();
+    st_data = window.parent.back_stu_data();
     user_data = window.parent.back_user_data();
     var hh= window.parent.box_size();
     $("#all_contents").css("height", hh+"px");
     $("#collabo_list").css("height", (hh-75)+"px");
 
-    //console.log(student_data.students[0].name);
+    //console.log(st_data.students[0].name);
     quest_request();
 
 }, false);

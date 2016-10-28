@@ -1,12 +1,12 @@
 <!--
 
 var hh;
-var student_data;
+var st_data;
 var user_data;
 
 //初期処理
 window.addEventListener("load", function(){
-    student_data = window.parent.back_stu_data();
+    st_data = window.parent.back_stu_data();
     user_data = window.parent.back_user_data();
     hh= window.parent.box_size();
     $("#all_contents").css("height", hh+"px");
@@ -51,12 +51,12 @@ function show_info(n){
 
     str+='<form id="gi_form3">';
     str+='<div class="mem_ratio">';
-    for(var i=0;i<student_data.students.length;i++){
-        if(student_data.students[i].collabo==0){str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" onclick="selfunc('+i+')">';}
+    for(var i=0;i<st_data.students.length;i++){
+        if(st_data.students[i].collabo==0){str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" onclick="selfunc('+i+')">';}
         else{str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" disabled="disabled">';}
         str+='<label id="sel_label'+i+'" for="select'+i+'">';
-        str+='<img src="'+student_data.students[i].pic+'" width=28 height=28 style="top:5px; position:relative;"></img>';
-        str+='<div style="top:10px; position:relative;">'+student_data.students[i].name+'</div>';
+        str+='<img src="'+st_data.students[i].pic+'" width=28 height=28 style="top:5px; position:relative;"></img>';
+        str+='<div style="top:10px; position:relative;">'+st_data.students[i].name+'</div>';
         str+='</label>';
     }
     str+='</div>';
@@ -91,34 +91,34 @@ var float_close = function(){
 function selfunc(n){
     $("#q_mbox").empty();
     var str="";
-    str+='<div id="q_m1" class="quest_s" style="background-image:url('+student_data.students[n].pic+');"></div>';
-    str+='<div id="q_m2" class="quest_s">'+student_data.students[n].name+'</div>';
+    str+='<div id="q_m1" class="quest_s" style="background-image:url('+st_data.students[n].pic+');"></div>';
+    str+='<div id="q_m2" class="quest_s">'+st_data.students[n].name+'</div>';
     var gra="";
-    if(student_data.students[n].grade==0){gra="学士3年"}
-    else if(student_data.students[n].grade==1){gra="学士4年"}
-    else if(student_data.students[n].grade==2){gra="修士1年"}
-    else if(student_data.students[n].grade==3){gra="修士2年"}
-    else if(student_data.students[n].grade==4){gra="博士1年"}
-    else if(student_data.students[n].grade==5){gra="博士2年"}
-    else if(student_data.students[n].grade==6){gra="博士3年"}
+    if(st_data.students[n].grade==0){gra="学士3年"}
+    else if(st_data.students[n].grade==1){gra="学士4年"}
+    else if(st_data.students[n].grade==2){gra="修士1年"}
+    else if(st_data.students[n].grade==3){gra="修士2年"}
+    else if(st_data.students[n].grade==4){gra="博士1年"}
+    else if(st_data.students[n].grade==5){gra="博士2年"}
+    else if(st_data.students[n].grade==6){gra="博士3年"}
     str+='<div id="q_m3" class="quest_s">/'+gra+'</div>';
-    str+='<div id="q_m4" class="quest_s">性格:&nbsp;num'+student_data.students[n].personality+'</div>';
-    str+='<div id="q_m5" class="quest_s">得意分野:&nbsp;num'+student_data.students[n].speciality+'</div>';
+    str+='<div id="q_m4" class="quest_s">性格:&nbsp;num'+st_data.students[n].personality+'</div>';
+    str+='<div id="q_m5" class="quest_s">得意分野:&nbsp;num'+st_data.students[n].speciality+'</div>';
     var mr,mk,mc;
-    for(var j=0;j<student_data.students[n].status.length;j++){
-        if(student_data.students[n].status[j]<25){
+    for(var j=0;j<st_data.students[n].status.length;j++){
+        if(st_data.students[n].status[j]<25){
             if(j==0){mr="F";}else if(j==1){mk="F";}else if(j==2){mc="F";}
-        }else if(student_data.students[n].status[j]>=25&&student_data.students[n].status[j]<45){
+        }else if(st_data.students[n].status[j]>=25&&st_data.students[n].status[j]<45){
             if(j==0){mr="E";}else if(j==1){mk="E";}else if(j==2){mc="E";}
-        }else if(student_data.students[n].status[j]>=45&&student_data.students[n].status[j]<65){
+        }else if(st_data.students[n].status[j]>=45&&st_data.students[n].status[j]<65){
             if(j==0){mr="D";}else if(j==1){mk="D";}else if(j==2){mc="D";}
-        }else if(student_data.students[n].status[j]>=65&&student_data.students[n].status[j]<85){
+        }else if(st_data.students[n].status[j]>=65&&st_data.students[n].status[j]<85){
             if(j==0){mr="C";}else if(j==1){mk="C";}else if(j==2){mc="C";}
-        }else if(student_data.students[n].status[j]>=85&&student_data.students[n].status[j]<105){
+        }else if(st_data.students[n].status[j]>=85&&st_data.students[n].status[j]<105){
             if(j==0){mr="B";}else if(j==1){mk="B";}else if(j==2){mc="B";}
-        }else if(student_data.students[n].status[j]>=105&&student_data.students[n].status[j]<120){
+        }else if(st_data.students[n].status[j]>=105&&st_data.students[n].status[j]<120){
             if(j==0){mr="A";}else if(j==1){mk="A";}else if(j==2){mc="A";}
-        }else if(student_data.students[n].status[j]>=120){
+        }else if(st_data.students[n].status[j]>=120){
             if(j==0){mr="S";}else if(j==1){mk="S";}else if(j==2){mc="S";}
         }
     }
@@ -142,7 +142,7 @@ function float_ch(n){
     }
 
     //とりあえずquest0
-    hold_quest_api(user_data.uid,n,student_data.students[val].id);
+    hold_quest_api(user_data.uid,n,st_data.students[val].id);
 
     $("#float_body").empty();
     $("#float_body").append("wait...");

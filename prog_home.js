@@ -3,7 +3,7 @@
 var canvas;
 var context;
 var btn_scene=1;
-var student_data;
+var st_data;
 var studentCount;
 var rects=[];
 
@@ -16,6 +16,8 @@ var objectLayer=[];
 var news;
 var smartphone=false;
 var mouseX=0,mouseY=0;
+
+var imgBG;
 
 function Sprite(_img,_x,_y){
 	this.x=_x;
@@ -226,7 +228,7 @@ function Student(_id,_imgIndex,_x,_y){
     }
     this.PaperGenelate=function(){
         
-        var student = student_data.students[this.id];
+        var student = st_data.students[this.id];
                 var genTime=15;
         if(student.status[1]<15){
             genTime=45;
@@ -327,8 +329,13 @@ function Paper(_user,_id,_x,_y){
         }
         var offsetX=0;
         var offsetY=0;
-        var marginSize=1.5;
-        var rad= this.id* 360/_maxPaper * (Math.PI / 180);
+        var marginSize=1.0;
+        var leftOffset=0;
+        if(this.userID%2==0){
+            leftOffset=180;
+            console.log("hoge");
+        }
+        var rad= this.id* 360/(_maxPaper+leftOffset) * (Math.PI / 180);
         offsetX=parentImg.width*marginSize*Math.cos(rad);
         offsetY=parentImg.height*marginSize*Math.sin(rad);
         this.x=_parentX+offsetX;
@@ -437,8 +444,8 @@ var loadevent = function() {
     var content=["○○研究室との共同研究完了！\nミジンコの生態について学んだ！","学会実施中！\n学生を一人参加させよう！"];
     news=new News(content);
 
-    student_data=window.parent.back_stu_data();
-    studentCount=student_data.students.length*1;
+    st_data=window.parent.back_stu_data();
+    studentCount=st_data.students.length*1;
     notifications.push(new Notification(0,0));
     notifications.push(new Notification(1,0));
     //描画コンテキストの取得
@@ -449,7 +456,10 @@ var loadevent = function() {
         context.fillStyle='rgb(240,240,240)';
         context.fillRect(0,0,canvas.width,canvas.height);
     }
-	
+	imgBG=new Image();
+    imgBG.src="images/haikei_1.png";
+
+
     //スマホ、PCのクリック判定
     if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Mobile') > 0)) {
         smartphone=true;
@@ -505,11 +515,11 @@ var loadevent = function() {
         //document.getElementById("all_m").textContent="¥"+numrects*100000;
 	
     };
-    for(var i in student_data.students){
+    for(var i in st_data.students){
 
 
         var offset = GetRectOffset(Number(i));
-        rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
+        rects[i] =new Student(i,st_data.students[i].grade,offset[0],offset[1]);
         
         
     }
@@ -544,23 +554,23 @@ setInterval(function(){
 setInterval(
     function(){
         //ユーザーデータベースの更新
-        if(studentCount!=student_data.students.length){
+        if(studentCount!=st_data.students.length){
             rects=[];
-            for(var i in student_data.students){
+            for(var i in st_data.students){
                 var offset = GetRectOffset(Number(i));
-                rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
+                rects[i] =new Student(i,st_data.students[i].grade,offset[0],offset[1]);
             }
-            studentCount=student_data.students.length*1;
+            studentCount=st_data.students.length*1;
         }
         
         //通知欄の更新
         var waitDiscuss=0;
         var waitCollabo=0;
-        for(var i in student_data.students){
+        for(var i in st_data.students){
             var remain;
-            if(student_data.students[i].grade==0||student_data.students[i].grade==1){remain=600-student_data.students[i].course_t;}
-            else if(student_data.students[i].grade==2||student_data.students[i].grade==3){remain=900-student_data.students[i].course_t;}
-            else if(student_data.students[i].grade==4||student_data.students[i].grade==5||student_data.students[i].grade==6){remain=1200-student_data.students[i].course_t;}
+            if(st_data.students[i].grade==0||st_data.students[i].grade==1){remain=600-st_data.students[i].course_t;}
+            else if(st_data.students[i].grade==2||st_data.students[i].grade==3){remain=900-st_data.students[i].course_t;}
+            else if(st_data.students[i].grade==4||st_data.students[i].grade==5||st_data.students[i].grade==6){remain=1200-st_data.students[i].course_t;}
             if(remain==-1){
                 waitDiscuss++;
             }
@@ -608,6 +618,7 @@ setInterval(function(){
             rects[i].Animation();
             //context.fillRect(rects[i].x,rects[i].y,rects[i].r,rects[i].r);
         }
+        bgLayer.push(new Sprite(imgBG,0,0));
         for(var i in notifications){
             notifications[i].Animation();    
         }
@@ -646,33 +657,33 @@ function GetRectOffset(_number){
     
     switch(_number){
         case 0:
-            offset[0]=canvas.width*0.25;
-            offset[1]=canvas.height*0.2*1;
+            offset[0]=32*3;
+            offset[1]=32*3.5;
             break;
         case 1:
-            offset[0]=canvas.width*0.25*3;
-            offset[1]=canvas.height*0.2*1;
+            offset[0]=32*6;
+            offset[1]=32*3.5;
             break;
         case 2:
-            offset[0]=canvas.width*0.25;
-            offset[1]=canvas.height*0.2*2;
+            offset[0]=32*3;
+            offset[1]=32*5.5;
             break;
         case 3:
-            offset[0]=canvas.width*0.25*3;
-            offset[1]=canvas.height*0.2*2;
+            offset[0]=32*6;
+            offset[1]=32*5.5;
             break;
         case 4:
-            offset[0]=canvas.width*0.25;
-            offset[1]=canvas.height*0.2*3;
+            offset[0]=32*3;
+            offset[1]=32*7.5;
 
             break;
         case 5:
-            offset[0]=canvas.width*0.25*3;
-            offset[1]=canvas.height*0.2*3;
+            offset[0]=32*6;
+            offset[1]=32*7.5;
             break;
         default:
-            offset[0]=canvas.width*0.25;
-            offset[1]=canvas.height*0.2*1;
+            offset[0]=32*3;
+            offset[1]=32*4;
             break;
     }
 
