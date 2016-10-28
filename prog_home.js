@@ -4,6 +4,7 @@ var canvas;
 var context;
 var btn_scene=1;
 var st_data;
+var us_data;
 var studentCount;
 var rects=[];
 
@@ -16,8 +17,8 @@ var objectLayer=[];
 var news;
 var smartphone=false;
 var mouseX=0,mouseY=0;
+var imgBG=[];
 
-var imgBG;
 
 function Sprite(_img,_x,_y){
 	this.x=_x;
@@ -182,12 +183,13 @@ function Student(_id,_imgIndex,_x,_y){
 	
     this.Animation=function(){
         //停止=0,歩行=1
+        objectLayer.push(new Sprite(this.img, this.x,this.y));
 		for(var i in this.papers){
             this.papers[i].Animation(this.img,this.maxPaper,this.x,this.y);
         }
 		
 		//context.drawImage(this.img, this.x,this.y);
-		objectLayer.push(new Sprite(this.img, this.x,this.y));
+		
        /*
         if(this.status==1){
             this.x=this.x+this.vx;
@@ -222,9 +224,9 @@ function Student(_id,_imgIndex,_x,_y){
     this.DrawBar=function(){
 
         context.fillStyle = "rgb(255, 0, 0)";
-        context.fillRect(this.x,this.y+this.img.height,this.img.width,5);
+        context.fillRect(this.x,this.y+this.img.height-5,this.img.width,5);
         context.fillStyle = "rgb(0, 255, 0)";
-        context.fillRect(this.x,this.y+this.img.height,this.img.width*this.percentage,5);
+        context.fillRect(this.x,this.y+this.img.height-5,this.img.width*this.percentage,5);
     }
     this.PaperGenelate=function(){
         
@@ -329,15 +331,61 @@ function Paper(_user,_id,_x,_y){
         }
         var offsetX=0;
         var offsetY=0;
-        var marginSize=1.0;
-        var leftOffset=0;
-        if(this.userID%2==0){
-            leftOffset=180;
-            console.log("hoge");
+        var adjustX=5;
+        var adjustY=-5;
+        var marginX=1;
+        var marginY=0.75;
+        var opposide=1;
+        if(this.userID%2==1){
+            opposide=-1;
         }
-        var rad= this.id* 360/(_maxPaper+leftOffset) * (Math.PI / 180);
-        offsetX=parentImg.width*marginSize*Math.cos(rad);
-        offsetY=parentImg.height*marginSize*Math.sin(rad);
+        //var marginSize=1.0;
+        //var leftMargine=90;
+        switch(this.id){
+            case 0:
+                offsetX=32*marginX*opposide+adjustX;
+                offsetY=32*marginY*0+adjustY;
+                break;
+            case 1:
+                offsetX=32*marginX*opposide+adjustX;
+                offsetY=32*marginY+adjustY;
+                break;
+            case 2:
+                offsetX=32*marginX*0+adjustX;
+                offsetY=32*marginY+adjustY;
+                break;
+            case 3:
+                offsetX=32*marginX*-opposide+adjustX;
+                offsetY=32*marginY+adjustY;
+                break;
+            case 4:
+                offsetX=32*marginX*-opposide+adjustX;
+                offsetY=32*marginY*0+adjustY;
+
+                break;
+            case 5:
+                offsetX=32*marginX*-opposide+adjustX;
+                offsetY=32*-marginY+adjustY;
+                break;
+            case 6:
+                offsetX=32*marginX*0+adjustX;
+                offsetY=32*-marginY+adjustY;
+                break;
+            case 7:
+                offsetX=32*marginX*opposide+adjustX;
+                offsetY=32*-marginY+adjustY;
+                break;
+
+            default:
+                offsetX=32*marginX;
+                offsetY=32*marginY;
+                break;
+
+
+        }
+        //var rad= this.id* ((360/_maxPaper)+leftMargine) * (Math.PI / 180);
+        //offsetX=parentImg.width*marginSize*Math.cos(rad);
+        //offsetY=parentImg.height*marginSize*Math.sin(rad);
         this.x=_parentX+offsetX;
         this.y=_parentY+offsetY;
     }
@@ -443,8 +491,12 @@ var loadevent = function() {
     canvas2.height = window.parent.box_size();
     var content=["○○研究室との共同研究完了！\nミジンコの生態について学んだ！","学会実施中！\n学生を一人参加させよう！"];
     news=new News(content);
-
+    for(var i=0;i<6;i++){
+        imgBG[i]=new Image();
+        imgBG[i].src="images/bg_"+i+".png"
+    }
     st_data=window.parent.back_stu_data();
+    us_data=window.parent.back_user_data();
     studentCount=st_data.students.length*1;
     notifications.push(new Notification(0,0));
     notifications.push(new Notification(1,0));
@@ -456,10 +508,7 @@ var loadevent = function() {
         context.fillStyle='rgb(240,240,240)';
         context.fillRect(0,0,canvas.width,canvas.height);
     }
-	imgBG=new Image();
-    imgBG.src="images/haikei_1.png";
-
-
+	
     //スマホ、PCのクリック判定
     if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Mobile') > 0)) {
         smartphone=true;
@@ -613,12 +662,13 @@ setInterval(function(){
 	
 	
     if(btn_scene==1){
+
+        bgLayer.push(new Sprite(imgBG[us_data.level],0,0));
         for(var i in rects){
             context.fillStyle = 'rgb(255,0,0)';
             rects[i].Animation();
             //context.fillRect(rects[i].x,rects[i].y,rects[i].r,rects[i].r);
         }
-        bgLayer.push(new Sprite(imgBG,0,0));
         for(var i in notifications){
             notifications[i].Animation();    
         }
@@ -657,38 +707,39 @@ function GetRectOffset(_number){
     
     switch(_number){
         case 0:
-            offset[0]=32*3;
+            offset[0]=32*3+4;
             offset[1]=32*3.5;
             break;
         case 1:
-            offset[0]=32*6;
+            offset[0]=32*6+4;
             offset[1]=32*3.5;
             break;
         case 2:
-            offset[0]=32*3;
+            offset[0]=32*3+4;
             offset[1]=32*5.5;
             break;
         case 3:
-            offset[0]=32*6;
+            offset[0]=32*6+4;
             offset[1]=32*5.5;
             break;
         case 4:
-            offset[0]=32*3;
+            offset[0]=32*3+4;
             offset[1]=32*7.5;
 
             break;
         case 5:
-            offset[0]=32*6;
+            offset[0]=32*6+4;
             offset[1]=32*7.5;
             break;
         default:
-            offset[0]=32*3;
-            offset[1]=32*4;
+            offset[0]=32*3+4;
+            offset[1]=32*5.5;
             break;
     }
 
 
     return offset;
 }
+
 
 //-->

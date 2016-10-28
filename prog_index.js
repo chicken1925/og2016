@@ -358,7 +358,7 @@ function back_stu_data(){
 	return test_students;
 }
 function back_user_data(){
-	//console.log("hoge");
+	console.log(test_user);
 	return test_user;
 }
 

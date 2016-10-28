@@ -1,4 +1,4 @@
-<!--
+//<!--
 
 var st_data;
 var user_data;
