@@ -117,7 +117,6 @@ function News(_contents){
     this.splitPoint=0;
     this.reloadContent=true;
     this.display_t=0;
-
     this.Animation= function(){
         if(this.reloadContent){
             this.splitPoint*=0.95;
@@ -146,9 +145,13 @@ function News(_contents){
         context.font = "bold 12px 'ヒラギノ角ゴ Pro W6'";
         context.textAlign = "left";
         context.textBaseline = "middle";
-        context.fillStyle = "black";
-        fillTextLine(context,this.displayContent, -canvas.width+this.splitPoint, canvas.height-24);
-        fillTextLine(context,this.displayNextContent,this.splitPoint,canvas.height-24 );
+        context.fillStyle = "Black";
+        context.globalAlpha = 0.6;
+        context.fillRect(0,canvas.height-32,canvas.width,32);
+        context.fillStyle = "White";
+        context.globalAlpha = 1.0;
+        fillTextLine(context,this.displayContent, -canvas.width+this.splitPoint, canvas.height-26);
+        fillTextLine(context,this.displayNextContent,this.splitPoint,canvas.height-26 );
        // context.fillText(this.displayContent, -canvas.width+this.splitPoint, canvas.height-40);
        // context.fillText(this.displayNextContent,this.splitPoint,canvas.height-40 );
     }
