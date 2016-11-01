@@ -3,7 +3,7 @@
 var canvas;
 var context;
 var btn_scene=1;
-var st_data;
+var student_data;
 var us_data;
 var studentCount;
 var rects=[];
@@ -18,7 +18,6 @@ var news;
 var smartphone=false;
 var mouseX=0,mouseY=0;
 var imgBG=[];
-
 
 function Sprite(_img,_x,_y){
 	this.x=_x;
@@ -144,12 +143,12 @@ function News(_contents){
 
     this.Draw=function(){
 
-        context.font = "bold 20px 'ヒラギノ角ゴ Pro W6'";
+        context.font = "bold 12px 'ヒラギノ角ゴ Pro W6'";
         context.textAlign = "left";
         context.textBaseline = "middle";
         context.fillStyle = "black";
-        fillTextLine(context,this.displayContent, -canvas.width+this.splitPoint, canvas.height-40);
-        fillTextLine(context,this.displayNextContent,this.splitPoint,canvas.height-40 );
+        fillTextLine(context,this.displayContent, -canvas.width+this.splitPoint, canvas.height-24);
+        fillTextLine(context,this.displayNextContent,this.splitPoint,canvas.height-24 );
        // context.fillText(this.displayContent, -canvas.width+this.splitPoint, canvas.height-40);
        // context.fillText(this.displayNextContent,this.splitPoint,canvas.height-40 );
     }
@@ -160,9 +159,12 @@ function Student(_id,_imgIndex,_x,_y){
     this.id=_id;
     this.x = _x-5;
     this.y = _y-5;
+    this.vx = Math.random() * 2 - 1;
+    this.vy = Math.random() * 2 - 1;
     this.r = 30;
     this.t =  Math.floor(Math.random() * 300);
     this.percentage=0;
+
     this.status=0;
     this.img =new Image();
     if(_imgIndex<2){
@@ -230,7 +232,7 @@ function Student(_id,_imgIndex,_x,_y){
     }
     this.PaperGenelate=function(){
         
-        var student = st_data.students[this.id];
+        var student = student_data.students[this.id];
                 var genTime=15;
         if(student.status[1]<15){
             genTime=45;
@@ -489,15 +491,16 @@ var loadevent = function() {
     var canvas2 = document.getElementById( "main_canvas" ) ;
     // キャンパスの描画領域の横幅を500pxに変更する
     canvas2.height = window.parent.box_size();
+    window.parent.frame_num(0); //1026追加
     var content=["○○研究室との共同研究完了！\nミジンコの生態について学んだ！","学会実施中！\n学生を一人参加させよう！"];
     news=new News(content);
     for(var i=0;i<6;i++){
         imgBG[i]=new Image();
         imgBG[i].src="images/bg_"+i+".png"
     }
-    st_data=window.parent.back_stu_data();
+    student_data=window.parent.back_stu_data();
     us_data=window.parent.back_user_data();
-    studentCount=st_data.students.length*1;
+    studentCount=student_data.students.length*1;
     notifications.push(new Notification(0,0));
     notifications.push(new Notification(1,0));
     //描画コンテキストの取得
@@ -564,11 +567,11 @@ var loadevent = function() {
         //document.getElementById("all_m").textContent="¥"+numrects*100000;
 	
     };
-    for(var i in st_data.students){
+    for(var i in student_data.students){
 
 
         var offset = GetRectOffset(Number(i));
-        rects[i] =new Student(i,st_data.students[i].grade,offset[0],offset[1]);
+        rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
         
         
     }
@@ -596,30 +599,27 @@ setInterval(function(){
 
 
 
-
-
-
 //スチューデントデータの更新
 setInterval(
     function(){
         //ユーザーデータベースの更新
-        if(studentCount!=st_data.students.length){
+        if(studentCount!=student_data.students.length){
             rects=[];
-            for(var i in st_data.students){
+            for(var i in student_data.students){
                 var offset = GetRectOffset(Number(i));
-                rects[i] =new Student(i,st_data.students[i].grade,offset[0],offset[1]);
+                rects[i] =new Student(i,student_data.students[i].grade,offset[0],offset[1]);
             }
-            studentCount=st_data.students.length*1;
+            studentCount=student_data.students.length*1;
         }
         
         //通知欄の更新
         var waitDiscuss=0;
         var waitCollabo=0;
-        for(var i in st_data.students){
+        for(var i in student_data.students){
             var remain;
-            if(st_data.students[i].grade==0||st_data.students[i].grade==1){remain=600-st_data.students[i].course_t;}
-            else if(st_data.students[i].grade==2||st_data.students[i].grade==3){remain=900-st_data.students[i].course_t;}
-            else if(st_data.students[i].grade==4||st_data.students[i].grade==5||st_data.students[i].grade==6){remain=1200-st_data.students[i].course_t;}
+            if(student_data.students[i].grade==0||student_data.students[i].grade==1){remain=600-student_data.students[i].course_t;}
+            else if(student_data.students[i].grade==2||student_data.students[i].grade==3){remain=900-student_data.students[i].course_t;}
+            else if(student_data.students[i].grade==4||student_data.students[i].grade==5||student_data.students[i].grade==6){remain=1200-student_data.students[i].course_t;}
             if(remain==-1){
                 waitDiscuss++;
             }
@@ -702,44 +702,43 @@ var fillTextLine = function(context, text, x, y) {
     });
 };
 
+
 function GetRectOffset(_number){
     var offset=[0,0];
     
     switch(_number){
         case 0:
             offset[0]=32*3+4;
-            offset[1]=32*3.5;
+            offset[1]=32*2.5;
             break;
         case 1:
             offset[0]=32*6+4;
-            offset[1]=32*3.5;
+            offset[1]=32*2.5;
             break;
         case 2:
             offset[0]=32*3+4;
-            offset[1]=32*5.5;
+            offset[1]=32*4.5;
             break;
         case 3:
             offset[0]=32*6+4;
-            offset[1]=32*5.5;
+            offset[1]=32*4.5;
             break;
         case 4:
             offset[0]=32*3+4;
-            offset[1]=32*7.5;
+            offset[1]=32*6.5;
 
             break;
         case 5:
             offset[0]=32*6+4;
-            offset[1]=32*7.5;
+            offset[1]=32*6.5;
             break;
         default:
             offset[0]=32*3+4;
-            offset[1]=32*5.5;
+            offset[1]=32*2.5;
             break;
     }
 
 
     return offset;
 }
-
-
 //-->

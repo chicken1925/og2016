@@ -1,17 +1,25 @@
 <!--
 
-var st_data;
+var student_data;
 var user_data;
 
+var skill_data={};
+$(function() {
+  $.getJSON("skill_data.json" , function(data) {
+    skill_data=data;
+  });
+});
 
 //初期処理
 window.addEventListener("load", function(){
     user_data = window.parent.back_user_data();
-	st_data = window.parent.back_stu_data();
+	student_data = window.parent.back_stu_data();
 	var hh= window.parent.box_size();
+    window.parent.frame_num(1);
 	$("#member_list").css("height", hh+"px");
 	$("#all_contents").css("height", hh+"px");
-	//console.log(st_data.students[0].name);
+	//console.log(student_data.students[0].name);
+
 
     show_students();
 
@@ -30,7 +38,7 @@ function toHms(t) {
     } else if (m != 0) {
         hms = m + ":" + padZero(s) + "";
     } else {
-        hms ="0:"+ s + "";
+        hms ="0:"+ padZero(s) + "";
     }
     return hms;
     function padZero(v) {
@@ -46,7 +54,7 @@ function toHms(t) {
 
 function show_students(){
     //生徒リスト表示
-    for(var i=0;i<st_data.students.length;i++){
+    for(var i=0;i<student_data.students.length;i++){
         var str="";
 
         str+='<a href="#" onclick="stu_detail('+i+'); return false;">';
@@ -56,21 +64,21 @@ function show_students(){
             str+='<div id="member_'+i+'" class="members_box page_container" style="top:'+(6+Math.floor(i/2)*81)+'; left:163;">';
         }
 
-        str+='<div id="member_img'+i+'" class="member_img page_container" style="background-image:url('+st_data.students[i].pic+');"></div>';
-        str+='<div id="member_n1" class="member_n page_container">'+st_data.students[i].name+'</div>';
+        str+='<div id="member_img'+i+'" class="member_img page_container" style="background-image:url('+student_data.students[i].pic+');"></div>';
+        str+='<div id="member_n1" class="member_n page_container">'+student_data.students[i].name+'</div>';
         var gra="";
-        if(st_data.students[i].grade==0){gra="学3"}
-        else if(st_data.students[i].grade==1){gra="学4"}
-        else if(st_data.students[i].grade==2){gra="修1"}
-        else if(st_data.students[i].grade==3){gra="修2"}
-        else if(st_data.students[i].grade==4){gra="博1"}
-        else if(st_data.students[i].grade==5){gra="博2"}
-        else if(st_data.students[i].grade==6){gra="博3"}
+        if(student_data.students[i].grade==0){gra="学3"}
+        else if(student_data.students[i].grade==1){gra="学4"}
+        else if(student_data.students[i].grade==2){gra="修1"}
+        else if(student_data.students[i].grade==3){gra="修2"}
+        else if(student_data.students[i].grade==4){gra="博1"}
+        else if(student_data.students[i].grade==5){gra="博2"}
+        else if(student_data.students[i].grade==6){gra="博3"}
         str+='<div id="member_n2" class="member_n page_container">'+gra+'</div>';
         var remain;
-        if(st_data.students[i].grade==0||st_data.students[i].grade==1){remain=600-st_data.students[i].course_t;}
-        else if(st_data.students[i].grade==2||st_data.students[i].grade==3){remain=900-st_data.students[i].course_t;}
-        else if(st_data.students[i].grade==4||st_data.students[i].grade==5||st_data.students[i].grade==6){remain=1200-st_data.students[i].course_t;}
+        if(student_data.students[i].grade==0||student_data.students[i].grade==1){remain=600-student_data.students[i].course_t;}
+        else if(student_data.students[i].grade==2||student_data.students[i].grade==3){remain=900-student_data.students[i].course_t;}
+        else if(student_data.students[i].grade==4||student_data.students[i].grade==5||student_data.students[i].grade==6){remain=1200-student_data.students[i].course_t;}
         if(remain==-1){
             str+='<div id="member_n4" class="member_n page_container"style="font-size:8px;">相談待ち</div>';
         }else{
@@ -78,20 +86,20 @@ function show_students(){
         }
         str+='<div id="member_border" class="member_n page_container"></div>';
         var mr,mk,mc;
-        for(var j=0;j<st_data.students[i].status.length;j++){
-            if(st_data.students[i].status[j]<25){
+        for(var j=0;j<student_data.students[i].status.length;j++){
+            if(calc_param(i)[j]<25){
                 if(j==0){mr="F";}else if(j==1){mk="F";}else if(j==2){mc="F";}
-            }else if(st_data.students[i].status[j]>=25&&st_data.students[i].status[j]<45){
+            }else if(calc_param(i)[j]>=25&&calc_param(i)[j]<45){
                 if(j==0){mr="E";}else if(j==1){mk="E";}else if(j==2){mc="E";}
-            }else if(st_data.students[i].status[j]>=45&&st_data.students[i].status[j]<65){
+            }else if(calc_param(i)[j]>=45&&calc_param(i)[j]<65){
                 if(j==0){mr="D";}else if(j==1){mk="D";}else if(j==2){mc="D";}
-            }else if(st_data.students[i].status[j]>=65&&st_data.students[i].status[j]<85){
+            }else if(calc_param(i)[j]>=65&&calc_param(i)[j]<85){
                 if(j==0){mr="C";}else if(j==1){mk="C";}else if(j==2){mc="C";}
-            }else if(st_data.students[i].status[j]>=85&&st_data.students[i].status[j]<105){
+            }else if(calc_param(i)[j]>=85&&calc_param(i)[j]<105){
                 if(j==0){mr="B";}else if(j==1){mk="B";}else if(j==2){mc="B";}
-            }else if(st_data.students[i].status[j]>=105&&st_data.students[i].status[j]<120){
+            }else if(calc_param(i)[j]>=105&&calc_param(i)[j]<120){
                 if(j==0){mr="A";}else if(j==1){mk="A";}else if(j==2){mc="A";}
-            }else if(st_data.students[i].status[j]>=120){
+            }else if(calc_param(i)[j]>=120){
                 if(j==0){mr="S";}else if(j==1){mk="S";}else if(j==2){mc="S";}
             }
         }
@@ -99,15 +107,19 @@ function show_students(){
         str+='<div id="member_n31" class="member_n page_container">論: '+mr+'</div>';
         str+='<div id="member_n32" class="member_n page_container">開: '+mk+'</div>';
         str+='<div id="member_n33" class="member_n page_container">コ: '+mc+'</div>';
-        str+='<div id="member_n5" class="member_n page_container">'+st_data.students[i].collabo+'</div>';
+        var cstr="";
+        if(student_data.students[i].collabo==0){cstr="研";}
+        else if(student_data.students[i].collabo==1){cstr="共";}
+        else if(student_data.students[i].collabo==2){cstr="学";}
+        str+='<div id="member_n5" class="member_n page_container">'+cstr+'</div>';
         str+='</div>';
         str+='</a>';
         $("#member_list").append(str);
     }
 
-    if(st_data.students.length<6){
+    if(student_data.students.length<6){
         var str2="";
-        str2+='<a id="add_a"  href="#" onclick="add_stu_parent('+st_data.students.length+'); return false;">';
+        str2+='<a id="add_a"  href="#" onclick="add_stu_parent('+student_data.students.length+'); return false;">';
         str2+='<div id="add_member" class="add_member page_container" >メンバー追加</div>';
         str2+='</a>';
         $("#member_list").append(str2);
@@ -128,40 +140,53 @@ function add_stu_parent(val){
 var effect_detail_num=0;
 function stu_detail_(num){
     var str="";
-    str+='<div id="f_1" class="page_container" style="background-image:url('+st_data.students[num].pic+');"></div>';
-    str+='<div id="f_2" class="page_container">'+st_data.students[num].name+'</div>';
-    str+='<div id="f_3" class="page_container">&nbsp;性格 num'+st_data.students[num].personality+'</div>';
-    str+='<div id="f_4" class="page_container">&nbsp;得意分野 num'+st_data.students[num].speciality+'</div>';
+    str+='<div id="f_1" class="page_container" style="background-image:url('+student_data.students[num].pic+');"></div>';
+    str+='<div id="f_2" class="page_container">'+student_data.students[num].name+'</div>';
+
+    var per="";
+    if(student_data.students[num].personality==0){per="慎重"}
+    else if(student_data.students[num].personality==1){per="大人しい"}
+    else if(student_data.students[num].personality==2){per="せっかち"}
+    else if(student_data.students[num].personality==3){per="臆病"}
+    else if(student_data.students[num].personality==4){per="やんちゃ"}
+    else if(student_data.students[num].personality==5){per="勇敢"}
+    else if(student_data.students[num].personality==6){per="天才肌"}
+    str+='<div id="f_3" class="page_container">&nbsp;性格:&nbsp;'+per+'</div>';
+    str+='<div id="f_4" class="page_container">&nbsp;得意分野:&nbsp;'+student_data.students[num].speciality+'</div>';
     var gra="";
-    if(st_data.students[num].grade==0){gra="学士3年"}
-    else if(st_data.students[num].grade==1){gra="学士4年"}
-    else if(st_data.students[num].grade==2){gra="修士1年"}
-    else if(st_data.students[num].grade==3){gra="修士2年"}
-    else if(st_data.students[num].grade==4){gra="博士1年"}
-    else if(st_data.students[num].grade==5){gra="博士2年"}
-    else if(st_data.students[num].grade==6){gra="博士3年"}
+    if(student_data.students[num].grade==0){gra="学士3年"}
+    else if(student_data.students[num].grade==1){gra="学士4年"}
+    else if(student_data.students[num].grade==2){gra="修士1年"}
+    else if(student_data.students[num].grade==3){gra="修士2年"}
+    else if(student_data.students[num].grade==4){gra="博士1年"}
+    else if(student_data.students[num].grade==5){gra="博士2年"}
+    else if(student_data.students[num].grade==6){gra="博士3年"}
     str+='<div id="f_5" class="page_container">'+gra+'</div>';
     var mr,mk,mc;
-    for(var j=0;j<st_data.students[num].status.length;j++){
-        if(st_data.students[num].status[j]<25){
+    for(var j=0;j<student_data.students[num].status.length;j++){
+        if(calc_param(num)[j]<25){
             if(j==0){mr="F";}else if(j==1){mk="F";}else if(j==2){mc="F";}
-        }else if(st_data.students[num].status[j]>=25&&st_data.students[num].status[j]<45){
+        }else if(calc_param(num)[j]>=25&&calc_param(num)[j]<45){
             if(j==0){mr="E";}else if(j==1){mk="E";}else if(j==2){mc="E";}
-        }else if(st_data.students[num].status[j]>=45&&st_data.students[num].status[j]<65){
+        }else if(calc_param(num)[j]>=45&&calc_param(num)[j]<65){
             if(j==0){mr="D";}else if(j==1){mk="D";}else if(j==2){mc="D";}
-        }else if(st_data.students[num].status[j]>=65&&st_data.students[num].status[j]<85){
+        }else if(calc_param(num)[j]>=65&&calc_param(num)[j]<85){
             if(j==0){mr="C";}else if(j==1){mk="C";}else if(j==2){mc="C";}
-        }else if(st_data.students[num].status[j]>=85&&st_data.students[num].status[j]<105){
+        }else if(calc_param(num)[j]>=85&&calc_param(num)[j]<105){
             if(j==0){mr="B";}else if(j==1){mk="B";}else if(j==2){mc="B";}
-        }else if(st_data.students[num].status[j]>=105&&st_data.students[num].status[j]<120){
+        }else if(calc_param(num)[j]>=105&&calc_param(num)[j]<120){
             if(j==0){mr="A";}else if(j==1){mk="A";}else if(j==2){mc="A";}
-        }else if(st_data.students[num].status[j]>=120){
+        }else if(calc_param(num)[j]>=120){
             if(j==0){mr="S";}else if(j==1){mk="S";}else if(j==2){mc="S";}
         }
     }
+
+    //console.log(calc_param(num));
+
     str+='<div id="f_61" class="page_container">';
     str+='<div id="f_611" class="param1 page_container">&nbsp;論理力</div>';
-    str+='<div id="f_612" class="param2 page_container">'+mr+'&nbsp;<div style="font-size:10px;">('+st_data.students[num].status[0]+')</div></div>';
+    if((calc_param(num)[0]-student_data.students[num].status[0])<0){str+='<div id="f_612" class="param2 page_container">'+mr+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[0]+''+(calc_param(num)[0]-student_data.students[num].status[0])+')</div></div>';}
+    else{str+='<div id="f_612" class="param2 page_container">'+mr+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[0]+'+'+(calc_param(num)[0]-student_data.students[num].status[0])+')</div></div>';}
     str+='<div id="f_613" class="param3 page_container">&nbsp;作成する論文の質</div>';
     str+='<a href="#" onclick="use_item('+num+',0); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
@@ -169,7 +194,8 @@ function stu_detail_(num){
     str+='</div>';
     str+='<div id="f_62" class="page_container">';
     str+='<div id="f_621" class="param1 page_container">&nbsp;開発力</div>';
-    str+='<div id="f_622" class="param2 page_container">'+mk+'&nbsp;<div style="font-size:10px;">('+st_data.students[num].status[1]+')</div></div>';
+    if(calc_param(num)[1]-student_data.students[num].status[1]<0){str+='<div id="f_622" class="param2 page_container">'+mk+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[1]+''+(calc_param(num)[1]-student_data.students[num].status[1])+')</div></div>';}
+    else{str+='<div id="f_622" class="param2 page_container">'+mk+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[1]+'+'+(calc_param(num)[1]-student_data.students[num].status[1])+')</div></div>';}
     str+='<div id="f_623" class="param3 page_container">&nbsp;論文を作成する速度</div>';
     str+='<a href="#" onclick="use_item('+num+',1); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
@@ -177,7 +203,8 @@ function stu_detail_(num){
     str+='</div>';
     str+='<div id="f_63" class="page_container">';
     str+='<div id="f_631" class="param1 page_container">&nbsp;コミュ力</div>';
-    str+='<div id="f_632" class="param2 page_container">'+mc+'&nbsp;<div style="font-size:10px;">('+st_data.students[num].status[2]+')</div></div>';
+    if(calc_param(num)[2]-student_data.students[num].status[2]<0){str+='<div id="f_632" class="param2 page_container">'+mc+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[2]+''+(calc_param(num)[2]-student_data.students[num].status[2])+')</div></div>';}
+    else{str+='<div id="f_632" class="param2 page_container">'+mc+'&nbsp;<div style="font-size:10px;">('+student_data.students[num].status[2]+'+'+(calc_param(num)[2]-student_data.students[num].status[2])+')</div></div>';}
     str+='<div id="f_633" class="param3 page_container">&nbsp;共同研究に関係</div>';
     str+='<a href="#" onclick="use_item('+num+',2); return false;">';
     str+='<div id="use_item" class="use_button page_container">+</div>';
@@ -187,15 +214,27 @@ function stu_detail_(num){
     str+='<div id="f_7" class="page_container">';
     str+='<div id="f_71" class="param1 page_container">&nbsp;所持スキル</div>';
 
+
+    //filterがよくわからんのでこれ
+    skill_name=["","",""];
+    skill_text=["","",""];
+    for(var i=0;i<student_data.students[num].skill.length;i++){
+        for(var j=0;j<skill_data.skills.length;j++){
+            if(skill_data.skills[j].id==student_data.students[num].skill[i]){
+                skill_name[i]=skill_data.skills[j].name;
+                skill_text[i]=skill_data.skills[j].script;
+            }
+        }
+    }
+
     str+='<a href="#" onclick="effect_detail('+num+',0); return false;">';
     str+='<div id="f_72" class="skills page_container">';
-    str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル1:</div>';
-    str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+st_data.students[num].skill[0]+'</div>';
+    str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル1:&nbsp;'+skill_name[0]+'</div>';
     str+='</div>';
     str+='</a>';
 
     var skill_v=false;
-    if(st_data.students[num].skill[1]==0){
+    if(student_data.students[num].skill[1]==0){
         str+='<div id="f_73" class="skills page_container">';
         str+='<a href="#" onclick="use_item('+num+',3); return false;">';
         str+='<div id="use_item" class="use_button2 page_container">スキル追加</div>';
@@ -205,13 +244,12 @@ function stu_detail_(num){
     }else{
         str+='<a href="#" onclick="effect_detail('+num+',1); return false;">';
         str+='<div id="f_73" class="skills page_container">';
-        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル2:</div>';
-        str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+st_data.students[num].skill[1]+'</div>';
+        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル2:&nbsp;'+skill_name[1]+'</div>';
         str+='</div>';
         str+='</a>';
     }
 
-    if(st_data.students[num].skill[2]==0){
+    if(student_data.students[num].skill[2]==0){
         if(skill_v==false){
             str+='<div id="f_74" class="skills page_container">';
             str+='<a href="#" onclick="use_item('+num+',3); return false;">';
@@ -222,21 +260,20 @@ function stu_detail_(num){
     }else{
         str+='<a href="#" onclick="effect_detail('+num+',2); return false;">';
         str+='<div id="f_74" class="skills page_container">';
-        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル3:</div>';
-        str+='<div id="f_722" class="skills_2 page_container">&nbsp;num '+st_data.students[num].skill[2]+'</div>';
+        str+='<div id="f_721" class="skills_1 page_container">&nbsp;スキル3:&nbsp;'+skill_name[2]+'</div>';
         str+='</div>';
         str+='</a>';
     }
     //最初は0
-    str+='<div id="f_75" class="skills page_container">効果: '+effect_detail_num+' '+st_data.students[num].skill[effect_detail_num]+'</div>';
+    str+='<div id="f_75" class="skills page_container">スキル'+(effect_detail_num+1)+'効果:<br>'+skill_text[effect_detail_num]+'</div>';
     str+='</div>';
 
 
 
     var remain;
-    if(st_data.students[num].grade==0||st_data.students[num].grade==1){remain=600-st_data.students[num].course_t;}
-    else if(st_data.students[num].grade==2||st_data.students[num].grade==3){remain=900-st_data.students[num].course_t;}
-    else if(st_data.students[num].grade==4||st_data.students[num].grade==5||st_data.students[num].grade==6){remain=1200-st_data.students[num].course_t;}
+    if(student_data.students[num].grade==0||student_data.students[num].grade==1){remain=600-student_data.students[num].course_t;}
+    else if(student_data.students[num].grade==2||student_data.students[num].grade==3){remain=900-student_data.students[num].course_t;}
+    else if(student_data.students[num].grade==4||student_data.students[num].grade==5||student_data.students[num].grade==6){remain=1200-student_data.students[num].course_t;}
     if(remain==-1){
         str+='<a href="#" onclick="counseling('+num+'); return false;">';
         str+='<div id="f_8" class="page_container" style="background:yellow;">相談待ち</div>';
@@ -245,7 +282,13 @@ function stu_detail_(num){
         str+='<div id="f_8" class="page_container">'+toHms(remain)+'</div>';
     }
     str+='<div id="f_81" class="page_container">次のレベルまで</div>';
-    str+='<div id="f_9" class="page_container">/num '+st_data.students[num].collabo+'</div>';
+    var cstr="";
+    if(student_data.students[i].collabo==0){cstr="研究室";}
+    else if(student_data.students[i].collabo==1){cstr="共同研究中";}
+    else if(student_data.students[i].collabo==2){cstr="学会参加中";}
+    str+='<div id="f_9" class="page_container">'+cstr+'</div>';
+
+    str+='<div id="f_10" class="page_container">'+student_data.students[i].info+'</div>';
 
 
     $("#float_body").append(str);
@@ -253,11 +296,14 @@ function stu_detail_(num){
 
 function effect_detail(s_num,num){
     effect_detail_num=num;
-    $('#f_75').text('効果: '+num+' '+st_data.students[s_num].skill[num]);
+    $('#f_75').html('スキル'+(effect_detail_num+1)+'効果:<br>'+skill_text[effect_detail_num]);
 }
 
 
+
+
 var now_num=0;
+var float_open_flag=0;
 function stu_detail(num){
     now_num=num;
     $("#all_contents").append("<div id='floating' class='page_container'></div>");
@@ -278,6 +324,7 @@ var float_close = function(){
     $("#floating").fadeOut(200,function(){
         $(this).remove();
         float_open_flag = 0;
+        effect_detail_num=0;
     });
 };
 
@@ -320,9 +367,9 @@ function use_item(s_num,num){
             str+='</select></label></div>';
 
             str+='<div id="use_i2" class="use_is in_float page_container">使います</div>';
-            if(num==0){str+='<div id="use_i6" class="use_is in_float page_container">論理力:&nbsp;&nbsp;'+st_data.students[s_num].status[0]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(st_data.students[s_num].status[0]+input_num)+'</div></div>';}
-            if(num==1){str+='<div id="use_i6" class="use_is in_float page_container">開発力:&nbsp;&nbsp;'+st_data.students[s_num].status[1]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(st_data.students[s_num].status[1]+input_num)+'</div></div>';}
-            if(num==2){str+='<div id="use_i6" class="use_is in_float page_container">コミュ力:&nbsp;&nbsp;'+st_data.students[s_num].status[2]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(st_data.students[s_num].status[2]+input_num)+'</div></div>';}
+            if(num==0){str+='<div id="use_i6" class="use_is in_float page_container">論理力:&nbsp;&nbsp;'+student_data.students[s_num].status[0]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[0]+input_num)+'</div></div>';}
+            if(num==1){str+='<div id="use_i6" class="use_is in_float page_container">開発力:&nbsp;&nbsp;'+student_data.students[s_num].status[1]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[1]+input_num)+'</div></div>';}
+            if(num==2){str+='<div id="use_i6" class="use_is in_float page_container">コミュ力:&nbsp;&nbsp;'+student_data.students[s_num].status[2]+'&nbsp;→&nbsp;<span id="how_item_val" style="color:red;margin:2px;">'+(student_data.students[s_num].status[2]+input_num)+'</div></div>';}
             str+='<a href="#" onclick="use_item_run1('+s_num+','+num+'); return false;">';
             str+='<div id="use_i4" class="use_is in_float page_container">はい</div>';
             str+='</a>';
@@ -336,11 +383,24 @@ function use_item(s_num,num){
         str+='<form id="gi_form2">';
         str+='<div id="use_i7" class="use_is in_float page_container">スキル:</div>';
         str+='<div id="item_value2" class="use_item_s2 page_container"><label><select name="p2" onchange="inputfunc2()">';
+
+        //filterがよくわからんのでこれ
+        i_skill_name=[];
+        i_skill_text=[];
         for(var i=0;i<user_data.item_skill.length;i++){
-            str+='<option value="'+user_data.item_skill[i]+'">スキルスキルスキル'+user_data.item_skill[i]+'</option>';
+            for(var j=0;j<skill_data.skills.length;j++){
+                if(skill_data.skills[j].id==user_data.item_skill[i]){
+                    i_skill_name.push(skill_data.skills[j].name);
+                    i_skill_text.push(skill_data.skills[j].script);
+                }
+            }
+        }
+
+        for(var i=0;i<user_data.item_skill.length;i++){
+            str+='<option value="'+user_data.item_skill[i]+'">'+i_skill_name[i]+'</option>';
         }
         str+='</select></label></div>';
-        str+='<div id="use_i8" class="use_is in_float page_container">効果:&nbsp;<span id="how_skill_e">effect-effect-effect'+input_num_s+'</div></div>';
+        str+='<div id="use_i8" class="use_is in_float page_container">効果:&nbsp;<span id="how_skill_e">'+i_skill_text[0]+'</div></div>';
         str+='<div id="use_i9" class="use_is in_float page_container">を継承します</div>';
 
         str+='<a href="#" onclick="use_item_run2('+s_num+'); return false;">';
@@ -360,7 +420,6 @@ function use_item(s_num,num){
         "opacity":"0.7"
     });
     $("#floating2").delay(0).fadeIn(0);
-    float_open_flag = 1;
     $("#float_back2, #use_i5").click(float_close2);
 
 }
@@ -371,10 +430,10 @@ function inputfunc(s_num,num){
     var frm=document.forms["gi_form"];
     var idx=frm.elements["p1"].selectedIndex;
     input_num=Number(frm.elements["p1"].options[idx].value);
-    $('#how_item_val').text(st_data.students[s_num].status[num]+input_num);
+    $('#how_item_val').text(student_data.students[s_num].status[num]+input_num);
 }
 function use_item_run1(s_num,num){
-    st_data.students[s_num].status[num]+=input_num;
+    student_data.students[s_num].status[num]+=input_num;
     user_data.item_param[num]-=input_num;
     input_num=1;
     float_close2();
@@ -383,13 +442,20 @@ function inputfunc2(){
     var frm=document.forms["gi_form2"];
     var idx=frm.elements["p2"].selectedIndex;
     input_num_s=Number(frm.elements["p2"].options[idx].value);
-    $('#how_skill_e').text("effect-effect-effect"+input_num_s);
+
+    var st="";
+    for(var j=0;j<skill_data.skills.length;j++){
+        if(skill_data.skills[j].id==input_num_s){
+            st=skill_data.skills[j].script;
+        }
+    }
+    $('#how_skill_e').text(st);
 }
 function use_item_run2(s_num){
     var use_c=false;
-    for(var i=0;st_data.students[s_num].skill.length;i++){
-        if(st_data.students[s_num].skill[i]==0){
-            st_data.students[s_num].skill[i]=input_num_s;
+    for(var i=0;student_data.students[s_num].skill.length;i++){
+        if(student_data.students[s_num].skill[i]==0){
+            student_data.students[s_num].skill[i]=input_num_s;
             use_c=true;
             break;
         }
@@ -406,6 +472,41 @@ function use_item_run2(s_num){
     float_close2();
 }
 
+
+
+//スキルパラメータ計算
+function calc_param(s_num){
+    //↓最高に謎
+    var nstatus=[student_data.students[s_num].status[0],student_data.students[s_num].status[1],student_data.students[s_num].status[2]];
+
+    for(var i=0;i<student_data.students[s_num].skill.length;i++){
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==11){nstatus[0]=nstatus[0]*1.2;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==12){nstatus[0]=nstatus[0]*1.3; nstatus[1]=nstatus[1]*0.8;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==13){nstatus[0]=nstatus[0]*1.3; nstatus[2]=nstatus[2]*0.8;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==21){nstatus[1]=nstatus[1]*1.2;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==22){nstatus[1]=nstatus[1]*1.3; nstatus[0]=nstatus[0]*0.8;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==23){nstatus[1]=nstatus[1]*1.3; nstatus[2]=nstatus[2]*0.8;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==31){nstatus[2]=nstatus[2]*1.2;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==32){nstatus[2]=nstatus[2]*1.3; nstatus[0]=nstatus[0]*0.8;}
+        if(Math.floor(student_data.students[s_num].skill[i]/10)==33){nstatus[2]=nstatus[2]*1.3; nstatus[1]=nstatus[1]*0.8;}
+    }
+
+
+    for(var i=0;i<student_data.students.length;i++){
+        for(var j=0;j<student_data.students[i].skill.length;j++){
+            if(Math.floor(student_data.students[i].skill[j]/10)==14){nstatus[0]=nstatus[0]*1.1;}
+            if(Math.floor(student_data.students[i].skill[j]/10)==24){nstatus[1]=nstatus[1]*1.1;}
+            if(Math.floor(student_data.students[i].skill[j]/10)==34){nstatus[2]=nstatus[2]*1.1;}
+        }
+    }
+
+    nstatus=[Math.ceil(nstatus[0]),Math.ceil(nstatus[1]),Math.ceil(nstatus[2])]
+
+    return nstatus;
+}
+
+
+
 //進路相談
 function counseling(s_num){
     $("#all_contents").append("<div id='floating2' class='page_container'></div>");
@@ -413,7 +514,7 @@ function counseling(s_num){
 
     var str="";
 
-    str+='<div id="coun1" class="in_float page_container">'+st_data.students[s_num].name+' さんが進路相談に来ました</div>';
+    str+='<div id="coun1" class="in_float page_container">'+student_data.students[s_num].name+' さんが進路相談に来ました</div>';
     str+='<a href="#" onclick="career('+s_num+',0); return false;">';
     str+='<div id="coun2" class="use_is in_float page_container">進学しなさい！</div>';
     str+='</a>';
@@ -430,7 +531,6 @@ function counseling(s_num){
         "opacity":"0.7"
     });
     $("#floating2").delay(0).fadeIn(0);
-    float_open_flag = 1;
     $("#float_back2, #info_batu2").click(float_close2);
 
 }
@@ -438,16 +538,18 @@ var float_close2 = function(){
     $("#floating2").remove();
 };
 function career(s_num,c){
-    var ca_name=st_data.students[s_num].name;
+    var ca_name=student_data.students[s_num].name;
     window.parent.career_m(s_num,c);
     $("#float_body2").empty();
 
     var str="";
     if(c==0){ //進学
-        if(st_data.students[s_num].grade==2){
+        if(student_data.students[s_num].grade==2){
             str+='<div id="coun4" class="in_float page_container">'+ca_name+' さんが修士過程に進学しました！</div>';
-        }else if(st_data.students[s_num].grade==4){
+            window.parent.add_status(s_num,10);
+        }else if(student_data.students[s_num].grade==4){
             str+='<div id="coun4" class="in_float page_container">'+ca_name+' さんが博士過程に進学しました！</div>';
+            window.parent.add_status(s_num,15);
         }
         str+='<div id="coun5" class="use_is in_float page_container">確認</div>';
     }else if(c==1){ //卒業
@@ -467,7 +569,7 @@ function oya(){
     $("#member_list").empty();
     show_students();
     $("#float_body").empty();
-    stu_detail_(now_num);
+    if(float_open_flag==1){stu_detail_(now_num);}
 
     //$('#member_1 #member_n1').text('a');
 }

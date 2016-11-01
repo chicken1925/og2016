@@ -80,7 +80,7 @@ function getUniqueStr(myStrong){
 
 //json読み込み
 var fs = require('fs');
-var gen_student = JSON.parse(fs.readFileSync('st_data.json', 'utf8'));
+var gen_student = JSON.parse(fs.readFileSync('student_data.json', 'utf8'));
 
 
 
@@ -161,12 +161,16 @@ router.route('/questlist/:user_id')
       var ret_quest={};
 
       //自分のuidのquestを検索
+      //state= 0:メンバー待ち、1:打ち合わせ中、2:結果確認(失敗)、3:実行中、4、結果確認(成功)、5:メンバー待ち時間切れ
       for(var i in quest_lists){
         //console.log(quest_lists[i].userIDs);
         for(var j=0;j<quest_lists[i].userIDs.length;j++){
           //console.log(quest_lists[i].userIDs[j]);
           if(quest_lists[i].userIDs[j]==req.params.user_id){
             /*経過時間関係はここ*/
+            if(quest_lists[i].state==0&&Math.round((new Date().getTime()-quest_lists[i].time)/1000) >1800){
+              quest_lists[i].state=5;
+            }
             if(quest_lists[i].state==1&&Math.round((new Date().getTime()-quest_lists[i].time)/1000) >60){
               //2はコミュ力による合否判定失敗、作るならここ
               quest_lists[i].state=3;
@@ -174,11 +178,10 @@ router.route('/questlist/:user_id')
 
             //結果を見れるようにする
             if(quest_lists[i].state==3&&Math.round((new Date().getTime()-quest_lists[i].time)/1000) >120){
-              //2はコミュ力による合否判定失敗
               quest_lists[i].state=4;
             }
 
-            //console.log(req.params.user_id);
+
 
             //一度確認したあとは出ない
             var chohuku=false;
@@ -352,10 +355,66 @@ router.route('/check_quest')
         //console.log(quest_lists[i].userIDs);
         if(i==req.body.quest_id){
           //console.log('!!'+quest_lists[i].userIDs);
-          var cr=calc_reward(req.body.quest_id);
-          ret_reward={ "reward_money": cr[0] , "reward_item": cr[1]}
+          if(quest_lists[i].state==4){
+            var cr=calc_reward(req.body.quest_id);
+            ret_reward={ "reward_money": cr[0] , "reward_item": cr[1]}
+          }else{
+            ret_reward={ "reward_money": 0 , "reward_item": 0}
+          }
           quest_lists[i].checked.push(req.body.uid);
           if(quest_lists[i].quest_num==0&&quest_lists[i].checked.length>=2){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==1&&quest_lists[i].checked.length>=3){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==2&&quest_lists[i].checked.length>=4){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==3&&quest_lists[i].checked.length>=4){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==4&&quest_lists[i].checked.length>=4){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==5&&quest_lists[i].checked.length>=6){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==6&&quest_lists[i].checked.length>=10){delete quest_lists[i];}
+          if(quest_lists[i].quest_num==7&&quest_lists[i].checked.length>=100){delete quest_lists[i];}
+        }
+        c++;
+      }
+
+      //console.log(quest_lists);
+      res.jsonp(ret_reward);
+
+    });
+
+
+
+// /cancel_quest というルートを作成する．
+//全返答
+router.route('/cancel_quest')
+// (GET http://localhost:8080/api/cancel_quest)
+    .get(function(req, res) {
+
+    })
+// (POST http://localhost:8080/api/cancel_quest)
+    .post(function(req, res) {
+      //console.log(req.body.quest_id);
+      //console.log(quest_lists);
+
+      var ret_reward={ message : "error"};
+      //questnumのquestを検索+足す
+      var c=0;
+      for(var i in quest_lists){
+        //console.log(quest_lists[i].userIDs);
+        if(i==req.body.quest_id){
+          //console.log('!!'+quest_lists[i].userIDs);
+          if(quest_lists[i].state==0){
+            //console.log('!!'+quest_lists[i].userIDs.length);
+            for(var j=0;j<quest_lists[i].userIDs.length;j++){
+              if(quest_lists[i].userIDs[j]==req.body.uid){
+                quest_lists[i].userIDs.splice(i,1);
+                quest_lists[i].user_stuIDs.splice(i,1);
+                ret_reward={ message : "success"};
+                break;
+              }
+            }
+            //残り誰もいなかったら削除
+            if(quest_lists[i].userIDs.length==0){
+              delete quest_lists[i];
+            }
+          }else{ret_reward={ message : "error_done"};}
         }
         c++;
       }
@@ -379,12 +438,12 @@ router.route('/add_stu')
       //console.log(req.body.history);
       //console.log(quest_lists);
       var normal=0;
-      for(var i=0;i<gen_student.length;i++){
-        if(gen_student[i]==0||gen_student[i]==1){
+      for(var i=0;i<req.body.history.length;i++){
+        if(req.body.history[i]==0||req.body.history[i]==1){
           normal++;
         }
       }
-      var rare_p=40;
+      var rare_p=30;
       rare_p=rare_p+normal*15;
       var rand = Math.floor( Math.random() * 100 ) ;
 
@@ -392,22 +451,39 @@ router.route('/add_stu')
       if(rand<rare_p){
         rare=true;
       }
+      console.log(rare+','+rare_p+','+rand);
+
+      var add_type,add_name,add_skill,add_personality,add_speciality;
+      if(rare==true){
+        add_type=Math.floor( Math.random() * 21 ) + 2;
+        add_name=gen_student.gen[add_type].name;
+        add_skill=gen_student.gen[add_type].skill;
+        add_personality=6;
+      }else{
+        add_type=Math.floor( Math.random() * 2 );
+        add_name=gen_student.gen[add_type].name[Math.floor( Math.random() * 20 )];
+        add_skill=gen_student.gen[add_type].skill[Math.floor( Math.random() * 5 )];
+        add_personality=Math.floor( Math.random() * 6 );
+      }
+      //console.log(add_type+','+add_name+','+add_skill+','+add_personality);
 
 
       res.jsonp({
             "id":40, //db追加
-            "name":"輿水", //random
+            "name":add_name, //random
             "grade":0,
-            "personality":0, //random
+            "personality":add_personality, //random
             "speciality":0, //random
-            "skill":[1,0,0], //random
-            "journal_pos":0,
+            "skill":[add_skill,0,0], //random
+            "journal_pos":[0,0,0,0,0,0,0,0],//所持している論文の種類
             "journal_pub":0,
-            "status":[10,10,10], //random
+            "journal_t":0,//ジャーナル生成時間
+            "status":[Math.ceil(gen_student.gen[add_type].status[0]*((req.body.level/10)+1)),Math.ceil(gen_student.gen[add_type].status[1]*((req.body.level/10)+1)),Math.ceil(gen_student.gen[add_type].status[2]*((req.body.level/10)+1))], //random
             "pic":"images/member_a.png", //idより
             "course_t":0,
-            "collabo_t":0,
-            "stu_type":1 //random?
+            "collabo":0,
+            "stu_type":add_type, //random?
+            "info":gen_student.gen[add_type].info //生徒info
         });
 
     });

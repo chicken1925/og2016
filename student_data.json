@@ -1,0 +1,191 @@
+{
+    "gen":[{
+        "stu_type":0,
+        "name": ["a君","b君","c君","d君","e君","f君","g君","h君","i君","j君","k君","l君","m君","n君","o君","p君","q君","r君","s君","t君"],
+        "skill":[0,1,2,3,4],
+        "status":[10,10,10],
+        "pic":"images/member_a.png",
+        "info":"普通の生徒"
+    },
+    {
+        "stu_type":1,
+        "name": ["a君","b君","c君","d君","e君","f君","g君","h君","i君","j君","k君","l君","m君","n君","o君","p君","q君","r君","s君","t君"],
+        "skill":[0,1,2,3,4],
+        "status":[10,10,10],
+        "pic":"images/member_a.png",
+        "info":"普通の生徒"
+    },
+    {
+        "stu_type":2,
+        "name": "片寄1",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授1"
+    },
+    {
+        "stu_type":3,
+        "name": "片寄2",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授2"
+    },
+    {
+        "stu_type":4,
+        "name": "片寄3",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授3"
+    },
+    {
+        "stu_type":5,
+        "name": "片寄4",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授4"
+    },
+    {
+        "stu_type":6,
+        "name": "片寄5",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授5"
+    },
+    {
+        "stu_type":7,
+        "name": "片寄6",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授6"
+    },
+    {
+        "stu_type":8,
+        "name": "片寄7",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授7"
+    },
+    {
+        "stu_type":9,
+        "name": "片寄8",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授8"
+    },
+    {
+        "stu_type":10,
+        "name": "片寄9",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授9"
+    },
+    {
+        "stu_type":11,
+        "name": "片寄10",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授10"
+    },
+    {
+        "stu_type":12,
+        "name": "片寄11",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授11"
+    },
+    {
+        "stu_type":13,
+        "name": "片寄12",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授12"
+    },
+    {
+        "stu_type":14,
+        "name": "片寄13",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授13"
+    },
+    {
+        "stu_type":15,
+        "name": "片寄14",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授14"
+    },
+    {
+        "stu_type":16,
+        "name": "片寄15",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授15"
+    },
+    {
+        "stu_type":17,
+        "name": "片寄16",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授16"
+    },
+    {
+        "stu_type":18,
+        "name": "片寄17",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授17"
+    },
+    {
+        "stu_type":19,
+        "name": "片寄18",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授18"
+    },
+    {
+        "stu_type":20,
+        "name": "片寄19",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授19"
+    },
+    {
+        "stu_type":21,
+        "name": "片寄20",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授20"
+    },
+    {
+        "stu_type":22,
+        "name": "片寄21",
+        "skill":11,
+        "status":[13,14,13],
+        "pic":"images/member_b.png",
+        "info":"教授21"
+    }
+]
+
+}
+
+
+

@@ -9,7 +9,7 @@ var sumValue=0;
 var dispValue=0
 
 //変えるように！！！！
-var disp_ifr=0;
+var disp_ifr=2;
 
 
 // スクロール禁止
@@ -50,9 +50,12 @@ window.addEventListener("load", function(){
 
 setInterval(function (){
 	document.getElementById("min_m").textContent="論文数:"+sumPaper +"編";
-        
     document.getElementById("all_m").textContent="¥"+parseInt(sumValue,0);
 	time++;
+
+	//test_user.money+=100*test_user.level/30;
+	//document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
+	//console.log("a");
 },33)
 
 
@@ -63,6 +66,8 @@ setInterval(function (){
 	}
 	next_grade();
 	if(disp_ifr==1&&add_flag==false){
+		document.getElementById( 'ifr' ).contentWindow.oya();
+	}else if(disp_ifr==2){
 		document.getElementById( 'ifr' ).contentWindow.oya();
 	}
 	MakeJournal();
@@ -126,13 +131,12 @@ function u_button(btnno){
     deltaDispValue=dispValue;
 	if(btnno==1){
 		document.ifr.location.href = "home.html";
-		disp_ifr=0;
 	}else if(btnno==2){
 		document.ifr.location.href = "member.html";
-		disp_ifr=1;
 	}else if(btnno==3){
 		document.ifr.location.href = "collabo.html";
-		disp_ifr=2;
+	}else if(btnno==4){
+		document.ifr.location.href = "event.html";
 	}
 
 }
@@ -165,6 +169,7 @@ function next_grade(){
 		if(test_students.students[i].grade==0){
 			if(test_students.students[i].course_t>=600){
 				//成長小
+				add_status(i,5);
 				test_students.students[i].grade++;
 				test_students.students[i].course_t=0;
 			}
@@ -173,6 +178,7 @@ function next_grade(){
 		if(test_students.students[i].grade==1){
 			if(test_students.students[i].course_t==600){
 				//成長小
+				add_status(i,5);
 			}else if(test_students.students[i].course_t>=600){
 				test_students.students[i].course_t=601;
 			}
@@ -181,6 +187,7 @@ function next_grade(){
 		if(test_students.students[i].grade==2){
 			if(test_students.students[i].course_t>=900){
 				//成長小
+				add_status(i,7);
 				test_students.students[i].grade++;
 				test_students.students[i].course_t=0;
 			}
@@ -189,6 +196,7 @@ function next_grade(){
 		if(test_students.students[i].grade==3){
 			if(test_students.students[i].course_t==900){
 				//成長小
+				add_status(i,7);
 			}else if(test_students.students[i].course_t>=900){
 				test_students.students[i].course_t=901;
 			}
@@ -197,6 +205,7 @@ function next_grade(){
 		if(test_students.students[i].grade==4){
 			if(test_students.students[i].course_t>=1200){
 				//成長小
+				add_status(i,9);
 				test_students.students[i].grade++;
 				test_students.students[i].course_t=0;
 			}
@@ -205,6 +214,7 @@ function next_grade(){
 		if(test_students.students[i].grade==5){
 			if(test_students.students[i].course_t>=1200){
 				//成長小
+				add_status(i,9);
 				test_students.students[i].grade++;
 				test_students.students[i].course_t=0;
 			}
@@ -213,6 +223,7 @@ function next_grade(){
 		if(test_students.students[i].grade==6){
 			if(test_students.students[i].course_t>=1200){
 				//成長小
+				add_status(i,9);
 				test_students.students[i].grade++;
 				test_students.students[i].course_t=0;
 			}
@@ -229,6 +240,39 @@ function next_grade(){
 		i++;
 	}
 }
+function add_status(s_num,param){
+	if(test_students.students[s_num].personality==0){
+		test_students.students[s_num].status[0]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[1]+=Math.ceil(param*0.8);
+		test_students.students[s_num].status[2]+=Math.ceil(param);
+	}else if(test_students.students[s_num].personality==1){
+		test_students.students[s_num].status[0]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[1]+=Math.ceil(param);
+		test_students.students[s_num].status[2]+=Math.ceil(param*0.8);
+	}else if(test_students.students[s_num].personality==2){
+		test_students.students[s_num].status[0]+=Math.ceil(param*0.8);
+		test_students.students[s_num].status[1]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[2]+=Math.ceil(param);
+	}else if(test_students.students[s_num].personality==3){
+		test_students.students[s_num].status[0]+=Math.ceil(param);
+		test_students.students[s_num].status[1]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[2]+=Math.ceil(param*0.8);
+	}else if(test_students.students[s_num].personality==4){
+		test_students.students[s_num].status[0]+=Math.ceil(param*0.8);
+		test_students.students[s_num].status[1]+=Math.ceil(param);
+		test_students.students[s_num].status[2]+=Math.ceil(param*1.2);
+	}else if(test_students.students[s_num].personality==5){
+		test_students.students[s_num].status[0]+=Math.ceil(param);
+		test_students.students[s_num].status[1]+=Math.ceil(param*0.8);
+		test_students.students[s_num].status[2]+=Math.ceil(param*1.2);
+	}else if(test_students.students[s_num].personality==6){
+		test_students.students[s_num].status[0]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[1]+=Math.ceil(param*1.2);
+		test_students.students[s_num].status[2]+=Math.ceil(param*1.2);
+	}
+}
+
+
 
 
 //ペーパーの管理関数
@@ -277,7 +321,7 @@ function MakeJournal(){
 var stu_history=[-1,-1,-1,-1,-1];
 var add_flag=false;
 function add_stu(){
-	add_stu_api(test_user.uid,stu_history);
+	add_stu_api(test_user.uid,stu_history,test_user.level);
 	add_flag=true;
 
 	setTimeout(function(){
@@ -301,20 +345,8 @@ function lab_info(){
 	$("#box").append("<div id='floating' class='page_container'></div>");
     $("#floating").hide().append("<div id='float_body'></div><div id='float_back'></div>");
 
-    var str="";
-	str+='<div id="l_1" class="page_container">現在の'+test_user.name+'研究室</div>';
-	str+='<div id="l_2" class="page_container">無名研究室</div>';
-	str+='<div id="l_3" class="page_container">(¥100/秒)</div>';
-	str+='<div id="l_4" class="page_container">';
-	str+='<div id="l_5" class="page_container">研究費を¥10000消費して</div>';
-	str+='<div id="l_6" class="page_container">研究室Lvを1あげますか？</div>';
-	str+='<a href="#" onclick="levelup(); return false;">';
-	str+='<div id="l_7" class="page_container">はい</div>';
-	str+='</a>';
-	str+='<div id="l_8" class="page_container">いいえ</div>';
-	str+='</div>';
+    show_lab_info();
 
-    $("#float_body").append(str);
     $("#floating").append("<a href='#' id='info_batu'></a>");
 
     $("#float_back").css({
@@ -330,12 +362,53 @@ var float_close = function(){
         float_open_flag = 0;
     });
 };
+function show_lab_info(){
+	var st1="";
+    var st2="";
+    if(test_user.level<=5){st1="無名";st2=10000;}
+	else if(test_user.level>5&&test_user.level<=10){st1="駆け出し";st2=50000;}
+	else if(test_user.level>10&&test_user.level<=15){st1="そこそこ";st2=100000;}
+	else if(test_user.level>15&&test_user.level<=20){st1="有名";st2=500000;}
+	else if(test_user.level>20&&test_user.level<=25){st1="超有名";st2=1000000;}
+	else if(test_user.level>25&&test_user.level<=30){st1="精鋭の集う";st2=5000000;}
+
+    var str="";
+	str+='<div id="l_1" class="page_container">現在の'+test_user.name+'研究室</div>';
+	str+='<div id="l_2" class="page_container">'+st1+'研究室</div>';
+	str+='<div id="l_3" class="page_container">(¥'+(100*test_user.level)+'/秒)</div>';
+	str+='<div id="l_4" class="page_container">';
+	if(test_user.level<30){
+		str+='<div id="l_5" class="page_container">研究費を¥'+st2+'消費して</div>';
+		str+='<div id="l_6" class="page_container">研究室Lvを1あげますか？</div>';
+		str+='<a href="#" onclick="levelup(); return false;">';
+		str+='<div id="l_7" class="page_container">はい</div>';
+		str+='</a>';
+		str+='<div id="l_8" class="page_container">いいえ</div>';
+	}else{
+		str+='<div id="l_6" class="page_container">これ以上あげられません！</div>';
+	}
+	str+='</div>';
+
+    $("#float_body").append(str);
+    $("#l_8,#float_back,#info_batu").click(float_close);
+}
 function levelup(){
-	test_user.money-=10000;
-	sumValue=test_user.money;
-	test_user.level++;
-	$('#level_m').text('研究室Lv: Lv.'+test_user.level);
-	document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
+	var buy=false;
+	if(test_user.level<=5&&test_user.money>=10000){test_user.money-=10000;buy=true;}
+	else if(test_user.level>5&&test_user.level<=10&&test_user.money>=50000){test_user.money-=50000;buy=true;}
+	else if(test_user.level>10&&test_user.level<=15&&test_user.money>=100000){test_user.money-=100000;buy=true;}
+	else if(test_user.level>15&&test_user.level<=20&&test_user.money>=500000){test_user.money-=500000;buy=true;}
+	else if(test_user.level>20&&test_user.level<=25&&test_user.money>=1000000){test_user.money-=1000000;buy=true;}
+	else if(test_user.level>25&&test_user.level<=30&&test_user.money>=5000000){test_user.money-=5000000;buy=true;}
+
+	if(buy==true){
+		sumValue=test_user.money;
+		test_user.level++;
+		$('#level_m').text('研究室Lv: Lv.'+test_user.level);
+		document.getElementById("all_m").textContent="¥"+parseInt(test_user.money,0);
+		$("#float_body").empty();
+		show_lab_info();
+	}
 }
 
 
@@ -358,7 +431,7 @@ function back_stu_data(){
 	return test_students;
 }
 function back_user_data(){
-	console.log(test_user);
+	//console.log("hoge");
 	return test_user;
 }
 
@@ -399,6 +472,15 @@ function career_m(s_num,c){
 		test_students.students.splice(s_num,1);
 	}
 }
-
+function frame_num(n){
+	disp_ifr=n;
+}
+function collabo_st(st_n,state){
+	for(var i=0;i<test_students.students.length;i++){
+		if(test_students.students[i].id==st_n){
+			test_students.students[i].collabo=state;
+		}
+	}
+}
 
 //-->

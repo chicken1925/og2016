@@ -200,9 +200,37 @@ function check_quest_api(uid_,quest_id_){
 }
 
 
+//クエストキャンセル
+var cancel_quest_val; //値を返す時用の変数
+function cancel_quest_api(uid_,quest_id_){
+	//console.log(uid,quest_num_,stu_num_);
+	var url_='http://153.126.164.52:8080/api/cancel_quest/';
+		$.ajax({
+				url: url_,
+				type:'post',
+				dataType: 'json',
+				timeout:800,
+				data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
+					uid: uid_,
+					quest_id: quest_id_
+				},
+				success: function(data) {
+
+					console.log(data);
+					cancel_quest_val=data;
+
+				},
+				error: function(data) {
+					cancel_quest_val="ng"
+					console.log(data);
+				}
+			});
+}
+
+
 //生徒ガチャ
 var add_stu_val; //値を返す時用の変数
-function add_stu_api(uid_,history_){
+function add_stu_api(uid_,history_,level_){
 	//console.log(uid,quest_num_,stu_num_);
 	var url_='http://153.126.164.52:8080/api/add_stu/';
 		$.ajax({
@@ -212,11 +240,12 @@ function add_stu_api(uid_,history_){
 				timeout:800,
 				data: { // 送信データを指定(getの場合は自動的にurlの後ろにクエリとして付加される)
 					uid: uid_,
-					history: history_
+					history: history_,
+					level: level_
 				},
 				success: function(data) {
 
-					//console.log(data);
+					console.log(data);
 					add_stu_val=data;
 
 				},

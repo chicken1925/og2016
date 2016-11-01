@@ -1,0 +1,454 @@
+BODY { 
+	overflow-x : hidden ;
+}
+a, a:hover, a:visited, a:link, a:active {
+color: #000;
+}
+
+#all_contents{
+	width: 100%;
+	position: relative;
+	background: #fff;
+}
+
+.quest_list{
+	width: 300px;
+	height: 195px;
+	position: absolute;
+	left:10px;
+	background: #ddd;
+}
+.quest_list2{
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    left:10px;
+    background: #ddd;
+}
+#event{
+	top:10px;
+}
+
+.regi{
+    width: 98px;
+    height: 100px;
+    position: absolute;
+    top:210px;
+}
+#regi_ch1{left:8px; background: #55cccc;}
+#regi_ch2{left:111px; background: #cc55cc;}
+#regi_ch3{left:214px; background: #cccc55;}
+#re_1{
+    top:5px;
+    left: 17px;
+    width: 60px;
+    height: 60px;
+    -moz-background-size:100% auto;
+    background-size:100% auto;
+    background-image:url("images/paper_1.png");
+}
+#re_2{
+    top:65px;
+    left: 0px;
+    width: 98px;
+    height: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#re_3{
+    top:82px;
+    left: 0px;
+    width: 98px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+
+
+
+.quest_s{
+    position: absolute;
+}
+#e_1{
+    top:0px;
+    left: 0px;
+    width: 300px;
+    height: 30px;
+    background: #bbb;
+    color:red;
+    font-size: 18px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#e_2{
+    top:30px;
+    left: 10px;
+    width: 280px;
+    height: 35px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#e_3{
+    top:65px;
+    left: 10px;
+    width: 280px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#e_4{
+    top:80px;
+    left: 10px;
+    width: 280px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+
+#award_box{
+    top:100px;
+    left: 10px;
+    width: 280px;
+    height: 85px;
+    border: solid 1px;
+}
+#aw_t{
+    top:0px;
+    left: 0px;
+    width: 280px;
+    height: 16px;
+    font-size: 10px;
+    color: white;
+    background: #333;
+}
+.aw_s{
+    left: 10px;
+    width: 260px;
+    height: 20px;
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#aw_1{top: 20px;}
+#aw_2{top: 40px;}
+#aw_3{top: 60px;}
+#aw_11{position:absolute; left: 10px;}
+#aw_12{position:absolute; left: 140px;}
+#aw_13{position:absolute; left: 170px;}
+
+#q_1{
+    top:0px;
+    left: 0px;
+    width: 270px;
+    height: 21px;
+    background: #bbb;
+    color:red;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#q_3{
+    top:21px;
+    left: 0px;
+    width: 270px;
+    height: 18px;
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#q_mbox{
+    top:120px;
+    left: 10px;
+    width: 270px;
+    height: 90px;
+    border: solid 1px;
+    background: #ccc;
+}
+#q_mbox_{
+    top:210px;
+    left: 25px;
+    width: 270px;
+    height: 90px;
+    border: solid 1px;
+    background: #ccc;
+}
+#q_m1{
+    top:15px;
+    left: 10px;
+    width:60px;
+    height:60px;
+    background-size: cover;
+}
+#q_m2{
+    top:8px;
+    left: 80px;
+    width: 80px;
+    height: 30px;
+    font-size: 22px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_m3{
+    top:13px;
+    left: 170px;
+    width: 80px;
+    height: 20px;
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end; /* 縦方向中央揃え（Safari用） */
+    align-items: flex-end; /* 縦方向中央揃え */
+}
+#q_m4{
+    top:35px;
+    left: 80px;
+    width: 150px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m5{
+    top:50px;
+    left: 80px;
+    width: 150px;
+    height: 15px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m6{
+    top:65px;
+    left: 80px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m7{
+    top:65px;
+    left: 140px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+#q_m8{
+    top:65px;
+    left: 200px;
+    width: 60px;
+    height: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+
+
+
+
+
+#in_float_quest{
+	top:10px;
+	width: 270px;
+
+}
+#float_choice{
+	width: 90px;
+	height: 35px;
+	position: absolute;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+	align-items: center; /* 縦方向中央揃え */
+	-webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+	justify-content: center; /* 横方向中央揃え */
+	background: orange;
+	left:100px;
+	top:228px;
+}
+
+
+
+.mem_ratio input{
+	display: none;
+}
+.mem_ratio label{
+	display: block;
+	float: left;
+	cursor: pointer;
+	width: 40px;
+	height: 50px;
+	margin: 0;
+	padding: 0px;
+	border-right: 1px solid #abb2b7;
+	background: #bdc3c7;
+	color: #555e64;
+	font-size: 14px;
+	text-align: center;
+	line-height: 1;
+	transition: .2s;
+	position: absolute;
+    font-size: 10px;
+}
+.mem_ratio label:first-of-type{
+	border-radius: 3px 3 3 3px;
+}
+.mem_ratio label:last-of-type{
+	border-right: 0px;
+	border-radius: 3 3px 3px 3;
+}
+.mem_ratio input[type="radio"]:checked + label {
+	background-color: #a1b91d;
+	color: #fff;
+}
+.mem_ratio #sel_label0{ top:60px; left:12px;}
+.mem_ratio #sel_label1{ top:60px; left:57px;}
+.mem_ratio #sel_label2{ top:60px; left:102px;}
+.mem_ratio #sel_label3{ top:60px; left:147px;}
+.mem_ratio #sel_label4{ top:60px; left:192px;}
+.mem_ratio #sel_label5{ top:60px; left:237px;}
+
+.float_text{
+    position: absolute;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    width:270px;
+    left:10px;
+}
+#tweet_button{
+    top:190px;
+}
+
+#floating {
+	position: absolute;
+	top:0;
+	left: 0;
+	height: 100%;
+}
+#float_body {
+	width: 290px;
+	height: 270px;
+	margin-top: -135px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	z-index: 1000;
+	background: #fff;
+	
+}
+#float_body .btn1{
+	position: absolute;
+	top:45px;
+	left:70px;
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: #111;
+    width: 60px;
+    height: 25px;
+    padding: 5px 0 0 0;
+    text-decoration:none;
+    text-align: center;
+    font-weight: normal;
+}
+#float_back {
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: #000;
+}
+#float_text {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 260px;
+    height: 40px;
+    margin: 0;
+    padding: 5px;
+    border: 0;
+	background: orange;
+	text-align: center;
+}
+
+#f_text1{
+    top:35px;
+    font-size:22px;
+}
+#f_text2{
+    top:80px;
+    width:240px;
+    left:25px;
+    background: #eee;
+    font-size:30px;
+    color: red;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#f_text3{
+    top:140px;
+    color: orange;
+}
+#info_batu{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	margin-top: -147px; /*float_bodyのmargin-topから-12*/
+	left: 292px;
+	-moz-background-size:100% auto;
+	background-size:100% auto;
+	background-image:url("images/batu.png");
+	z-index:1000;
+}
