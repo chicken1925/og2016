@@ -10,7 +10,6 @@ text-decoration: none;
 	width: 320px;
 	height: 600px;
 	position: relative;
-	background: #eee;
 }
 
 .members_box{
@@ -19,6 +18,8 @@ text-decoration: none;
 	position: absolute;
 	background: #bbb;
 	left: 10;
+    background-image: url(images/window_mlist.png);
+    background-size:cover;
 }
 .members_box a{
 display: block;
@@ -32,12 +33,18 @@ width: 100%;
 
 
 .member_img{
-	width:48px;
-	height:48px;
+	width:46px;
+	height:46px;
 	position: absolute;
-	left:6;
-	top:6;
+	left:8;
+	top:8;
 	background-size: cover;
+    border:solid 2px blue;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    -ms-border-radius: 0.3em; 
+    box-sizing:border-box;
 }
 
 
@@ -49,75 +56,109 @@ width: 100%;
 	width: auto;
 }
 #member_n1{
-	width: 60px;
-	top:6px;
-	left:58px;
-	font-size: 20px;
-	text-align:center;
-}
-#member_n2{
-	top:35px;
+	width: 56px;
+    height:28px;
+	top:8px;
 	left:62px;
-    font-size: 10px;
-}
-#member_n31{
-	top:56px;
-	left:7px;
-    width: 40px;
+	font-size: 18px;
+    color:white;
+    /*
+    text-shadow: 1px  1px 1px black,
+            -1px  1px 1px black,
+             1px -1px 1px black,
+            -1px -1px 1px black;
+            */
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
+    overflow:visible;
+}
+#member_n2{
+    width: 22px;
+    height: 18px;
+	top:33px;
+	left:62px;
+    font-size: 12px;
+    color: white;
+}
+#member_n31{
+	top:56px;
+	left:13px;
+    width: 32px;
+    height: 16px;
+    font-size: 14px;
+    color:white;
+    background-image: url(images/icon_ron_m.png);
+    background-size:cover;
+    display: -webkit-flex;
+    display: flex;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
 }
 #member_n32{
     top:56px;
-    left:52px;
-    width: 40px;
+    left:58px;
+    width: 32px;
+    height: 16px;
+    font-size: 14px;
+    color:white;
+    background-image: url(images/icon_kai_m.png);
+    background-size:cover;
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
 }
 #member_n33{
     top:56px;
-    left:97px;
-    width: 40px;
+    left:103px;
+    width: 32px;
+    height: 16px;
+    font-size: 14px;
+    color:white;
+    background-image: url(images/icon_com_m.png);
+    background-size:cover;
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
 }
 #member_n4{
-    top:36px;
+    top:33px;
     left:86px;
-    width: 70px;
+    width: 60px;
     font-size: 10px;
+    height: 18px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    color: white;
 }
 #member_n5{
     top:12px;
-    left:120px;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
+    left:122px;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    border-radius: 50%;
+    background-color:white; /* 好きな色を指定 */
+    border:solid 1px lightblue;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    color: black;
 }
 #member_border{
 	height: 1px;
-	width: 86px;
-	top:52px;
-	left:58px;
-	border-top:#000 solid 2px;
+	width: 81px;
+	top:51px;
+	left:59px;
+	border-top:#fff solid 2px;
 }
 
 .add_member{
@@ -133,6 +174,8 @@ width: 100%;
     justify-content: center; /* 横方向中央揃え */
 	-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
 	align-items: center; /* 縦方向中央揃え */
+    background-image: url(images/button_correct_26130.png);
+    background-size:cover;
 }
 #add_member2{
     background: #aaa;
@@ -150,95 +193,138 @@ width: 100%;
 #f_1{
     position: absolute;
     top:10px;
-    left:10px;
-    width:80px;
-    height:80px;
+    left:12px;
+    width:82px;
+    height:82px;
     background-size: cover;
-    border: solid 1px;
+    border:solid 2px blue;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    -ms-border-radius: 0.3em; 
+    box-sizing:border-box;
 }
 #f_2{
     position: absolute;
     top:10px;
-    left:95px;
-    width:110px;
+    left:100px;
+    width:78px;
     height:40px;
-    background: #ccc;
     font-size: 26px;
+    color: white;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    overflow:visible;
 }
 #f_3{
     position: absolute;
-    top:55px;
-    left:95px;
-    width:110px;
+    top:53px;
+    left:100px;
+    width:190px;
     height:20px;
-    background: #ccc;
-    font-size: 10px;
+    font-size: 11px;
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    color: white;
+}
+#f_31{
+    background-image: url(images/icon_per.png);
+    background-size:cover;
+    position: absolute;
+    top:55px;
+    left:100px;
+    width:56px;
+    height:14px;
 }
 #f_4{
     position: absolute;
-    top:75px;
-    left:95px;
-    width:110px;
+    top:73px;
+    left:100px;
+    width:190px;
     height:20px;
-    background: #ccc;
-    font-size: 10px;
+    font-size: 11px;
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    color: white;
+}
+#f_41{
+    background-image: url(images/icon_spe.png);
+    background-size:cover;
+    position: absolute;
+    top:75px;
+    left:100px;
+    width:56px;
+    height:14px;
 }
 #f_5{
     position: absolute;
-    top:30px;
-    left:210px;
-    width:70px;
-    height:20px;
+    top:9px;
+    left:180px;
+    width:40px;
+    height:40px;
     font-size: 13px;
-    background: #ccc;
-}
-#f_61{
-    position: absolute;
-    top:100px;
-    left:10px;
-    width:132px;
-    height:35px;
-    background: #ccc;
-}
-#f_62{
-    position: absolute;
-    top:138px;
-    left:10px;
-    width:132px;
-    height:35px;
-    background: #ccc;
-}
-#f_63{
-    position: absolute;
-    top:176px;
-    left:10px;
-    width:132px;
-    height:35px;
-    background: #ccc;
-}
-.param1{
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:45px;
-    height:20px;
-    font-size: 10px;
+    line-height: 1.2;
+    color: white;
     display: -webkit-flex;
     display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
 }
+#f_61{
+    position: absolute;
+    top:130px;
+    left:11px;
+    width:132px;
+    height:35px;
+    color: white;
+}
+#f_62{
+    position: absolute;
+    top:173px;
+    left:11px;
+    width:132px;
+    height:35px;
+    color: white;
+}
+#f_63{
+    position: absolute;
+    top:216px;
+    left:11px;
+    width:132px;
+    height:35px;
+    color: white;
+}
+#f_611{
+    background-image: url(images/icon_ron.png);
+    background-size:cover;
+}
+#f_621{
+    background-image: url(images/icon_kai.png);
+    background-size:cover;
+}
+#f_631{
+    background-image: url(images/icon_com.png);
+    background-size:cover;
+}
+
+.param1{
+    position: absolute;
+    top:2px;
+    left:1px;
+    width:42px;
+    height:14px;
+}
 .param2{
     position: absolute;
-    top:0px;
+    top:-1px;
     left:47px;
     width:50px;
     height:20px;
@@ -261,118 +347,305 @@ width: 100%;
     align-items: center; /* 縦方向中央揃え */
 }
 .use_button{
-    width: 31px;
-    height: 31px;
+    width: 28px;
+    height: 28px;
     position: absolute;
-    top:2px;
-    left:98px;
-    font-size: 24px;
-    background: orange;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
-    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-    align-items: center; /* 縦方向中央揃え */
+    top:4px;
+    left:100px;
+    background-image: url(images/plus_icon.png);
+    background-size:cover;
 }
 #f_7{
     position: absolute;
-    top:100px;
-    left:148px;
+    top:132px;
+    left:147px;
     width:132px;
-    height:112px;
-    background: #ccc;
+    height:118px;
+    border-bottom:solid 1px #fff;
+    color: white;
 }
 .skills{
     position: absolute;
     left:0px;
     width:132px;
-    height:16px;
+    height:34px;
 }
-#f_71{background: #333;color:white;width:132px;}
-#f_72{top:19px;background: #bbb;}
-#f_73{top:35px;background: #999;}
-#f_74{top:51px;background: #bbb;}
-#f_75{top:67px;height:45px;background: #bbb;font-size: 10px}
-.skills_1{
+#f_71_{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:68px;
+    height:14px;
+    background-image: url(images/icon_skill.png);
+    background-size:cover;
+}
+#f_71{
     position: absolute;
     top:0px;
     left:0px;
     width:132px;
     height:16px;
+    border:none;
+    border-bottom:solid 1px #fff;
+}
+#f_72{top:16px; border-bottom:dashed 1px #fff;}
+#f_73{top:50px; border-bottom:dashed 1px #fff;}
+#f_74{top:84px;}
+
+.skills_de1{
+    position: absolute;
+    top:3px;
+    left:0px;
+    width:132px;
+    height:16px;
     font-size: 10px;
 }
-.skills_2{
+.skills_de2{
     position: absolute;
-    top:16px;
-    left:0px;
+    top:18px;
+    left:10px;
     width:132px;
     height:16px;
     font-size: 10px;
 }
 .use_button2{
-    width: 128px;
-    height: 16px;
+    width: 90px;
+    height: 24px;
     position: absolute;
-    top:0px;
-    left:2px;
-    font-size: 10px;
-    background: orange;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
-    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-    align-items: center; /* 縦方向中央揃え */
+    top:6px;
+    left:21px;
+    background-image: url(images/button_skill.png);
+    background-size:cover;
 }
 
 #f_8{
     position: absolute;
-    top:70px;
-    left:210px;
+    top:25px;
+    left:217px;
     width:70px;
-    height:25px;
-    background: #bbb;
+    height:22px;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    color: white;
+}
+#f_8_{
+    position: absolute;
+    top:25px;
+    left:225px;
+    width:52px;
+    height:18px;
+    font-size:11px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+}
+.counsel{
+    background-color:#ccecf4;
+    border:solid 1px #7fcfe2;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
 }
 #f_81{
     position: absolute;
-    top:55px;
-    left:210px;
+    top:12px;
+    left:217px;
     width:70px;
     height:15px;
     font-size: 10px;
-    background: #bbb;
-}
-#f_9{
-    position: absolute;
-    top:10px;
-    left:210px;
-    width:70px;
-    height:20px;
-    font-size: 10px;
-    background: #ccc;
-    display: -webkit-flex;
+    color: white;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
 }
+#f_9{
+    position: absolute;
+    top:80px;
+    left:20px;
+    width:64px;
+    height:17px;
+    font-size: 10px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    background-color:white; /* 好きな色を指定 */
+    border:solid 1px lightblue;
+    color: black;
+
+}
 #f_10{
     position: absolute;
-    top:218px;
-    left:10px;
-    width:270px;
-    height:45px;
-    background: #ccc;
+    top:126px;
+    left:15px;
+    width:256px;
+    height:80px;
     font-size: 10px;
+    background-color: rgba(0,0,255,0.2);
+    padding: 2;
+    color:white;
 }
+#f_11{
+    position: absolute;
+    top:220px;
+    left:20px;
+    width:246px;
+    height:32px;
+    font-size: 10px;
+    padding: 2;
+    color:white;
+}
+#f_11_{
+    position: absolute;
+    top:203px;
+    left:15px;
+    width:260px;
+    height:56px;
+    background-image: url(images/float_hukidasi.png);
+    background-size:cover;
+}
+
+
+/* 点滅 */
+.blinking{
+    animation: Flash4 1s infinite;
+}
+/* アニメーション */
+@keyframes Flash4{
+  50%{
+    box-shadow: 0 1px 10px 1px white;
+  }
+}
+.bd1{
+    border:none;
+    border-top:solid 1px #fff;
+    color:#FFFFFF;
+}
+#f_border1{
+    top:38px;
+    left:100px;
+    width:117px;
+    border-top:solid 2px #fff;
+}
+#f_border2{
+    top:63px;
+    left:100px;
+    width:177px;
+    border-top:dashed 1px #fff;
+}
+#f_border3{
+    top:83px;
+    left:100px;
+    width:177px;
+}
+#f_border4{
+    top:140px;
+    left:11px;
+    width:95px;
+    border-top:dashed 1px #fff;
+}
+#f_border5{
+    top:157px;
+    left:11px;
+    width:130px;
+}
+#f_border6{
+    top:183px;
+    left:11px;
+    width:95px;
+    border-top:dashed 1px #fff;
+}
+#f_border7{
+    top:200px;
+    left:11px;
+    width:130px;
+}
+#f_border8{
+    top:226px;
+    left:11px;
+    width:95px;
+    border-top:dashed 1px #fff;
+}
+#f_border9{
+    top:243px;
+    left:11px;
+    width:130px;
+}
+#f_border10{
+    position: absolute;
+    margin: 0;
+    border: 0;
+    top:148px;
+    left:11px;
+    width:278px;
+    border-top:dashed 1px #fff;
+}
+#f_border11{
+    position: absolute;
+    margin: 0;
+    border: 0;
+    top:243px;
+    left:11px;
+    width:130px;
+    border-top:solid 1px #fff;
+}
+
+
+#f_tab1{
+    position: absolute;
+    top:102px;
+    left:8px;
+    width:274px;
+    height:160px;
+    background-image: url(images/tab1.png);
+    background-size:cover;
+}
+#f_tab2{
+    position: absolute;
+    top:102px;
+    left:8px;
+    width:274px;
+    height:160px;
+    background-image: url(images/tab2.png);
+    background-size:cover;
+}
+#f_tab_t1{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:115px;
+    height:20px;
+}
+#f_tab_t2{
+    position: absolute;
+    top:0px;
+    left:115px;
+    width:115px;
+    height:20px;
+}
+
+
+
+
+
+
+
 
 
 
@@ -392,6 +665,8 @@ width: 100%;
 	left: 15px;
 	background: #fff;
 	z-index: 1;
+    background-image:url(images/window_float1.png);
+    background-size:cover;
 }
 #float_body .btn1{
 	position: absolute;
@@ -456,6 +731,8 @@ width: 100%;
     left: 20px;
     background: #eee;
     z-index: 3;
+    background-image:url(images/window_float2.png);
+    background-size:cover;
 }
 #float_back2 {
     width: 100%;
@@ -498,16 +775,25 @@ width: 100%;
 }
 #use_i1{
     top:15px;
-    left:10px;
-    width:100px;
+    left:64px;
+    width:30px;
     height:21px;
     text-align: right;
+    color: white;
+}
+#use_i1_{
+    top:10px;
+    left:40px;
+    width:30px;
+    height:30px;
+    background-size:cover;
 }
 #use_i2{
     top:15px;
-    left:180px;
-    width:100px;
+    left:176px;
+    width:80px;
     height:21px;
+    color: white;
 }
 #use_i3{
     top:50px;
@@ -531,6 +817,8 @@ width: 100%;
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    background-image:url(images/button_correct_3060.png);
+    background-size:cover;
 }
 #use_i5{
     top:80px;
@@ -544,32 +832,44 @@ width: 100%;
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    background-image:url(images/button_incorrect_3060.png);
+    background-size:cover;
 }
 #use_i6{
-    top:50px;
-    left:21px;
-    width:240px;
+    top:51px;
+    left:153px;
+    width:100px;
     height:20px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
+    color: white;
 }
+#use_i6_{
+    width:63px;
+    height:21px;
+    top:49px;
+    left:74px;
+    background-image: url(images/icon_com.png);
+    background-size:cover;
+}
+
+
+
 #use_i7{
     top:15px;
     left:10px;
     width:50px;
     height:21px;
+    color: white;
 }
 #use_i8{
-    top:45px;
-    left:10px;
-    width:260px;
+    top:42px;
+    left:61px;
+    width:200px;
     height:21px;
     font-size: 10px;
+    color: white;
 }
 #use_i9{
-    top:60px;
+    top:58px;
     left:30px;
     width:220px;
     height:21px;
@@ -577,12 +877,13 @@ width: 100%;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
+    color: white;
 }
 
 #item_value1{
     position: absolute;
     top:10px;
-    left:115px;
+    left:106px;
     width:60px;
     text-align:center;
 }
@@ -612,7 +913,7 @@ width: 100%;
     height: 0;
     margin: -2px 0 0 0;
     border: 5px solid transparent;
-    border-top: 7px solid #ffa500;
+    border-top: 7px solid #61d7d7;
 }
 #item_value2{
     position: absolute;
@@ -647,21 +948,43 @@ width: 100%;
     height: 0;
     margin: -2px 0 0 0;
     border: 5px solid transparent;
-    border-top: 7px solid #ffa500;
+    border-top: 7px solid #61d7d7;
 }
 
 
 
-#coun1{
+#coun11{
     position: absolute;
-    top:10px;
-    left:30px;
-    width:220px;
+    top:23px;
+    left:10px;
+    width:168px;
     height:21px;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
+    color: white;
+}
+#coun12{
+    position: absolute;
+    top:46px;
+    left:10px;
+    width:168px;
+    height:21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+    color: white;
+}
+#coun1_{
+    position: absolute;
+    top:9px;
+    left:179px;
+    width:70px;
+    height:70px;
+    background-image: url(images/icon_shinro.png);
+    background-size:cover;
 }
 #coun2{
     top:80px;
@@ -676,6 +999,8 @@ width: 100%;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
     font-size: 11px;
+    background-image: url(images/button_correct_3090.png);
+    background-size:cover;
 }
 #coun3{
     top:80px;
@@ -690,17 +1015,26 @@ width: 100%;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
     font-size: 11px;
+    background-image: url(images/button_correct_3090.png);
+    background-size:cover;
 }
-#coun4{
+#coun2_1{
+    position: absolute;
+    top:13px;
+    left:189px;
+    width:70px;
+    height:70px;
+    background-image: url(images/icon_shingaku.png);
+    background-size:cover;
+}
+#coun2_2{
     position: absolute;
     top:10px;
-    left:0px;
-    width:280px;
-    height:21px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-    justify-content: center; /* 横方向中央揃え */
+    left:184px;
+    width:70px;
+    height:70px;
+    background-image: url(images/icon_sotugyou.png);
+    background-size:cover;
 }
 #coun5{
     top:80px;
@@ -715,5 +1049,42 @@ width: 100%;
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
     font-size: 11px;
+    background-image: url(images/button_correct_3060.png);
+    background-size:cover;
 }
+
+
+
+
+
+
+
+
+.scrollbox{
+    width: 320px;
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    display:block;
+}
+.scrollbox::-webkit-scrollbar {
+    width:3px;
+    background:#eee;
+}
+.scrollbox::-webkit-scrollbar-button {
+    width:3px;
+    height:3px;
+    background:#666;
+}
+.scrollbox::-webkit-scrollbar-thumb {
+    background:#999;
+}
+.scrollbox::-webkit-scrollbar-corner {
+    background:#ddd;
+}
+
+
+
+
+
 

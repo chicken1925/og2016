@@ -2,116 +2,55 @@ BODY {
 	overflow-x : hidden ;
 }
 a, a:hover, a:visited, a:link, a:active {
-color: #000;
+	color: #000;
+	text-decoration: none;
 }
 
-#member_list{
-	width: 320px;
-	height: 600px;
+#all_contents{
+	width: 100%;
 	position: relative;
-	background: #eee;	
 }
 
-.members{
-	width: 96px;
-	height: 150px;
+#i_1{
+	width: 200px;
+	height: 40px;
 	position: absolute;
-	background: #bbb;
-}
-#member_1{left:10; top:6;}
-#member_2{left:112; top:6;}
-#member_3{left:214; top:6;}
-#member_4{left:10; top:162;}
-#member_5{left:112; top:162;}
-#member_6{left:214; top:162;}
-
-
-
-.member_img{
-	width:72px;
-	height:72px;
-	position: absolute;
-	left:12;
-	top:6;
-}
-#member_img1{background-image:url("images/member_a.png");}
-#member_img2{background-image:url("images/member_b.png");}
-#member_img3{background-image:url("images/member_c.png");}
-#member_img4{background-image:url("images/member_d.png");}
-#member_img5{background-image:url("images/member_e.png");}
-#member_img6{background-image:url("images/member_f.png");}
-
-
-.member_n{
-	width:84px;
-	height:30px;
-	position: absolute;
-	left:6;
-	top:80;
-	text-align:center;
+	top:20px;
+	left:60px;
+	background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
 }
 
-
-
-.member_p{
-	width:84px;
-	height:30px;
-	position: absolute;
-	left:6;
-	top:106;
-	text-align:center;
+#i_2{
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    top:70px;
+    left:60px;
+    background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
 }
-
-
-
-.member_s1{
-	width:20px;
-	height:20px;
-	position: absolute;
-	left:10;
-	top:124;
-	-moz-background-size:100% auto;
-	background-size:100% auto;
+#i_3{
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    top:120px;
+    left:60px;
+    background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
 }
-#member_s11{background-image:url("images/skill_none.png");}
-#member_s21{background-image:url("images/skill_none.png");}
-#member_s31{background-image:url("images/skill_none.png");}
-#member_s41{background-image:url("images/skill_none.png");}
-#member_s51{background-image:url("images/skill_none.png");}
-#member_s61{background-image:url("images/skill_none.png");}
-
-.member_s2{
-	width:20px;
-	height:20px;
-	position: absolute;
-	left:38;
-	top:124;
-	-moz-background-size:100% auto;
-	background-size:100% auto;
-}
-#member_s12{background-image:url("images/skill_none.png");}
-#member_s22{background-image:url("images/skill_none.png");}
-#member_s32{background-image:url("images/skill_none.png");}
-#member_s42{background-image:url("images/skill_none.png");}
-#member_s52{background-image:url("images/skill_none.png");}
-#member_s62{background-image:url("images/skill_none.png");}
-
-
-.member_s3{
-	width:20px;
-	height:20px;
-	position: absolute;
-	left:66;
-	top:124;
-	-moz-background-size:100% auto;
-	background-size:100% auto;
-}
-#member_s13{background-image:url("images/skill_none.png");}
-#member_s23{background-image:url("images/skill_none.png");}
-#member_s33{background-image:url("images/skill_none.png");}
-#member_s43{background-image:url("images/skill_none.png");}
-#member_s53{background-image:url("images/skill_none.png");}
-#member_s63{background-image:url("images/skill_none.png");}
-
-
-

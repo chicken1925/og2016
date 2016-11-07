@@ -1,52 +1,53 @@
 <!--
-var canvas;
-var context;
-var btn_scene=1;
-var rects=[];
-var numrects=5;
 
-var smartphone=false;
-var mouseX=0,mouseY=0;
 
-var persec=0;
-var bachelor=10,master=0,doctor=0;
+var st_data;
+var us_data;
 
-var time=0;
 
 //初期処理
 window.addEventListener("load", function(){
-	
-	
-	//document.getElementById("bachelor_n").textContent=bachelor+"人";
-	//document.getElementById("master_n").textContent=master+"人";
-	//document.getElementById("doctor_n").textContent=doctor+"人";
-	
-	//document.getElementById("min_m").textContent="¥"+persec+"/秒";
-	
-	//document.getElementById("all_m").textContent="¥"+money;
-	
+    us_data = window.parent.back_us_data();
+	st_data = window.parent.back_stu_data();
+	var hh= window.parent.box_size();
+    window.parent.frame_num(4);
+	$("#member_list").css("height", hh+"px");
+	$("#all_contents").css("height", hh+"px");
+
+	show_content();
+
 }, false);
 
+function show_content(){
+    str="";
+    str+='<a href="#" onclick="save_state_db_i(); return false;">';
+    str+='<div id="i_1" class="page_container">save_db</div>';
+    str+='</a>';
 
-setInterval(function (){
-},100)
+    str+='<a href="#" onclick="save_state_cookie_i(); return false;">';
+    str+='<div id="i_2" class="page_container">save_cookie</div>';
+    str+='</a>';
 
+    str+='<a href="#" onclick="delete_cookie_i(); return false;">';
+    str+='<div id="i_3" class="page_container">delete_cookie</div>';
+    str+='</a>';
 
-//アニメーション
-/*
-setInterval(function(){
-	
-},33);
-*/
-
-function test(){
-	//サーバーにあげると動く
-	//console.log(window.parent.money);
-	window.parent.from_info();
-	//window.parent.money=0;
+    $("#all_contents").append(str);
 }
 
+function save_state_db_i(){
+	//console.log(st_data);
+	window.parent.save_db();
+}
 
+function save_state_cookie_i(){
+    //console.log(st_data);
+    window.parent.save_cookie();
+}
 
+function delete_cookie_i(){
+    //console.log(st_data);
+    window.parent.delete_cookie();
+}
 
 //-->

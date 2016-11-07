@@ -7,6 +7,8 @@
 		<title>og2016</title>
 		<script type="text/javascript" src="jquery/jquery-3.1.1.min.js">
 		</script>
+		<script type="text/javascript" src="jquery/jquery.cookie.js">
+		</script>
 		<script type="text/javascript" src="test_data.js"></script>
 		<script type="text/javascript" src="prog_index.js"></script>
 		<script type="text/javascript" src="apifunc.js"></script>
@@ -23,18 +25,15 @@
 	</head>
 	<body>
 	<div id="all_contents" class="page_container" style="width:320px">
-		<div id="lab" class="page_container" style="height:22px; background-color:orange">
-			<center>○○研究室[××キャンパス]</center>
-		</div>
-		<div id="money" class="page_container" style="height:56px; background-color:#555">
-			<center><span id="all_m" style="font-size: 30px; color:#FFF">¥100</span></center>
-			<div id="min_m" class="top_m page_container" style="color:#FFF">論文数: 0編</div>
+		<div id="header" class="page_container">
+			<div id="lab" class="page_container">○○研究室 [××学科]</div>
+			<div id="all_m">¥100</div>
+			<div id="level_m" class="page_container">1</div>
 			<a href="#" onclick="if(float_open_flag==0){lab_info();} return false;">
-			<div id="level_m" class="top_m page_container" style="color:#FFF">研究室Lv: Lv.1</div>
+			<div id="plus_m" class="page_container"></div>
 			</a>
-		</div>
-		<div id="notice" class="page_container">
-			<div id="pagetitle">マイページ</div>
+			<div id="now_m">ホーム</div>
+			<div id="icon_m"></div>
 		</div>
 
 		<div id="box">

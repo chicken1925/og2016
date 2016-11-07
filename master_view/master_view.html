@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html xml:lang="ja" lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<title>og2016_master</title>
+		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="prog_master_view.js"></script>
+		<script>
+		</script>
+		<link rel="stylesheet" type="text/css" href="styles_master_view.css">
+		<STYLE TYPE="text/css">
+		</STYLE>
+	</head>
+	<body>
+    -call_jsons-<br>
+	<button type="button" onclick="call_questlist()">questlist</button>
+	<button type="button" onclick="call_greatdata()">greatdata</button>
+    <button type="button" onclick="call_greatdatajson()">greatdatajson</button>
+	<button type="button" onclick="call_participantlist()">participantlist</button>
+	<button type="button" onclick="call_nowstate()">nowstate</button>
+	<button type="button" onclick="call_eventdata()">eventdata</button>
+    <button type="button" onclick="call_summoney()">summoney</button>
+	<a id="download-link" href="#">Download</a><br><br>
+    <form id="login_">
+    id<input type="text" value="0" name="login_id" id="n_st" size="10">
+    pass<input type="text" value="0" name="login_pass" id="n_st" size="10">
+    <button type="button" onclick="call_login()">showlogin</button>
+    </form>
+	<br><br>
+
+    -json_console-<br>
+	<textarea id="show_json" name="show_j" rows="30" cols="100" wrap="hard"></textarea>
+    <br><br>
+    <HR color="red" noshade>
+    <br><br>
+
+    -set_state-<br>
+    <form id="set_state">
+    <input type="text" value="0" name="now_stete" id="n_st" size="10">
+    <input type="text" value="none" name="now_message" id="n_ms" size="40">
+    <input type="button" id="set_stetebutton" value="set_stete" onclick="set_now_state()">
+    </form>
+    <br>
+
+    -set_eventdata-<br>
+	<form id="set_rank">
+	<textarea name="rank_val" rows="10" cols="100" wrap="hard">
+{
+    "event_num":0,
+    "event_name":"第1回 Enterteinment Computing",
+    "reward_num":[3,5,10],
+    "reward_money":[10000000,5000000,1000000],
+    "reward_member":{}
+}
+
+</textarea>
+    <input type="button" id="set_rankbutton" value="set_eventdata" onclick="set_rank(0)">
+<br><br>
+    -set_rank-<br>
+<textarea name="rank_mem" rows="10" cols="100" wrap="hard">
+[{"uid":"0007","uname":"user07","regi_n":"2","sid":"118","sname":"鷺沢","status":["99","99","99"],"rank":"1"},{"uid":"0013","uname":"user13","regi_n":"2","sid":"118","sname":"飯島","status":["54","88","62"],"rank":"1"},{"uid":"0010","uname":"user10","regi_n":"2","sid":"118","sname":"佐久間","status":["72","88","54"],"rank":"1"},{"uid":"0002","uname":"user04","regi_n":"2","sid":"15","sname":"  森   ","status":["17","15","15"],"rank":"2"}]
+
+
+</textarea>
+	<input type="button" id="set_rankbutton" value="set_rank" onclick="set_rank(1)">
+	</form>
+
+
+
+    <br><br>
+    <HR color="red" noshade>
+    <br><br>
+
+    - ! ! ! delete buttons ! ! ! -<br>
+    <button type="button" onclick="call_delete_participantlist()">delete_participantlist</button><br><br>
+    <form id="delete_qd">
+    <input type="text" value="0" name="d_qid" id="n_st" size="10">
+    <button type="button" onclick="call_delete_questdata()">delete_questdata</button>
+    </form>
+    <br><br>
+	</body>
+</html>
+

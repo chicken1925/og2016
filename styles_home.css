@@ -1,0 +1,13 @@
+#box{
+    position: absolute;
+    top:5px;
+    width: 0%;
+    height: 20 px;
+    background: #0066cc;
+    color: #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    
+}

@@ -20,6 +20,8 @@ body{
 
 #all_contents{
 position: relative;
+
+background-image: url(images/bg.png)
 }
 
 

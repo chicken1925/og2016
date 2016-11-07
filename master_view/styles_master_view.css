@@ -1,0 +1,63 @@
+body{
+    font-family: Helvetica, Arial, "?q???M?m?p?S ProN W3", "?????T?? ?V?S R", Droid Sans, "???C???I", sans-serif;
+    font-size: 10px;
+    background-color: #fff;
+    color: #000;
+    vertical-align: baseline;
+    margin: 0 auto;
+}
+
+
+BODY {
+	overflow-x : hidden ;
+}
+
+#all_contents{
+	width: 100%;
+	position: relative;
+	background: #fff;
+}
+
+#i_1{
+	width: 200px;
+	height: 40px;
+	position: absolute;
+	top:20px;
+	left:60px;
+	background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+
+#i_2{
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    top:70px;
+    left:60px;
+    background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}
+#i_3{
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    top:120px;
+    left:60px;
+    background: #ddd;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
+}

@@ -8,8 +8,9 @@ var test_user={
     "money":111111,
     "level":1,
     "item_param":[100,7,120],
-    "item_skill":[111,522,241,521,412,131]
-
+    "item_skill":[111,522,241,521,412,131],
+    "save_t":0,
+    "respawn_t":0
 }
 
 
@@ -26,11 +27,9 @@ var test_students={
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[15,15,20], //ステータス[論理力,行動力,コミュ力]
-            "pic":"images/member_a.png",
             "course_t":0, //進路相談用(時間)
             "collabo":0, //コラボ
-            "stu_type":0, //生徒タイプ
-            "info":"普通の生徒" //生徒info
+            "stu_type":0 //生徒タイプ
         },
         {
             "id":2,
@@ -43,11 +42,9 @@ var test_students={
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[25,10,15],
-            "pic":"images/member_b.png",
             "course_t":0, //進路相談用(時間)
             "collabo":1, //コラボ
-            "stu_type":0 , //生徒タイプ
-            "info":"普通の生徒" //生徒info
+            "stu_type":0  //生徒タイプ
         },
         {
             "id":3,
@@ -60,11 +57,9 @@ var test_students={
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[10,15,25],
-            "pic":"images/member_c.png",
             "course_t":0, //進路相談用(時間)
             "collabo":1, //コラボ
             "stu_type":0 , //生徒タイプ
-            "info":"普通の生徒" //生徒info
         },
         {
             "id":10,
@@ -77,11 +72,9 @@ var test_students={
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[30,40,50],
-            "pic":"images/member_d.png",
             "course_t":0, //進路相談用(時間)
             "collabo":1, //コラボ
-            "stu_type":0, //生徒タイプ
-            "info":"普通の生徒" //生徒info
+            "stu_type":0 //生徒タイプ
         },
         {
             "id":63,
@@ -94,11 +87,9 @@ var test_students={
             "journal_pub":0, //論文出した数
             "journal_t":0,//ジャーナル生成時間
             "status":[60,70,30],
-            "pic":"images/member_f.png",
             "course_t":0, //進路相談用(時間)
             "collabo":0, //コラボ
-            "stu_type":0, //生徒タイプ
-            "info":"普通の生徒" //生徒info
+            "stu_type":0//生徒タイプ
         },
     ]
 

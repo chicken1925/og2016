@@ -34,61 +34,163 @@ li {
 }
 
 
-.top_m{
-	position: absolute;
-	display: -webkit-flex;
+
+#header{
+    width: 320px;
+    height: 108px;
+    left: 0px;
+    top: 0px;
+    background-image: url(images/header.png);
+    background-size:cover;
+}
+#lab{
+    position: absolute;
+    width: 180px;
+    height: 21px;
+    left: 65px;
+    top: 10px;
+    color: white;
+}
+#all_m{
+    position: absolute;
+    width: 180px;
+    height: 30px;
+    left: 65px;
+    top: 41px;
+    color: white;
+    font-size: 20px;
+}
+#level_m{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 258px;
+    top: 40px;
+    color: white;
+    font-size: 22px;
+}
+#plus_m{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 291px;
+    top: 43px;
+    background-image: url(images/plus_icon.png);
+    background-size:cover;
+}
+#now_m{
+    position: absolute;
+    width: 157px;
+    height: 24px;
+    left: 35px;
+    top: 79px;
+    font-size: 16px;
+    color: white;
+    display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
-	-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-	align-items: center; /* 縦方向中央揃え */
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
 }
-#min_m{
-	width: 130px;
-	height: 21px;
-	left: 20px;
-}
-#level_m{
-	width: 140px;
-	height: 21px;
-	left: 160px;
-	background: #222;
+#icon_m{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 12px;
+    top: 20px;
+    background-image: url(images/trans_none.png);
+    background-size:cover;
 }
 
 
 
 
+.scrollbox{
+    width: 320px;
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    display:block;
+}
+.scrollbox::-webkit-scrollbar {
+    width:3px;
+    background:#eee;
+}
+.scrollbox::-webkit-scrollbar-button {
+    width:3px;
+    height:3px;
+    background:#666;
+}
+.scrollbox::-webkit-scrollbar-thumb {
+    background:#999;
+}
+.scrollbox::-webkit-scrollbar-corner {
+    background:#ddd;
+}
+#box{
+    width: 320px;
+    top:0px;
+    position:relative;
+    /*height: 380px;*/
+    overflow:auto; /* scrollからautoに変更 */
+    -webkit-overflow-scrolling:touch;
+}
+
+
+
+#u_buttons {
+    width: 320px;
+    height: 64px;
+    left: 0px;
+    top: 0px;
+    position:relative;
+}
 /*下のボタン*/
 #u_buttons .button1 {
     display: block;
-    background: url("images/button1_.png") no-repeat 0 ;
+    background: url("images/button_home.png") no-repeat 0 ;
+    background-size:cover;
     width: 64px;
     height: 64px;
 }
 #u_buttons .button2 {
     display: block;
-    background: url("images/button1_.png") no-repeat 0 ;
+    background: url("images/button_member.png") no-repeat 0 ;
+    background-size:cover;
     width: 64px;
     height: 64px;
 }
 #u_buttons .button3 {
     display: block;
-    background: url("images/button1_.png") no-repeat 0 ;
+    background: url("images/button_collabo.png") no-repeat 0 ;
+    background-size:cover;
     width: 64px;
     height: 64px;
 }
 #u_buttons .button4 {
     display: block;
-    background: url("images/button1_.png") no-repeat 0 ;
+    background: url("images/button_event.png") no-repeat 0 ;
+    background-size:cover;
     width: 64px;
     height: 64px;
 }
 #u_buttons .button5 {
     display: block;
-    background: url("images/button1_.png") no-repeat 0 ;
+    background: url("images/button_info.png") no-repeat 0 ;
+    background-size:cover;
     width: 64px;
     height: 64px;
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -115,13 +217,15 @@ li {
 }
 #float_body {
 	width: 290px;
-	height: 170px;
+	height: 176px;
 	margin-top: -85px;
 	position: absolute;
 	top: 50%;
 	left: 15px;
 	background: Honeydew;
 	z-index: 1;
+    background-image:url(images/float3.png);
+    background-size:cover;
 }
 #float_body .btn1{
 	position: absolute;
@@ -169,6 +273,17 @@ li {
 	background-image:url("images/batu.png");
     z-index: 1;
 }
+
+
+
+
+
+
+.ls{
+    position: absolute;
+    color: white;
+}
+
 #l_1{
     position: absolute;
     top:10px;
@@ -182,12 +297,12 @@ li {
 }
 #l_2{
     position: absolute;
-    top:30px;
+    top:32px;
     left:10px;
     height: 30px;
     width: 270px;
     font-size: 18px;
-    color: red;
+    color: #C6F8F8;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
@@ -195,7 +310,7 @@ li {
 }
 #l_3{
     position: absolute;
-    top:53px;
+    top:55px;
     left:10px;
     height: 15px;
     width: 270px;
@@ -207,16 +322,17 @@ li {
 }
 #l_4{
     position: absolute;
-    top:78px;
+    top:74px;
     left:20px;
-    height: 80px;
-    width: 250px;
-    border: solid 1px;
+    height: 85px;
+    width: 240px;
+    border: 5px inset #61d7d7;
+    background: #1861ae;
 }
 #l_5{
     position: absolute;
     top:5px;
-    left:25px;
+    left:20px;
     height: 21px;
     width: 200px;
     display: -webkit-flex;
@@ -227,7 +343,7 @@ li {
 #l_6{
     position: absolute;
     top:25px;
-    left:25px;
+    left:20px;
     height: 21px;
     width: 200px;
     display: -webkit-flex;
@@ -240,28 +356,45 @@ li {
     top:50px;
     left:45px;
     width:60px;
-    height:25px;
-    background: #bbb;
+    height:30px;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    background-image:url(images/button_correct_3060.png);
+    background-size:cover;
+    color: black;
 }
 #l_8{
     position: absolute;
     top:50px;
     left:145px;
     width:60px;
-    height:25px;
-    background: #bbb;
+    height:30px;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
     justify-content: center; /* 横方向中央揃え */
     -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
     align-items: center; /* 縦方向中央揃え */
+    background-image:url(images/button_incorrect_3060.png);
+    background-size:cover;
+    color: black;
+}
+#l_border{
+    position: absolute;
+    top:29px;
+    left:25px;
+    width:240px;
+    border: 0;
+    height: 1px;
+    margin: 0;
+    background-image: -webkit-linear-gradient(left, rgba(97,215,215,0), rgba(97,215,215,1), rgba(97,215,215,0));
+    background-image:    -moz-linear-gradient(left, rgba(97,215,215,0), rgba(97,215,215,1), rgba(97,215,215,0));
+    background-image:     -ms-linear-gradient(left, rgba(97,215,215,0), rgba(97,215,215,1), rgba(97,215,215,0));
+    background-image:      -o-linear-gradient(left, rgba(97,215,215,0), rgba(97,215,215,1), rgba(97,215,215,0));
 }
 
 
@@ -297,35 +430,6 @@ li {
 
 
 
-.scrollbox{
-	width: 320px;
-	height: 240px;
-	overflow-y: scroll;
-	overflow-x:hidden;
-	display:block;
-}
-.scrollbox::-webkit-scrollbar {
-	width:3px;
-	background:#eee;
-}
-.scrollbox::-webkit-scrollbar-button {
-	width:3px;
-	height:3px;
-	background:#666;
-}
-.scrollbox::-webkit-scrollbar-thumb {
-	background:#999;
-}
-.scrollbox::-webkit-scrollbar-corner {
-	background:#ddd;
-}
-#box{
-	width: 320px;
-	/*height: 380px;*/
-	overflow:auto; /* scrollからautoに変更 */
-	-webkit-overflow-scrolling:touch;
-	position:relative;
-}
 
 
 

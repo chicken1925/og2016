@@ -1,17 +1,28 @@
 <!--
 
-var student_data;
-var user_data;
+var st_data;
+var us_data;
+
+var spe_data={};
+var que_data={};
+$(function() {
+    $.getJSON("speciality_data.json" , function(data) {
+    spe_data=data;
+  });
+    $.getJSON("quest_data.json" , function(data) {
+    que_data=data;
+  });
+});
 
 //初期処理
 window.addEventListener("load", function(){
-    user_data = window.parent.back_user_data();
-    student_data = window.parent.back_stu_data();
+    us_data = window.parent.back_us_data();
+    st_data = window.parent.back_stu_data();
     var hh= window.parent.box_size();
     window.parent.frame_num(6);
     $("#all_contents").css("height", hh+"px");
 
-    //console.log(student_data.students[0].name);
+    //console.log(st_data.students[0].name);
 
 }, false);
 
@@ -19,21 +30,28 @@ function search_quest(){
     //console.log(document.forms["join_f"].elements["quest_id_f"].value);
     $("#join_text2").remove();
     $("#all_contents").append('<div id="join_text2" class="j_texts page_container">検索中</div>');
-    quest_search_api(user_data.uid,document.forms["join_f"].elements["quest_id_f"].value);
-    setTimeout(function(){
-        if(quest_search_val.message=="noquest"){
-            $("#join_text2").remove();
-            $("#all_contents").append('<div id="join_text2" class="j_texts page_container">共同研究が存在しません</div>');
-        }else if(quest_search_val.message=="mine"){
-            $("#join_text2").remove();
-            $("#all_contents").append('<div id="join_text2" class="j_texts page_container">すでに参加済みです</div>');
-        }else if(quest_search_val.message=="over"){
-            $("#join_text2").remove();
-            $("#all_contents").append('<div id="join_text2" class="j_texts page_container">参加人数が条件を満たしています</div>');
-        }else{
-            show_quest_result();
-        }
-    }, 800);
+    if(document.forms["join_f"].elements["quest_id_f"].value!=""){
+        var d = new $.Deferred();
+        quest_search_api(us_data.uid,document.forms["join_f"].elements["quest_id_f"].value,d);
+
+        d.promise().then(function() {
+            if(quest_search_val.message=="noquest"){
+                $("#join_text2").remove();
+                $("#all_contents").append('<div id="join_text2" class="j_texts page_container">共同研究が存在しません</div>');
+            }else if(quest_search_val.message=="mine"){
+                $("#join_text2").remove();
+                $("#all_contents").append('<div id="join_text2" class="j_texts page_container">すでに参加済みです</div>');
+            }else if(quest_search_val.message=="over"){
+                $("#join_text2").remove();
+                $("#all_contents").append('<div id="join_text2" class="j_texts page_container">参加人数が条件を満たしています</div>');
+            }else{
+                show_quest_result();
+            }
+        });
+    }else{
+        $("#join_text2").remove();
+        $("#all_contents").append('<div id="join_text2" class="j_texts page_container">IDを入力してください</div>');
+    }
 }
 function show_quest_result(){
     $("#all_contents").append("<div id='floating' class='page_container'></div>");
@@ -44,33 +62,40 @@ function show_quest_result(){
     var str="";
 
     str+='<div id="in_float_quest" class="quest_list in_float page_container">';
-    str+='<div id="q_1" class="quest_s">'+quest_search_val.quest_num+'</div>';
-    var qn=0;
-    if(quest_search_val.quest_num==0){qn=2;}
-    else if(quest_search_val.quest_num==1){qn=3;}
-    else if(quest_search_val.quest_num==2||quest_search_val.quest_num==3||quest_search_val.quest_num==4){qn=4;}
-    else if(quest_search_val.quest_num==5){qn=6;}
-    else if(quest_search_val.quest_num==6){qn=10;}
-    else if(quest_search_val.quest_num==7){qn=100;}
-    str+='<div id="q_2" class="quest_s">野草のとり方の研究 (必要人数'+qn+'人)</div>';
-    str+='<div id="q_3" class="quest_s">ID: '+document.forms["join_f"].elements["quest_id_f"].value+'</div>';
-    str+='<div id="q_4" class="quest_s" style="width:245px;">参加人数: '+quest_search_val.userIDs.length+'人</div>';
-    str+='<div id="q_5" class="quest_s" style="width:120px;">所要時間n分</div>';
+    str+='<div id="q_f1" class="quest_s" style="background-image: url(images/icon_quest'+(parseInt(quest_search_val.quest_num,10)+1)+'.png);"></div>';
+    str+='<div id="q_f2" class="quest_s">'+quest_search_val.qtitle+'</div>';
+    str+='<div id="q_f3_" class="quest_s"></div>';
+    str+='<div id="q_f5" class="quest_s">所要時間&nbsp;'+que_data.quests[quest_search_val.quest_num].time+'分</div>';
+    str+='<div id="q_f4_" class="quest_s"></div>';
+    str+='<div id="q_f4" class="quest_s">'+quest_search_val.users.length+'&nbsp;/&nbsp;'+que_data.quests[quest_search_val.quest_num].person_num+'</div>';
+    str+='<div id="q_f3" class="quest_s" style="margin-top:2px;">'+document.forms["join_f"].elements["quest_id_f"].value+'</div>';
+    str+='<div id="q_f7_" class="quest_s"></div>';
+    str+='<hr id="q_fborder1" class="bd1 member_n page_container" style="width:222px;">';
+    str+='<hr id="q_fborder2" class="bd1 member_n page_container" style="width:222px;">';
     str+='</div>';
 
     str+='<div id="q_box" class="quest_s">';
     str+='<div id="q_box_t" class="quest_s">&nbsp;参加メンバー</div>';
     str+='<div id="q_box_m" class="quest_s scrollbox">';
-    for(var i=0;i<quest_search_val.userIDs.length;i++){
+
+    for(var i=0;i<quest_search_val.users.length;i++){
         if(i%2==0){str+='<div id="q_b'+i+'" class="q_inbox quest_s" style="top:'+i*50+'px;">';}
-        else if(i%2==1){str+='<div id="q_b'+i+'" class="q_inbox quest_s" style="top:'+i*50+'px; background:#bbb;">';}
-        str+='<div id="q_i1" class="quest_s">'+quest_search_val.userIDs[i]+'研&nbsp;'+quest_search_val.user_stuIDs[i]+'君</div>';
-        str+='<div id="q_i2" class="quest_s">得意分野:&nbsp;△△△△△</div>';
-        str+='<div id="q_i3" class="quest_s">ランク:&nbsp;論-F&nbsp;&nbsp;開-D&nbsp;&nbsp;コ-E</div>';
+        else if(i%2==1){str+='<div id="q_b'+i+'" class="q_inbox quest_s" style="top:'+i*50+'px; background:#0A4A8D;">';}
+
+        str+='<div id="q_i1" class="quest_s">'+quest_search_val.users[i].u_name+'研<span style="position: absolute;  left:62px;">'+quest_search_val.users[i].stu_name+'君</span></div>';
+        str+='<div id="q_i21" class="quest_s q_i2s page_container"><span style="position: absolute;  left:22px;">'+window.parent.calc_rank(quest_search_val.users[i].status[0],true)+'</span></div>';
+        str+='<div id="q_i22" class="quest_s q_i2s page_container"><span style="position: absolute;  left:22px;">'+window.parent.calc_rank(quest_search_val.users[i].status[1],true)+'</span></div>';
+        str+='<div id="q_i23" class="quest_s q_i2s page_container"><span style="position: absolute;  left:22px;">'+window.parent.calc_rank(quest_search_val.users[i].status[2],true)+'</span></div>';
+        str+='<hr id="q_iborder" class="member_n page_container">';
+        str+='<div id="q_i2" class="quest_s"></div>';
+        str+='<div id="q_i3_" class="quest_s"></div>';
+        str+='<div id="q_i3" class="quest_s">'+spe_data.spes[quest_search_val.users[i].speciality].name+'</div>';
         str+='</div>';
     }
     str+='</div>';
     str+='</div>';
+
+
 
     str+="<a href='#' onclick='quest_join(\""+document.forms["join_f"].elements["quest_id_f"].value+"\"); return false;'>";
     str+='<div id="float_choice" class="page_container">';
@@ -103,26 +128,25 @@ function quest_join(){
 
     var str="";
 
-    str+='<div id="in_float_quest" class="quest_list_ in_float page_container">';
-    str+='<div id="q_1_" class="quest_s">'+quest_search_val.quest_num+'</div>';
-    var qn=0;
-    if(quest_search_val.quest_num==0){qn=2;}
-    else if(quest_search_val.quest_num==1){qn=3;}
-    else if(quest_search_val.quest_num==2||quest_search_val.quest_num==3||quest_search_val.quest_num==4){qn=4;}
-    else if(quest_search_val.quest_num==5){qn=6;}
-    else if(quest_search_val.quest_num==6){qn=10;}
-    else if(quest_search_val.quest_num==7){qn=100;}
-    str+='<div id="q_2" class="quest_s">野草のとり方の研究 (必要人数'+qn+'人)</div>';
-    str+='<div id="q_3_" class="quest_s" style="width:115px;">所要時間n分</div>';
+    str+='<div id="in_float_quest2" class="quest_list in_float page_container">';
+
+    str+='<div id="q_1" class="quest_s" style="background-image: url(images/icon_quest'+(parseInt(quest_search_val.quest_num,10)+1)+'.png);"></div>';
+    str+='<div id="q_2" class="quest_s">'+quest_search_val.qtitle+'</div>';
+    str+='<div id="q_3_" class="quest_s"></div>';
+    str+='<div id="q_3" class="quest_s">所要時間&nbsp;'+que_data.quests[quest_search_val.quest_num].time+'分</div>';
+    str+='<div id="q_4_" class="quest_s"></div>';
+    str+='<div id="q_4" class="quest_s">'+que_data.quests[quest_search_val.quest_num].person_num+'人</div>';
+    str+='<hr id="q_border1" class="quest_s page_container" style="width:220px;">';
     str+='</div>';
+
 
     str+='<form id="gi_form3">';
     str+='<div class="mem_ratio">';
-    for(var i=0;i<student_data.students.length;i++){
-        if(student_data.students[i].collabo==0){str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" onclick="selfunc('+i+')">'; str+='<label id="sel_label'+i+'" for="select'+i+'">';}
+    for(var i=0;i<st_data.students.length;i++){
+        if(st_data.students[i].collabo==0){str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" onclick="selfunc('+i+')">'; str+='<label id="sel_label'+i+'" for="select'+i+'">';}
         else{str+='<input type="radio" name="s3" id="select'+i+'" value="'+i+'" disabled="disabled">'; str+='<label id="sel_label'+i+'" for="select'+i+'" style="background: #888;">';}
-        str+='<img src="'+student_data.students[i].pic+'" width=28 height=28 style="top:5px; position:relative;"></img>';
-        str+='<div style="top:10px; position:relative;">'+student_data.students[i].name+'</div>';
+        str+='<img src="images/'+gen_stu_data.gen[st_data.students[i].stu_type].pic+'.png" width=28 height=28 style="top:5px; position:relative;"></img>';
+        str+='<div style="top:10px; position:relative;">'+st_data.students[i].name+'</div>';
         str+='</label>';
     }
     str+='</div>';
@@ -143,49 +167,45 @@ function quest_join(){
 function selfunc(n){
     $("#q_mbox").empty();
     var str="";
-    str+='<div id="q_m1" class="quest_s" style="background-image:url('+student_data.students[n].pic+');"></div>';
-    str+='<div id="q_m2" class="quest_s">'+student_data.students[n].name+'</div>';
+    if(st_data.students[n].grade==0||st_data.students[n].grade==1||st_data.students[n].grade==2){
+        str+='<div id="q_m1" class="quest_s" style="border:solid 2px blue; background-image:url(images/'+gen_stu_data.gen[st_data.students[n].stu_type].pic+'.png);"></div>';
+    }else if(st_data.students[n].grade==3||st_data.students[n].grade==4||st_data.students[n].grade==5){
+        str+='<div id="q_m1" class="quest_s" style="border:solid 2px green; background-image:url(images/'+gen_stu_data.gen[st_data.students[n].stu_type].pic+'.png);"></div>';
+    }else if(st_data.students[n].grade==6||st_data.students[n].grade==7||st_data.students[n].grade==8){
+        str+='<div id="q_m1" class="quest_s" style="border:solid 2px red; background-image:url(images/'+gen_stu_data.gen[st_data.students[n].stu_type].pic+'.png);"></div>';
+    }
+    str+='<div id="q_m2" class="quest_s">'+st_data.students[n].name+'</div>';
     var gra="";
-    if(student_data.students[n].grade==0){gra="学士3年"}
-    else if(student_data.students[n].grade==1){gra="学士4年"}
-    else if(student_data.students[n].grade==2){gra="修士1年"}
-    else if(student_data.students[n].grade==3){gra="修士2年"}
-    else if(student_data.students[n].grade==4){gra="博士1年"}
-    else if(student_data.students[n].grade==5){gra="博士2年"}
-    else if(student_data.students[n].grade==6){gra="博士3年"}
-    str+='<div id="q_m3" class="quest_s">/'+gra+'</div>';
+    if(st_data.students[n].grade==0){gra="学部３年"}
+    else if(st_data.students[n].grade==1||st_data.students[n].grade==2){gra="学部４年"}
+    else if(st_data.students[n].grade==3){gra="修士１年"}
+    else if(st_data.students[n].grade==4||st_data.students[n].grade==5){gra="修士２年"}
+    else if(st_data.students[n].grade==6){gra="博士１年"}
+    else if(st_data.students[n].grade==7){gra="博士２年"}
+    else if(st_data.students[n].grade==8){gra="博士３年"}
+    str+='<div id="q_m3" class="quest_s">'+gra+'</div>';
 
     var per="";
-    if(student_data.students[n].personality==0){per="慎重"}
-    else if(student_data.students[n].personality==1){per="大人しい"}
-    else if(student_data.students[n].personality==2){per="せっかち"}
-    else if(student_data.students[n].personality==3){per="臆病"}
-    else if(student_data.students[n].personality==4){per="やんちゃ"}
-    else if(student_data.students[n].personality==5){per="勇敢"}
-    else if(student_data.students[n].personality==6){per="天才肌"}
-    str+='<div id="q_m4" class="quest_s">性格:&nbsp;'+per+'</div>';
-    str+='<div id="q_m5" class="quest_s">得意分野:&nbsp;num'+student_data.students[n].speciality+'</div>';
-    var mr,mk,mc;
-    for(var j=0;j<student_data.students[n].status.length;j++){
-        if(calc_param(n)[j]<25){
-            if(j==0){mr="F";}else if(j==1){mk="F";}else if(j==2){mc="F";}
-        }else if(calc_param(n)[j]>=25&&calc_param(n)[j]<45){
-            if(j==0){mr="E";}else if(j==1){mk="E";}else if(j==2){mc="E";}
-        }else if(calc_param(n)[j]>=45&&calc_param(n)[j]<65){
-            if(j==0){mr="D";}else if(j==1){mk="D";}else if(j==2){mc="D";}
-        }else if(calc_param(n)[j]>=65&&calc_param(n)[j]<85){
-            if(j==0){mr="C";}else if(j==1){mk="C";}else if(j==2){mc="C";}
-        }else if(calc_param(n)[j]>=85&&calc_param(n)[j]<105){
-            if(j==0){mr="B";}else if(j==1){mk="B";}else if(j==2){mc="B";}
-        }else if(calc_param(n)[j]>=105&&calc_param(n)[j]<120){
-            if(j==0){mr="A";}else if(j==1){mk="A";}else if(j==2){mc="A";}
-        }else if(calc_param(n)[j]>=120){
-            if(j==0){mr="S";}else if(j==1){mk="S";}else if(j==2){mc="S";}
-        }
-    }
-    str+='<div id="q_m6" class="quest_s">論:&nbsp;'+mr+'</div>';
-    str+='<div id="q_m7" class="quest_s">開:&nbsp;'+mk+'</div>';
-    str+='<div id="q_m8" class="quest_s">コ:&nbsp;'+mc+'</div>';
+    if(st_data.students[n].personality==0){per="慎重"}
+    else if(st_data.students[n].personality==1){per="大人しい"}
+    else if(st_data.students[n].personality==2){per="せっかち"}
+    else if(st_data.students[n].personality==3){per="臆病"}
+    else if(st_data.students[n].personality==4){per="やんちゃ"}
+    else if(st_data.students[n].personality==5){per="勇敢"}
+    else if(st_data.students[n].personality==6){per="天才肌"}
+    str+='<div id="q_m4" class="quest_s">'+per+'</div>';
+    str+='<div id="q_m4_" class="quest_s"></div>';
+
+    str+='<div id="q_m5" class="quest_s">'+spe_data.spes[st_data.students[n].speciality].name+'</div>';
+    str+='<div id="q_m5_" class="quest_s"></div>';
+
+    str+='<div id="q_m6" class="quest_s page_container"><span style="position: absolute;  left:18px;">'+window.parent.calc_rank(window.parent.calc_param(n)[0],true)+'</span></div>';
+    str+='<div id="q_m7" class="quest_s page_container"><span style="position: absolute;  left:18px;">'+window.parent.calc_rank(window.parent.calc_param(n)[1],true)+'</span></div>';
+    str+='<div id="q_m8" class="quest_s page_container"><span style="position: absolute;  left:18px;">'+window.parent.calc_rank(window.parent.calc_param(n)[2],true)+'</span></div>';
+
+    str+='<hr id="q_mborder1" class="q_mbd1 page_container">';
+    str+='<hr id="q_mborder2" class="q_mbd1 page_container">';
+    str+='<hr id="q_mborder3" class="q_mbd1 page_container">';
     $("#q_mbox").append(str);
 }
 
@@ -200,51 +220,51 @@ function join_request(req_join_id){
             break;
         }
     }
-
-    join_request_api(user_data.uid,student_data.students[val].id,req_join_id);
+    var sdata=create_sdata(val);
+    var d = new $.Deferred();
+    join_request_api(req_join_id,sdata,d);
     $('#float_choice').remove();
 
-    setTimeout(function(){
+    d.promise().then(function() {
         if(join_request_val.message=="done"){
-            window.parent.collabo_st(student_data.students[val].id,1);
+            window.parent.collabo_st(st_data.students[val].id,1);
             $("#float_body").empty();
-            $("#float_body").append('<div id="f_text1" class="float_text in_float page_container">共同研究に<br>参加しました！</div>');
+            $("#float_body").append('<div id="f_text1" class="float_text in_float page_container">共同研究に参加しました！</div>');
+            $("#float_body").append('<div id="f_text1_" class="in_float page_container"></div>');
+            $("#float_body").append('<div id="f_textborder" class="page_container"></div>');
         }else{
             $("#float_body").empty();
-            $("#float_body").append('<div id="f_text2" class="float_text in_float page_container">失敗しました</div>');
+            $("#float_body").append('<div id="f_text1" class="float_text in_float page_container">失敗しました</div>');
         }
-    }, 800);
+    });
+
 
 }
 
 
-//スキルパラメータ計算
-function calc_param(s_num){
-    //↓最高に謎
-    var nstatus=[student_data.students[s_num].status[0],student_data.students[s_num].status[1],student_data.students[s_num].status[2]];
-
-    for(var i=0;i<student_data.students[s_num].skill.length;i++){
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==11){nstatus[0]=Math.ceil(nstatus[0]*1.2);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==12){nstatus[0]=Math.ceil(nstatus[0]*1.3); nstatus[1]=Math.ceil(nstatus[1]*0.8);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==13){nstatus[0]=Math.ceil(nstatus[0]*1.3); nstatus[2]=Math.ceil(nstatus[2]*0.8);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==21){nstatus[1]=Math.ceil(nstatus[1]*1.2);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==22){nstatus[1]=Math.ceil(nstatus[1]*1.3); nstatus[0]=Math.ceil(nstatus[0]*0.8);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==23){nstatus[1]=Math.ceil(nstatus[1]*1.3); nstatus[2]=Math.ceil(nstatus[2]*0.8);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==31){nstatus[2]=Math.ceil(nstatus[2]*1.2);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==32){nstatus[2]=Math.ceil(nstatus[2]*1.3); nstatus[0]=Math.ceil(nstatus[0]*0.8);}
-        if(Math.floor(student_data.students[s_num].skill[i]/10)==33){nstatus[2]=Math.ceil(nstatus[2]*1.3); nstatus[1]=Math.ceil(nstatus[1]*0.8);}
-    }
-
-
-    for(var i=0;i<student_data.students.length;i++){
-        for(var j=0;j<student_data.students[i].skill.length;j++){
-            if(Math.floor(student_data.students[i].skill[j]/10)==14){nstatus[0]=Math.ceil(nstatus[0]*1.1);}
-            if(Math.floor(student_data.students[i].skill[j]/10)==24){nstatus[1]=Math.ceil(nstatus[1]*1.1);}
-            if(Math.floor(student_data.students[i].skill[j]/10)==34){nstatus[2]=Math.ceil(nstatus[2]*1.1);}
+//送る用データ作成
+function create_sdata(s_num){
+    var s_skill=[];
+    for(var i=0;i<st_data.students[s_num].skill.length;i++){
+        if(Math.floor(st_data.students[s_num].skill[i]/100)==5){
+            s_skill.push(Math.floor((st_data.students[s_num].skill[i]-500)/10));
+            //console.log(Math.floor((st_data.students[s_num].skill[i]-500)/10));
         }
     }
-
-    return nstatus;
+    var sdata_={
+        "id": us_data.uid,
+        "u_name": us_data.name,
+        "stu_id": st_data.students[s_num].id,
+        "stu_name": st_data.students[s_num].name,
+        "status": window.parent.calc_param(s_num),
+        "speciality": st_data.students[s_num].speciality,
+        "skill":s_skill
+    };
+    return sdata_;
 }
+
+
+
+
 
 //-->
